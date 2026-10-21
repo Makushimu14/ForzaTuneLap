@@ -1,0 +1,741 @@
+{
+  "pays": [
+    {
+      "identifiant": 1,
+      "nomFrancais": "Afrique du Sud",
+      "nomAnglais": "South Africa",
+      "circuits": [
+        {
+          "identifiant": 1,
+          "nom": "Kyalami Grand Prix Circuit",
+          "parcours": [
+            {
+              "identifiant": 18,
+              "longueurKilometres": 4.53,
+              "nomFrancais": "Circuit de Grand Prix du Kyalami",
+              "nomAnglais": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifiant": 2,
+      "nomFrancais": "Allemagne",
+      "nomAnglais": "Germany",
+      "circuits": [
+        {
+          "identifiant": 2,
+          "nom": "Hockenheimring",
+          "parcours": [
+            {
+              "identifiant": 53,
+              "longueurKilometres": 4.57,
+              "nomFrancais": "Hockenheimring",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 54,
+              "longueurKilometres": 3.69,
+              "nomFrancais": "Hockenheimring National",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 55,
+              "longueurKilometres": 2.64,
+              "nomFrancais": "Hockenheimring Court",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 3,
+          "nom": "Nürburgring",
+          "parcours": [
+            {
+              "identifiant": 58,
+              "longueurKilometres": 25.38,
+              "nomFrancais": "Nürburgring - Complet",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 59,
+              "longueurKilometres": 20.83,
+              "nomFrancais": "Nordschleife",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 31,
+              "longueurKilometres": 5.15,
+              "nomFrancais": "Nürburgring - GP",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 32,
+              "longueurKilometres": 3.63,
+              "nomFrancais": "Sprint du Nürburgring",
+              "nomAnglais": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifiant": 3,
+      "nomFrancais": "Australie",
+      "nomAnglais": "Australia",
+      "circuits": [
+        {
+          "identifiant": 4,
+          "nom": "Mount Panorama Circuit",
+          "parcours": [
+            {
+              "identifiant": 71,
+              "longueurKilometres": 6.21,
+              "nomFrancais": "Bathurst",
+              "nomAnglais": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifiant": 4,
+      "nomFrancais": "Autriche",
+      "nomAnglais": "Austria",
+      "circuits": []
+    },
+    {
+      "identifiant": 5,
+      "nomFrancais": "Belgique",
+      "nomAnglais": "Belgium",
+      "circuits": [
+        {
+          "identifiant": 5,
+          "nom": "Circuit de Spa-Francorchamps",
+          "parcours": [
+            {
+              "identifiant": 4,
+              "longueurKilometres": 7.0,
+              "nomFrancais": "Circuit de Spa",
+              "nomAnglais": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifiant": 6,
+      "nomFrancais": "Chine",
+      "nomAnglais": "China",
+      "circuits": []
+    },
+    {
+      "identifiant": 7,
+      "nomFrancais": "Corée",
+      "nomAnglais": "South Korea",
+      "circuits": []
+    },
+    {
+      "identifiant": 8,
+      "nomFrancais": "Croatie",
+      "nomAnglais": "Croatia",
+      "circuits": []
+    },
+    {
+      "identifiant": 9,
+      "nomFrancais": "Danemark",
+      "nomAnglais": "Denmark",
+      "circuits": []
+    },
+    {
+      "identifiant": 10,
+      "nomFrancais": "Espagne",
+      "nomAnglais": "Spain",
+      "circuits": [
+        {
+          "identifiant": 6,
+          "nom": "Circuit de Barcelona - Catalunya",
+          "parcours": [
+            {
+              "identifiant": 1,
+              "longueurKilometres": 4.66,
+              "nomFrancais": "GP de Catalunya",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 2,
+              "longueurKilometres": 3.07,
+              "nomFrancais": "Catalunya - National",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 3,
+              "longueurKilometres": 3.0,
+              "nomFrancais": "Catalunya - National alt",
+              "nomAnglais": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifiant": 11,
+      "nomFrancais": "France",
+      "nomAnglais": "France",
+      "circuits": [
+        {
+          "identifiant": 7,
+          "nom": "Le Mans - Circuit International de la Sarthe",
+          "parcours": [
+            {
+              "identifiant": 19,
+              "longueurKilometres": 13.63,
+              "nomFrancais": "Le Mans La Sarthe - complet",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 20,
+              "longueurKilometres": 13.54,
+              "nomFrancais": "Le Mans - Ancien circuit de Mulsanne",
+              "nomAnglais": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifiant": 12,
+      "nomFrancais": "Italie",
+      "nomAnglais": "Italy",
+      "circuits": [
+        {
+          "identifiant": 8,
+          "nom": "Mugello Circuit",
+          "parcours": [
+            {
+              "identifiant": 29,
+              "longueurKilometres": 5.25,
+              "nomFrancais": "Mugello - Complet",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 30,
+              "longueurKilometres": 2.58,
+              "nomFrancais": "Mugello - Club",
+              "nomAnglais": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifiant": 13,
+      "nomFrancais": "Japon",
+      "nomAnglais": "Japan",
+      "circuits": [
+        {
+          "identifiant": 9,
+          "nom": "Fujimi Kaido",
+          "parcours": [
+            {
+              "identifiant": 72,
+              "longueurKilometres": 16.48,
+              "nomFrancais": "Fujimi Kaido",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 73,
+              "longueurKilometres": 16.48,
+              "nomFrancais": "Fujimi Kaido - sens inverse",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 10,
+          "nom": "Hakone",
+          "parcours": [
+            {
+              "identifiant": 11,
+              "longueurKilometres": 4.28,
+              "nomFrancais": "Grand Prix de Hakone",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 12,
+              "longueurKilometres": 3.32,
+              "nomFrancais": "Club Hakone",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 13,
+              "longueurKilometres": 3.32,
+              "nomFrancais": "Club Hakone - R",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 11,
+          "nom": "Suzuka Circuit",
+          "parcours": [
+            {
+              "identifiant": 38,
+              "longueurKilometres": 5.81,
+              "nomFrancais": "Suzuka - Complet",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 39,
+              "longueurKilometres": 2.25,
+              "nomFrancais": "Suzuka - Complet - Est",
+              "nomAnglais": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifiant": 14,
+      "nomFrancais": "Mexique",
+      "nomAnglais": "Mexico",
+      "circuits": []
+    },
+    {
+      "identifiant": 15,
+      "nomFrancais": "Pays-Bas",
+      "nomAnglais": "Netherlands",
+      "circuits": []
+    },
+    {
+      "identifiant": 16,
+      "nomFrancais": "Royaume-Uni",
+      "nomAnglais": "United Kingdom",
+      "circuits": [
+        {
+          "identifiant": 12,
+          "nom": "Brands Hatch",
+          "parcours": [
+            {
+              "identifiant": 60,
+              "longueurKilometres": 3.92,
+              "nomFrancais": "GP de Brands Hatch",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 61,
+              "longueurKilometres": 1.94,
+              "nomFrancais": "Brands Hatch - Indy",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 13,
+          "nom": "Silverstone Racing Circuit",
+          "parcours": [
+            {
+              "identifiant": 35,
+              "longueurKilometres": 5.89,
+              "nomFrancais": "GP de Silverstone",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 36,
+              "longueurKilometres": 2.64,
+              "nomFrancais": "Silverstone - National",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 37,
+              "longueurKilometres": 2.98,
+              "nomFrancais": "Silverstone - International",
+              "nomAnglais": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifiant": 17,
+      "nomFrancais": "Suède",
+      "nomAnglais": "Sweden",
+      "circuits": []
+    },
+    {
+      "identifiant": 18,
+      "nomFrancais": "Émirats arabes unis",
+      "nomAnglais": "United Arab Emirates",
+      "circuits": [
+        {
+          "identifiant": 14,
+          "nom": "Yas Marina Circuit",
+          "parcours": [
+            {
+              "identifiant": 49,
+              "longueurKilometres": 5.28,
+              "nomFrancais": "Yas Marina - Complet",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 50,
+              "longueurKilometres": 3.0,
+              "nomFrancais": "Yas Marina - Nord",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 51,
+              "longueurKilometres": 2.19,
+              "nomFrancais": "Yas Marina - Sud",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 52,
+              "longueurKilometres": 2.29,
+              "nomFrancais": "Yas Marina - Corkscrew Nord",
+              "nomAnglais": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifiant": 19,
+      "nomFrancais": "États-Unis",
+      "nomAnglais": "United States",
+      "circuits": [
+        {
+          "identifiant": 15,
+          "nom": "Daytona Intl Speedway",
+          "parcours": [
+            {
+              "identifiant": 56,
+              "longueurKilometres": 5.78,
+              "nomFrancais": "Daytona - 24 Heures",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 57,
+              "longueurKilometres": 4.02,
+              "nomFrancais": "Daytona - Tri-ovale",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 16,
+          "nom": "Eaglerock Speedway",
+          "parcours": [
+            {
+              "identifiant": 5,
+              "longueurKilometres": 1.64,
+              "nomFrancais": "Eaglerock ovale",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 6,
+              "longueurKilometres": 1.72,
+              "nomFrancais": "Eaglerock Club",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 7,
+              "longueurKilometres": 1.72,
+              "nomFrancais": "Eaglerock Club - SI",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 17,
+          "nom": "Grand Oak Raceway",
+          "parcours": [
+            {
+              "identifiant": 8,
+              "longueurKilometres": 3.73,
+              "nomFrancais": "Grand Oak National",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 9,
+              "longueurKilometres": 2.62,
+              "nomFrancais": "Grand Oak Club",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 10,
+              "longueurKilometres": 3.73,
+              "nomFrancais": "Grand Oak National - SI",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 18,
+          "nom": "Homestead-Miami Speedway",
+          "parcours": [
+            {
+              "identifiant": 14,
+              "longueurKilometres": 2.41,
+              "nomFrancais": "Homestead Speedway",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 15,
+              "longueurKilometres": 3.56,
+              "nomFrancais": "Homestead Road",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 19,
+          "nom": "Indianapolis Motor Speedway",
+          "parcours": [
+            {
+              "identifiant": 16,
+              "longueurKilometres": 4.02,
+              "nomFrancais": "Indianapolis Brickyard Ovale",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 17,
+              "longueurKilometres": 3.93,
+              "nomFrancais": "GP d'Indianapolis",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 20,
+          "nom": "Lime Rock Park",
+          "parcours": [
+            {
+              "identifiant": 21,
+              "longueurKilometres": 2.41,
+              "nomFrancais": "Lime Rock - Complet",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 22,
+              "longueurKilometres": 2.37,
+              "nomFrancais": "Lime Rock - Sud",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 23,
+              "longueurKilometres": 2.41,
+              "nomFrancais": "Lime Rock - Complet alternatif",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 21,
+          "nom": "Maple Valley",
+          "parcours": [
+            {
+              "identifiant": 24,
+              "longueurKilometres": 4.81,
+              "nomFrancais": "Maple Valley",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 25,
+              "longueurKilometres": 1.85,
+              "nomFrancais": "Maple Valley court",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 26,
+              "longueurKilometres": 1.85,
+              "nomFrancais": "Maple Valley court - C",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 22,
+          "nom": "Michelin Raceway Road Atlanta",
+          "parcours": [
+            {
+              "identifiant": 64,
+              "longueurKilometres": 4.09,
+              "nomFrancais": "Road Atlanta",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 65,
+              "longueurKilometres": 2.88,
+              "nomFrancais": "Road Atlanta - Court",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 23,
+          "nom": "Mid-Ohio Sports Car Course",
+          "parcours": [
+            {
+              "identifiant": 27,
+              "longueurKilometres": 3.62,
+              "nomFrancais": "Mid-Ohio",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 28,
+              "longueurKilometres": 2.82,
+              "nomFrancais": "Mid-Ohio - Court",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 24,
+          "nom": "Road America",
+          "parcours": [
+            {
+              "identifiant": 33,
+              "longueurKilometres": 6.52,
+              "nomFrancais": "Road America",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 34,
+              "longueurKilometres": 3.52,
+              "nomFrancais": "Road America - Est",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 25,
+          "nom": "Sebring International Raceway",
+          "parcours": [
+            {
+              "identifiant": 62,
+              "longueurKilometres": 5.95,
+              "nomFrancais": "Sebring - Complet",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 63,
+              "longueurKilometres": 3.22,
+              "nomFrancais": "Sebring - Court",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 26,
+          "nom": "Sunset Peninsula Raceway",
+          "parcours": [
+            {
+              "identifiant": 66,
+              "longueurKilometres": 4.47,
+              "nomFrancais": "Sunset Peninsula - Complet",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 67,
+              "longueurKilometres": 3.12,
+              "nomFrancais": "Sunset Peninsula - Club",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 68,
+              "longueurKilometres": 4.47,
+              "nomFrancais": "Sunset Peninsula - Complet -I",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 69,
+              "longueurKilometres": 3.12,
+              "nomFrancais": "Sunset Peninsula - Club -I",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 70,
+              "longueurKilometres": 3.93,
+              "nomFrancais": "Piste de vitesse Sunset Peninsula",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 27,
+          "nom": "Virginia International Raceway",
+          "parcours": [
+            {
+              "identifiant": 40,
+              "longueurKilometres": 5.26,
+              "nomFrancais": "VIR - Complet",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 41,
+              "longueurKilometres": 3.62,
+              "nomFrancais": "VIR - Nord",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 42,
+              "longueurKilometres": 2.66,
+              "nomFrancais": "VIR - Sud",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 43,
+              "longueurKilometres": 6.6,
+              "nomFrancais": "VIR - Grand Ouest",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 44,
+              "longueurKilometres": 6.76,
+              "nomFrancais": "VIR - Grand Est",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 28,
+          "nom": "Watkins Glen International Speedway",
+          "parcours": [
+            {
+              "identifiant": 45,
+              "longueurKilometres": 5.55,
+              "nomFrancais": "Watkins Glen - Complet",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 46,
+              "longueurKilometres": 3.94,
+              "nomFrancais": "Watkins Glen - Court",
+              "nomAnglais": null
+            }
+          ]
+        },
+        {
+          "identifiant": 29,
+          "nom": "WeatherTech Raceway Laguna Seca",
+          "parcours": [
+            {
+              "identifiant": 47,
+              "longueurKilometres": 3.6,
+              "nomFrancais": "Laguna Seca",
+              "nomAnglais": null
+            },
+            {
+              "identifiant": 48,
+              "longueurKilometres": 2.96,
+              "nomFrancais": "Laguna Seca - Court",
+              "nomAnglais": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Division_Challenge488" xml:space="preserve"><value>488 Challenge</value></data>
+  <data name="Division_CompactesModernes" xml:space="preserve"><value>Compactes modernes</value></data>
+  <data name="Division_CompactesSportEpoque" xml:space="preserve"><value>Compactes sport d'époque</value></data>
+  <data name="Division_CompactesSportivesModernes" xml:space="preserve"><value>Compactes sportives modernes</value></data>
+  <data name="Division_CoupesSportEmblematiques" xml:space="preserve"><value>Coupés sport emblématiques</value></data>
+  <data name="Division_CoupesSportModernes" xml:space="preserve"><value>Coupés sport modernes</value></data>
+  <data name="Division_FormulaDrift" xml:space="preserve"><value>Formula drift</value></data>
+  <data name="Division_FormulaMazda" xml:space="preserve"><value>Formula Mazda</value></data>
+  <data name="Division_FormuleAnnees1960" xml:space="preserve"><value>Formule années 1960</value></data>
+  <data name="Division_FormuleAnnees1970" xml:space="preserve"><value>Formule années 1970</value></data>
+  <data name="Division_ForzaAUS" xml:space="preserve"><value>Forza AUS</value></data>
+  <data name="Division_ForzaGT2" xml:space="preserve"><value>Forza GT2</value></data>
+  <data name="Division_ForzaGT3" xml:space="preserve"><value>Forza GT3</value></data>
+  <data name="Division_ForzaGT4" xml:space="preserve"><value>Forza GT4</value></data>
+  <data name="Division_ForzaP1" xml:space="preserve"><value>Forza P1</value></data>
+  <data name="Division_ForzaP2" xml:space="preserve"><value>Forza P2</value></data>
+  <data name="Division_ForzaP3" xml:space="preserve"><value>Forza P3</value></data>
+  <data name="Division_ForzaProtoH" xml:space="preserve"><value>Forza PROTO-H</value></data>
+  <data name="Division_ForzaTA" xml:space="preserve"><value>Forza T/A</value></data>
+  <data name="Division_G40Junior" xml:space="preserve"><value>G40 Junior</value></data>
+  <data name="Division_GTExotiquesClassiques" xml:space="preserve"><value>GT exotiques classiques</value></data>
+  <data name="Division_GTExotiquesModernes" xml:space="preserve"><value>GT exotiques modernes</value></data>
+  <data name="Division_GTSportModernes" xml:space="preserve"><value>GT sport modernes</value></data>
+  <data name="Division_GTPC" xml:space="preserve"><value>GTP C</value></data>
+  <data name="Division_HypercarsModernes" xml:space="preserve"><value>Hypercars modernes</value></data>
+  <data name="Division_IconesCompactes" xml:space="preserve"><value>Icones compactes</value></data>
+  <data name="Division_IconesGTSport" xml:space="preserve"><value>Icones GT sport</value></data>
+  <data name="Division_JoujouxDeCircuit" xml:space="preserve"><value>Joujoux de circuit</value></data>
+  <data name="Division_LaNaissanceDesGrandsPrix" xml:space="preserve"><value>La naissance des grands prix</value></data>
+  <data name="Division_MuscleCarsEpoques" xml:space="preserve"><value>Muscle cars d'époques</value></data>
+  <data name="Division_Nascar" xml:space="preserve"><value>Nascar</value></data>
+  <data name="Division_PilotesDeDragDeRue" xml:space="preserve"><value>Pilotes de drag de rue</value></data>
+  <data name="Division_PremieresCompactesSportives" xml:space="preserve"><value>Premières compactes sportives</value></data>
+  <data name="Division_PremieresLMP" xml:space="preserve"><value>Premières LMP</value></data>
+  <data name="Division_PremieresVoituresUsine" xml:space="preserve"><value>Premières voitures d'usine</value></data>
+  <data name="Division_PrototypeEpoqueDuMans" xml:space="preserve"><value>Prototype d'époque du Mans</value></data>
+  <data name="Division_PrototypeDeCourse" xml:space="preserve"><value>Prototype de course</value></data>
+  <data name="Division_ReglagesDeMissionR" xml:space="preserve"><value>Réglages de mission R</value></data>
+  <data name="Division_RivauxDeGrandPrix" xml:space="preserve"><value>Rivaux de grand prix</value></data>
+  <data name="Division_SportivesDeLuxe" xml:space="preserve"><value>Sportives de luxe</value></data>
+  <data name="Division_SpecialesForza" xml:space="preserve"><value>Spéciales Forza</value></data>
+  <data name="Division_SuperTrofeo" xml:space="preserve"><value>Super trofeo</value></data>
+  <data name="Division_TransAmVintage" xml:space="preserve"><value>Trans AM vintage</value></data>
+  <data name="Division_VoituresDeSportEpoqueDuMans" xml:space="preserve"><value>Voitures de sport d'époque du Mans</value></data>
+  <data name="Division_VoituresDeSportGTX" xml:space="preserve"><value>Voitures de sport GTX</value></data>
+  <data name="Division_VoituresDeTourismeForza" xml:space="preserve"><value>Voitures de tourisme Forza</value></data>
+  <data name="Division_VoituresDeTourismeSportClassiques" xml:space="preserve"><value>Voitures de tourisme sport classiques</value></data>
+  <data name="Division_VoituresDeTourismeSportModernes" xml:space="preserve"><value>Voitures de tourisme sport modernes</value></data>
+  <data name="Division_VoituresExotiquesGTEpoque" xml:space="preserve"><value>Voitures exotiques GT d'époque</value></data>
+  <data name="Division_VoituresUsineModernes" xml:space="preserve"><value>Voitures d'usine modernes</value></data>
+  <data name="Transmission_TransmissionIntegrale" xml:space="preserve"><value>Transmission intégrale</value></data>
+  <data name="Transmission_Traction" xml:space="preserve"><value>Traction</value></data>
+  <data name="Transmission_Propulsion" xml:space="preserve"><value>Propulsion</value></data>
+  <data name="Categorie_Generaux" xml:space="preserve"><value>Généraux</value></data>
+  <data name="Categorie_Performances" xml:space="preserve"><value>Performances</value></data>
+  <data name="Categorie_Pneus" xml:space="preserve"><value>Pneus</value></data>
+  <data name="Categorie_Rapports" xml:space="preserve"><value>Rapports de boîte</value></data>
+  <data name="Categorie_Alignement" xml:space="preserve"><value>Alignement</value></data>
+  <data name="Categorie_Ressorts" xml:space="preserve"><value>Ressorts</value></data>
+  <data name="Categorie_BarresAntiroulis" xml:space="preserve"><value>Barres anti-roulis</value></data>
+  <data name="Categorie_Amortisseurs" xml:space="preserve"><value>Amortisseurs</value></data>
+  <data name="Categorie_GeometrieDeSuspension" xml:space="preserve"><value>Géométrie de suspension</value></data>
+  <data name="Categorie_Differentiel" xml:space="preserve"><value>Différentiel</value></data>
+  <data name="Categorie_Freins" xml:space="preserve"><value>Freins</value></data>
+  <data name="Categorie_Aerodynamisme" xml:space="preserve"><value>Aérodynamisme</value></data>
+  <data name="Categorie_Volant" xml:space="preserve"><value>Volant</value></data>
+  <data name="Critere_Generaux_IndiceDePerformance" xml:space="preserve"><value>Indice de performance</value></data>
+  <data name="Critere_Generaux_Puissance" xml:space="preserve"><value>Puissance</value></data>
+  <data name="Critere_Generaux_Couple" xml:space="preserve"><value>Couple</value></data>
+  <data name="Critere_Generaux_Poids" xml:space="preserve"><value>Poids</value></data>
+  <data name="Critere_Generaux_RepartitionPoidsAvant" xml:space="preserve"><value>Répartition du poids (avant)</value></data>
+  <data name="Critere_Generaux_NoteAcceleration" xml:space="preserve"><value>Note d'accélération</value></data>
+  <data name="Critere_Generaux_NoteFreinage" xml:space="preserve"><value>Note de freinage</value></data>
+  <data name="Critere_Generaux_NoteTenueDeRoute" xml:space="preserve"><value>Note de tenue de route</value></data>
+  <data name="Critere_Generaux_NoteVitesse" xml:space="preserve"><value>Note de vitesse</value></data>
+  <data name="Critere_Performances_AccelerationDeZeroA97" xml:space="preserve"><value>Accélération 0-97 km/h</value></data>
+  <data name="Critere_Performances_AccelerationDeZeroA161" xml:space="preserve"><value>Accélération 0-161 km/h</value></data>
+  <data name="Critere_Performances_Temps400Metres" xml:space="preserve"><value>Temps sur 400 m</value></data>
+  <data name="Critere_Performances_DistanceDeFreinageDe97AZero" xml:space="preserve"><value>Distance de freinage 97-0 km/h</value></data>
+  <data name="Critere_Performances_DistanceDeFreinageDe161AZero" xml:space="preserve"><value>Distance de freinage 161-0 km/h</value></data>
+  <data name="Critere_Performances_AccelerationLateraleA97" xml:space="preserve"><value>Accélération latérale à 97 km/h</value></data>
+  <data name="Critere_Performances_AccelerationLateraleA193" xml:space="preserve"><value>Accélération latérale à 193 km/h</value></data>
+  <data name="Critere_Performances_VitesseMaximale" xml:space="preserve"><value>Vitesse maximale</value></data>
+  <data name="Critere_Pneus_PressionAvant" xml:space="preserve"><value>Pression des pneus avant</value></data>
+  <data name="Critere_Pneus_PressionArriere" xml:space="preserve"><value>Pression des pneus arrière</value></data>
+  <data name="Critere_Alignement_CarrossageAvant" xml:space="preserve"><value>Carrossage avant</value></data>
+  <data name="Critere_Alignement_CarrossageArriere" xml:space="preserve"><value>Carrossage arrière</value></data>
+  <data name="Critere_Alignement_ParallelismeAvant" xml:space="preserve"><value>Parallélisme avant</value></data>
+  <data name="Critere_Alignement_ParallelismeArriere" xml:space="preserve"><value>Parallélisme arrière</value></data>
+  <data name="Critere_Alignement_AngleDeChasseAvant" xml:space="preserve"><value>Angle de chasse avant</value></data>
+  <data name="Critere_Ressorts_RessortsAvant" xml:space="preserve"><value>Ressorts avant</value></data>
+  <data name="Critere_Ressorts_RessortsArriere" xml:space="preserve"><value>Ressorts arrière</value></data>
+  <data name="Critere_Ressorts_GardeAuSolAvant" xml:space="preserve"><value>Garde au sol avant</value></data>
+  <data name="Critere_Ressorts_GardeAuSolArriere" xml:space="preserve"><value>Garde au sol arrière</value></data>
+  <data name="Critere_BarresAntiroulis_Avant" xml:space="preserve"><value>Barre anti-roulis avant</value></data>
+  <data name="Critere_BarresAntiroulis_Arriere" xml:space="preserve"><value>Barre anti-roulis arrière</value></data>
+  <data name="Critere_Amortisseurs_RigiditeAmortissementAvant" xml:space="preserve"><value>Rigidité d'amortissement avant</value></data>
+  <data name="Critere_Amortisseurs_RigiditeAmortissementArriere" xml:space="preserve"><value>Rigidité d'amortissement arrière</value></data>
+  <data name="Critere_Amortisseurs_RigiditeDetenteAvant" xml:space="preserve"><value>Rigidité de détente avant</value></data>
+  <data name="Critere_Amortisseurs_RigiditeDetenteArriere" xml:space="preserve"><value>Rigidité de détente arrière</value></data>
+  <data name="Critere_GeometrieDeSuspension_HauteurCentreRoulisAvant" xml:space="preserve"><value>Hauteur du centre de roulis avant</value></data>
+  <data name="Critere_GeometrieDeSuspension_HauteurCentreRoulisArriere" xml:space="preserve"><value>Hauteur du centre de roulis arrière</value></data>
+  <data name="Critere_GeometrieDeSuspension_PourcentageAntigeometrieAvant" xml:space="preserve"><value>Antigéométrie avant</value></data>
+  <data name="Critere_GeometrieDeSuspension_PourcentageAntigeometrieArriere" xml:space="preserve"><value>Antigéométrie arrière</value></data>
+  <data name="Critere_Differentiel_Acceleration" xml:space="preserve"><value>Différentiel en accélération</value></data>
+  <data name="Critere_Differentiel_Deceleration" xml:space="preserve"><value>Différentiel en décélération</value></data>
+  <data name="Critere_Differentiel_EquilibreCentral" xml:space="preserve"><value>Équilibre central</value></data>
+  <data name="Critere_Freins_PuissanceFreinageEquilibre" xml:space="preserve"><value>Équilibre de freinage</value></data>
+  <data name="Critere_Freins_PuissanceFreinagePression" xml:space="preserve"><value>Pression de freinage</value></data>
+  <data name="Critere_Aerodynamisme_PortanceNegativeAvant" xml:space="preserve"><value>Appui aérodynamique avant</value></data>
+  <data name="Critere_Aerodynamisme_PortanceNegativeArriere" xml:space="preserve"><value>Appui aérodynamique arrière</value></data>
+  <data name="Critere_Volant_AngleBraquage" xml:space="preserve"><value>Angle de braquage</value></data>
+  <data name="Critere_Volant_IntensiteRetourDeForce" xml:space="preserve"><value>Intensité du retour de force</value></data>
+  <data name="Critere_Rapports_NombreDeRapports" xml:space="preserve"><value>Nombre de rapports</value></data>
+  <data name="Critere_Rapports_RapportFinal" xml:space="preserve"><value>Rapport final</value></data>
+  <data name="Critere_Rapports_Rapport1" xml:space="preserve"><value>Rapport 1</value></data>
+  <data name="Critere_Rapports_Rapport2" xml:space="preserve"><value>Rapport 2</value></data>
+  <data name="Critere_Rapports_Rapport3" xml:space="preserve"><value>Rapport 3</value></data>
+  <data name="Critere_Rapports_Rapport4" xml:space="preserve"><value>Rapport 4</value></data>
+  <data name="Critere_Rapports_Rapport5" xml:space="preserve"><value>Rapport 5</value></data>
+  <data name="Critere_Rapports_Rapport6" xml:space="preserve"><value>Rapport 6</value></data>
+  <data name="Critere_Rapports_Rapport7" xml:space="preserve"><value>Rapport 7</value></data>
+  <data name="Critere_Rapports_Rapport8" xml:space="preserve"><value>Rapport 8</value></data>
+  <data name="Critere_Rapports_Rapport9" xml:space="preserve"><value>Rapport 9</value></data>
+  <data name="Critere_Rapports_Rapport10" xml:space="preserve"><value>Rapport 10</value></data>
+</root>

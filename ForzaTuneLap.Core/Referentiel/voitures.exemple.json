@@ -1,0 +1,45 @@
+{
+  "marques": [
+    {
+      "identifiant": 1,
+      "nom": "Marque d'exemple",
+      "identifiantPays": 11,
+      "voitures": [
+        {
+          "identifiant": 1,
+          "nom": "Voiture d'exemple",
+          "annee": 2000,
+          "division": "ForzaGT3",
+          "valeur": 100000,
+          "achetable": true,
+          "contenuTelechargeable": false,
+          "reglageOrigine": {
+            "identifiant": "00000000-0000-0000-0000-000000000001",
+            "nom": "Origine",
+            "generaux": {
+              "code": "A 700", "moteur": "Exemple V8", "transmission": "Propulsion",
+              "indiceDePerformance": 700, "puissance": 300, "couple": 500, "poids": 1400,
+              "repartitionPoidsAvant": 52,
+              "noteAcceleration": 5.0, "noteFreinage": 5.0, "noteTenueDeRoute": 5.0, "noteVitesse": 5.0
+            },
+            "performances": {
+              "accelerationDeZeroA97": 4.5, "accelerationDeZeroA161": 10.0, "temps400Metres": 12.5,
+              "distanceDeFreinageDe97AZero": 35.0, "distanceDeFreinageDe161AZero": 100.0,
+              "accelerationLateraleA97": 1.0, "accelerationLateraleA193": 1.1, "vitesseMaximale": 250.0
+            },
+            "pneus": { "pressionAvant": 2.0, "pressionArriere": 2.0 },
+            "alignement": { "carrossageAvant": -1.0, "carrossageArriere": -1.0, "parallelismeAvant": 0.0, "parallelismeArriere": 0.0, "angleDeChasseAvant": 5.0 },
+            "ressorts": { "ressortsAvant": 100, "ressortsArriere": 100, "gardeAuSolAvant": 12, "gardeAuSolArriere": 12 },
+            "barresAntiroulis": { "avant": 20, "arriere": 20 },
+            "amortisseurs": { "rigiditeAmortissementAvant": 7, "rigiditeAmortissementArriere": 7, "rigiditeDetenteAvant": 8, "rigiditeDetenteArriere": 8 },
+            "differentiel": { "acceleration": 50, "deceleration": 20 },
+            "freins": { "puissanceFreinageEquilibre": 50, "puissanceFreinagePression": 100 },
+            "volant": { "angleBraquage": 100, "intensiteRetourDeForce": 100 },
+            "rapportFinal": 3.5,
+            "rapportsDeBoite": [3.2, 2.1, 1.5, 1.2, 1.0, 0.8]
+          }
+        }
+      ]
+    }
+  ]
+}
