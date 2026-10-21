@@ -1,4 +1,3 @@
-using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -149,6 +148,11 @@ public static class ChargeurReferentiel
 
     public static FichierVoitures LireVoitures() =>
         Lire(NomRessourceVoitures, ContexteJsonReferentiel.Default.FichierVoitures);
+
+    /// <summary>Lit un fichier voitures depuis un flux (utile pour contrôler un fichier avant de l'embarquer).</summary>
+    public static FichierVoitures LireVoitures(Stream flux) =>
+        JsonSerializer.Deserialize(flux, ContexteJsonReferentiel.Default.FichierVoitures)
+            ?? throw new InvalidOperationException("Fichier vide ou invalide.");
 
     /// <summary>Empreinte stable du contenu d'un réglage d'origine, pour détecter une correction du fichier.</summary>
     internal static string CalculerEmpreinte(ReglageOrigineFichier reglage)

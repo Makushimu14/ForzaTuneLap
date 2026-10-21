@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Mettre ces versions à jour vers les dernières stables. -->
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
+	<PackageReference Include="xunit.v3" Version="4.0.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="4.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ForzaTuneLap.Core\ForzaTuneLap.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Le fichier d'exemple n'est pas embarqué dans l'application : seuls les tests le lisent. -->
+    <EmbeddedResource Include="..\ForzaTuneLap.Core\Referentiel\voitures.exemple.json" LogicalName="voitures.exemple.json" />
+  </ItemGroup>
+
+</Project>

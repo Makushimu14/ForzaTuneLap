@@ -11,12 +11,20 @@ namespace ForzaTuneLap.Core.Donnees;
 /// </summary>
 public static class InitialiseurBaseDeDonnees
 {
-    public static async Task InitialiserAsync(ContexteDonnees contexte, CancellationToken annulation = default)
+    public static Task InitialiserAsync(ContexteDonnees contexte, CancellationToken annulation = default) =>
+        InitialiserAsync(contexte, ChargeurReferentiel.LireCircuits(), ChargeurReferentiel.LireVoitures(), annulation);
+
+    /// <summary>Variante recevant le contenu des fichiers de données (utile pour les tests).</summary>
+    public static async Task InitialiserAsync(
+        ContexteDonnees contexte,
+        FichierCircuits circuits,
+        FichierVoitures voitures,
+        CancellationToken annulation = default)
     {
         await contexte.Database.MigrateAsync(annulation);
 
-        await SynchroniserCircuitsAsync(contexte, ChargeurReferentiel.LireCircuits(), annulation);
-        await SynchroniserVoituresAsync(contexte, ChargeurReferentiel.LireVoitures(), annulation);
+        await SynchroniserCircuitsAsync(contexte, circuits, annulation);
+        await SynchroniserVoituresAsync(contexte, voitures, annulation);
     }
 
     private static async Task SynchroniserCircuitsAsync(ContexteDonnees contexte, FichierCircuits fichier, CancellationToken annulation)
