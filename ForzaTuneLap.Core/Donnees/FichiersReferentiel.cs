@@ -95,6 +95,27 @@ public sealed class ReglageOrigineFichier
     /// <summary>Valeurs des rapports de boîte, du premier au dernier.</summary>
     public List<double> RapportsDeBoite { get; set; } = new();
 
+    /// <summary>Construit le contenu de fichier correspondant à un réglage (les sections sont partagées, pas copiées).</summary>
+    internal static ReglageOrigineFichier DepuisReglage(Reglage reglage) => new()
+    {
+        Identifiant = reglage.Identifiant,
+        Nom = reglage.Nom,
+        Generaux = reglage.Generaux,
+        Performances = reglage.Performances,
+        Pneus = reglage.Pneus,
+        Alignement = reglage.Alignement,
+        Ressorts = reglage.Ressorts,
+        BarresAntiroulis = reglage.BarresAntiroulis,
+        Amortisseurs = reglage.Amortisseurs,
+        GeometrieDeSuspension = reglage.GeometrieDeSuspension,
+        Differentiel = reglage.Differentiel,
+        Freins = reglage.Freins,
+        Aerodynamisme = reglage.Aerodynamisme,
+        Volant = reglage.Volant,
+        RapportFinal = reglage.RapportFinal,
+        RapportsDeBoite = reglage.RapportsDeBoite.OrderBy(r => r.Numero).Select(r => r.Valeur).ToList()
+    };
+
     public Reglage VersReglage(int identifiantVoiture, string empreinte, DateTime maintenant) => new()
     {
         Identifiant = Identifiant,
