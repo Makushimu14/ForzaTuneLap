@@ -13,7 +13,16 @@ public enum CodeErreurMetier
     ChronoIntrouvable,
     ChronoDejaExistant,
     DureeInvalide,
-    CritereInconnu
+    CritereInconnu,
+    PaysIntrouvable,
+    MarqueIntrouvable,
+    MarqueDejaExistante,
+    MarqueOfficielleNonModifiable,
+    MarqueNonVide,
+    VoitureDejaExistante,
+    VoitureOfficielleNonModifiable,
+    AnneeInvalide,
+    FusionInvalide
 }
 
 /// <summary>
