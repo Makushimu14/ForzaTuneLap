@@ -12,7 +12,8 @@ public enum CodeErreurMetier
     ParcoursIntrouvable,
     ChronoIntrouvable,
     ChronoDejaExistant,
-    DureeInvalide
+    DureeInvalide,
+    CritereInconnu
 }
 
 /// <summary>
