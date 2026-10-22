@@ -8,7 +8,11 @@ public enum CodeErreurMetier
     VoitureIntrouvable,
     ReglageDejaExistant,
     ReglageOrigineNonModifiable,
-    ChangementDeVoitureInterdit
+    ChangementDeVoitureInterdit,
+    ParcoursIntrouvable,
+    ChronoIntrouvable,
+    ChronoDejaExistant,
+    DureeInvalide
 }
 
 /// <summary>
