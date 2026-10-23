@@ -22,7 +22,9 @@ public enum CodeErreurMetier
     VoitureDejaExistante,
     VoitureOfficielleNonModifiable,
     AnneeInvalide,
-    FusionInvalide
+    FusionInvalide,
+    SauvegardeInvalide,
+    SauvegardeVersionNonSupportee
 }
 
 /// <summary>

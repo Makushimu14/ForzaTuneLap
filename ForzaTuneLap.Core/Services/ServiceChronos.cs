@@ -69,6 +69,7 @@ public sealed class ServiceChronos
             IdentifiantParcours = identifiantParcours,
             DureeMillisecondes = millisecondes,
             DateRealisation = dateRealisation ?? DateTime.UtcNow,
+            DateModification = DateTime.UtcNow,
             Commentaire = NettoyerCommentaire(commentaire)
         };
 
@@ -96,6 +97,7 @@ public sealed class ServiceChronos
         chrono.DureeMillisecondes = millisecondes;
         chrono.DateRealisation = dateRealisation;
         chrono.Commentaire = NettoyerCommentaire(commentaire);
+        chrono.DateModification = DateTime.UtcNow;
 
         await contexte.SaveChangesAsync(annulation);
         return chrono;

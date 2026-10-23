@@ -72,7 +72,8 @@ public sealed class BaseDeDonneesDeTest : IDisposable
         IdentifiantReglage = identifiantReglage,
         IdentifiantParcours = identifiantParcours,
         Duree = TimeSpan.FromSeconds(90.123),
-        DateRealisation = DateTime.UtcNow
+        DateRealisation = DateTime.UtcNow,
+        DateModification = DateTime.UtcNow
     };
 
     /// <summary>Fichier de données contenant une seule voiture dont la puissance d'origine est paramétrable.</summary>

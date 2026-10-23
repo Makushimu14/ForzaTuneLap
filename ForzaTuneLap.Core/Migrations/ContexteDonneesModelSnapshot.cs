@@ -26,6 +26,9 @@ namespace ForzaTuneLap.Core.Migrations
                     b.Property<string>("Commentaire")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("DateModification")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("DateRealisation")
                         .HasColumnType("TEXT");
 

@@ -19,6 +19,9 @@ public class Chrono
     public long DureeMillisecondes { get; set; }
 
     public DateTime DateRealisation { get; set; }
+
+    /// <summary>Dernière création ou correction du chrono (UTC). Sert à départager deux versions lors d'un import.</summary>
+    public DateTime DateModification { get; set; }
     public string? Commentaire { get; set; }
 
     /// <summary>Vue pratique sur DureeMillisecondes, non enregistrée en base.</summary>
