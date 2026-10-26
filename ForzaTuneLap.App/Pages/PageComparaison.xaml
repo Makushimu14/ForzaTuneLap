@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ForzaTuneLap.App.Pages.PageComparaison"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:t="clr-namespace:ForzaTuneLap.App.Traductions"
+             Title="{t:Traduire Onglet_Comparaison}">
+
+    <VerticalStackLayout Padding="24" Spacing="12">
+        <Label Text="{t:Traduire Comparaison_Titre}"
+               Style="{StaticResource Headline}" />
+        <Label Text="{t:Traduire EnConstruction}" />
+    </VerticalStackLayout>
+
+</ContentPage>

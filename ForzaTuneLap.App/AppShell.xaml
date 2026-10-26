@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell x:Class="ForzaTuneLap.App.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:ForzaTuneLap.App.Pages"
+       xmlns:t="clr-namespace:ForzaTuneLap.App.Traductions"
+       Shell.FlyoutBehavior="Disabled">
+
+    <TabBar>
+        <ShellContent Title="{t:Traduire Onglet_Voitures}"
+                      ContentTemplate="{DataTemplate pages:PageVoitures}" />
+        <ShellContent Title="{t:Traduire Onglet_Chronos}"
+                      ContentTemplate="{DataTemplate pages:PageChronos}" />
+        <ShellContent Title="{t:Traduire Onglet_Comparaison}"
+                      ContentTemplate="{DataTemplate pages:PageComparaison}" />
+        <ShellContent Title="{t:Traduire Onglet_Parametres}"
+                      ContentTemplate="{DataTemplate pages:PageParametres}" />
+    </TabBar>
+
+</Shell>

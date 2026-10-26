@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ForzaTuneLap.App.Pages.PageParametres"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:t="clr-namespace:ForzaTuneLap.App.Traductions"
+             xmlns:vm="clr-namespace:ForzaTuneLap.App.ViewModels"
+             x:DataType="vm:ParametresViewModel"
+             Title="{t:Traduire Onglet_Parametres}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+
+            <Label Text="{t:Traduire Parametres_Titre}"
+                   Style="{StaticResource Headline}" />
+
+            <Label Text="{t:Traduire Parametres_Langue}"
+                   Style="{StaticResource SubHeadline}" />
+            <!-- ItemsSource doit être déclaré avant SelectedIndex. -->
+            <Picker ItemsSource="{Binding Langues}"
+                    SelectedIndex="{Binding IndexLangue}" />
+
+            <Label Text="{t:Traduire Parametres_Unites}"
+                   Style="{StaticResource SubHeadline}" />
+            <HorizontalStackLayout Spacing="12">
+                <Button Text="{t:Traduire Parametres_Metrique}"
+                        Command="{Binding UtiliserMetriqueCommand}" />
+                <Button Text="{t:Traduire Parametres_Imperial}"
+                        Command="{Binding UtiliserImperialCommand}" />
+            </HorizontalStackLayout>
+
+            <VerticalStackLayout Spacing="8"
+                                 BindableLayout.ItemsSource="{Binding Unites}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="vm:ChoixUniteViewModel">
+                        <Grid ColumnDefinitions="*,140"
+                              ColumnSpacing="12">
+                            <Label Text="{Binding Libelle}"
+                                   VerticalOptions="Center" />
+                            <Picker Grid.Column="1"
+                                    ItemsSource="{Binding Symboles}"
+                                    SelectedIndex="{Binding IndexUnite}" />
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

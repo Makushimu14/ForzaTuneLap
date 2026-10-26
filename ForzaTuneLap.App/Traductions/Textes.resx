@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Onglet_Voitures" xml:space="preserve"><value>Voitures</value></data>
+  <data name="Onglet_Chronos" xml:space="preserve"><value>Chronos</value></data>
+  <data name="Onglet_Comparaison" xml:space="preserve"><value>Comparer</value></data>
+  <data name="Onglet_Parametres" xml:space="preserve"><value>Paramètres</value></data>
+  <data name="Demarrage_Chargement" xml:space="preserve"><value>Préparation des données…</value></data>
+  <data name="Demarrage_Erreur" xml:space="preserve"><value>Impossible de préparer les données.</value></data>
+  <data name="Demarrage_Reessayer" xml:space="preserve"><value>Réessayer</value></data>
+  <data name="Voitures_Titre" xml:space="preserve"><value>Voitures</value></data>
+  <data name="Voitures_Resume" xml:space="preserve"><value>{0} voitures au catalogue, {1} réglages créés, {2} chronos.</value></data>
+  <data name="Chronos_Titre" xml:space="preserve"><value>Chronos</value></data>
+  <data name="Comparaison_Titre" xml:space="preserve"><value>Comparer</value></data>
+  <data name="EnConstruction" xml:space="preserve"><value>Cet écran arrive bientôt.</value></data>
+  <data name="Parametres_Titre" xml:space="preserve"><value>Paramètres</value></data>
+  <data name="Parametres_Langue" xml:space="preserve"><value>Langue</value></data>
+  <data name="Parametres_Unites" xml:space="preserve"><value>Unités de mesure</value></data>
+  <data name="Parametres_Metrique" xml:space="preserve"><value>Tout en métrique</value></data>
+  <data name="Parametres_Imperial" xml:space="preserve"><value>Tout en impérial</value></data>
+  <data name="Langue_Systeme" xml:space="preserve"><value>Langue de l'appareil</value></data>
+  <data name="Langue_Francais" xml:space="preserve"><value>Français</value></data>
+  <data name="Langue_Anglais" xml:space="preserve"><value>English</value></data>
+  <data name="Grandeur_Masse" xml:space="preserve"><value>Poids</value></data>
+  <data name="Grandeur_Puissance" xml:space="preserve"><value>Puissance</value></data>
+  <data name="Grandeur_Couple" xml:space="preserve"><value>Couple</value></data>
+  <data name="Grandeur_Vitesse" xml:space="preserve"><value>Vitesse</value></data>
+  <data name="Grandeur_Distance" xml:space="preserve"><value>Distance de freinage</value></data>
+  <data name="Grandeur_DistanceLongue" xml:space="preserve"><value>Longueur des circuits</value></data>
+  <data name="Grandeur_Hauteur" xml:space="preserve"><value>Hauteurs</value></data>
+  <data name="Grandeur_Pression" xml:space="preserve"><value>Pression des pneus</value></data>
+  <data name="Grandeur_RaideurDeRessort" xml:space="preserve"><value>Raideur des ressorts</value></data>
+  <data name="Grandeur_Force" xml:space="preserve"><value>Appui aérodynamique</value></data>
+</root>
