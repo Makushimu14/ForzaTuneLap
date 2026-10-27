@@ -7,10 +7,61 @@
              x:DataType="vm:VoituresViewModel"
              Title="{t:Traduire Onglet_Voitures}">
 
-    <VerticalStackLayout Padding="24" Spacing="12">
-        <Label Text="{t:Traduire Voitures_Titre}"
-               Style="{StaticResource Headline}" />
-        <Label Text="{Binding Resume}" />
-    </VerticalStackLayout>
+    <Grid RowDefinitions="Auto,Auto,*"
+          Padding="12"
+          RowSpacing="8">
+
+        <SearchBar Grid.Row="0"
+                   Placeholder="{t:Traduire Voitures_Recherche}"
+                   Text="{Binding Recherche}" />
+
+        <VerticalStackLayout Grid.Row="1"
+                             Spacing="8">
+            <Button Text="{Binding TexteBoutonFiltres}"
+                    Command="{Binding BasculerFiltresCommand}"
+                    HorizontalOptions="Start" />
+
+            <VerticalStackLayout IsVisible="{Binding FiltresVisibles}"
+                                 Spacing="8">
+                <!-- ItemsSource doit être déclaré avant SelectedIndex. -->
+                <Picker ItemsSource="{Binding Marques}"
+                        SelectedIndex="{Binding IndexMarque}" />
+                <Picker ItemsSource="{Binding Divisions}"
+                        SelectedIndex="{Binding IndexDivision}" />
+                <Picker ItemsSource="{Binding Tris}"
+                        SelectedIndex="{Binding IndexTri}" />
+                <HorizontalStackLayout Spacing="8">
+                    <Switch IsToggled="{Binding SeulementMesReglages}"
+                            VerticalOptions="Center" />
+                    <Label Text="{t:Traduire Voitures_SeulementMesReglages}"
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <Button Text="{t:Traduire Voitures_Reinitialiser}"
+                        Command="{Binding ReinitialiserCommand}"
+                        HorizontalOptions="Start" />
+            </VerticalStackLayout>
+
+            <Label Text="{Binding ResumeResultat}"
+                   FontAttributes="Italic" />
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="2"
+                        ItemsSource="{Binding Voitures}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding VoitureSelectionnee}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="vm:LigneVoitureViewModel">
+                    <VerticalStackLayout Padding="8,10"
+                                         Spacing="2">
+                        <Label Text="{Binding Titre}"
+                               FontAttributes="Bold" />
+                        <Label Text="{Binding SousTitre}"
+                               FontSize="13" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
 
 </ContentPage>

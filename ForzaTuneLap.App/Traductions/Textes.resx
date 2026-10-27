@@ -34,4 +34,64 @@
   <data name="Grandeur_Pression" xml:space="preserve"><value>Pression des pneus</value></data>
   <data name="Grandeur_RaideurDeRessort" xml:space="preserve"><value>Raideur des ressorts</value></data>
   <data name="Grandeur_Force" xml:space="preserve"><value>Appui aérodynamique</value></data>
+  <data name="Voitures_Recherche" xml:space="preserve"><value>Rechercher une voiture ou une marque</value></data>
+  <data name="Voitures_Filtres" xml:space="preserve"><value>Filtres</value></data>
+  <data name="Voitures_MasquerFiltres" xml:space="preserve"><value>Masquer les filtres</value></data>
+  <data name="Voitures_ToutesMarques" xml:space="preserve"><value>Toutes les marques</value></data>
+  <data name="Voitures_ToutesDivisions" xml:space="preserve"><value>Toutes les divisions</value></data>
+  <data name="Voitures_SeulementMesReglages" xml:space="preserve"><value>Seulement avec mes réglages</value></data>
+  <data name="Voitures_Reinitialiser" xml:space="preserve"><value>Réinitialiser les filtres</value></data>
+  <data name="Voitures_NombreResultats" xml:space="preserve"><value>{0} voiture(s)</value></data>
+  <data name="Voitures_Aucune" xml:space="preserve"><value>Aucune voiture ne correspond.</value></data>
+  <data name="Voitures_NbReglages" xml:space="preserve"><value>{0} réglage(s)</value></data>
+  <data name="Voitures_NbChronos" xml:space="preserve"><value>{0} chrono(s)</value></data>
+  <data name="Voiture_Perso" xml:space="preserve"><value>Personnalisée</value></data>
+  <data name="Tri_MarqueEtNom" xml:space="preserve"><value>Marque puis nom</value></data>
+  <data name="Tri_AnneeCroissante" xml:space="preserve"><value>Année croissante</value></data>
+  <data name="Tri_AnneeDecroissante" xml:space="preserve"><value>Année décroissante</value></data>
+  <data name="Tri_NombreDeReglages" xml:space="preserve"><value>Plus de réglages d'abord</value></data>
+  <data name="Voiture_NouveauReglage" xml:space="preserve"><value>Nouveau réglage</value></data>
+  <data name="Voiture_AucunReglage" xml:space="preserve"><value>Aucun réglage pour cette voiture.</value></data>
+  <data name="Reglage_Origine" xml:space="preserve"><value>Origine</value></data>
+  <data name="Reglage_Indice" xml:space="preserve"><value>Indice {0}</value></data>
+  <data name="Reglage_Dupliquer" xml:space="preserve"><value>Dupliquer</value></data>
+  <data name="Reglage_Supprimer" xml:space="preserve"><value>Supprimer</value></data>
+  <data name="Reglage_NouveauTitre" xml:space="preserve"><value>Nouveau réglage</value></data>
+  <data name="Reglage_NomMessage" xml:space="preserve"><value>Nom du réglage :</value></data>
+  <data name="Reglage_DupliquerTitre" xml:space="preserve"><value>Dupliquer le réglage</value></data>
+  <data name="Reglage_Copie" xml:space="preserve"><value>{0} (copie)</value></data>
+  <data name="Reglage_SupprimerTitre" xml:space="preserve"><value>Supprimer le réglage</value></data>
+  <data name="Reglage_ConfirmerSuppression" xml:space="preserve"><value>Supprimer le réglage « {0} » ?</value></data>
+  <data name="Reglage_ConfirmerSuppressionAvecChronos" xml:space="preserve"><value>Supprimer le réglage « {0} » ? Ses {1} chrono(s) seront aussi supprimés.</value></data>
+  <data name="EnConstruction_Edition" xml:space="preserve"><value>L'édition des réglages arrive bientôt.</value></data>
+  <data name="Dialogue_Valider" xml:space="preserve"><value>Valider</value></data>
+  <data name="Dialogue_Annuler" xml:space="preserve"><value>Annuler</value></data>
+  <data name="Dialogue_Oui" xml:space="preserve"><value>Oui</value></data>
+  <data name="Dialogue_Non" xml:space="preserve"><value>Non</value></data>
+  <data name="Dialogue_Ok" xml:space="preserve"><value>OK</value></data>
+  <data name="Erreur_Titre" xml:space="preserve"><value>Erreur</value></data>
+  <data name="Erreur_Inconnue" xml:space="preserve"><value>Une erreur inattendue s'est produite.</value></data>
+  <data name="Erreur_NomVide" xml:space="preserve"><value>Le nom ne peut pas être vide.</value></data>
+  <data name="Erreur_NomDejaUtilise" xml:space="preserve"><value>Ce nom est déjà utilisé pour cette voiture.</value></data>
+  <data name="Erreur_ReglageIntrouvable" xml:space="preserve"><value>Ce réglage n'existe plus.</value></data>
+  <data name="Erreur_VoitureIntrouvable" xml:space="preserve"><value>Cette voiture n'existe plus.</value></data>
+  <data name="Erreur_ReglageDejaExistant" xml:space="preserve"><value>Ce réglage existe déjà.</value></data>
+  <data name="Erreur_ReglageOrigineNonModifiable" xml:space="preserve"><value>Un réglage d'origine ne peut être ni modifié ni supprimé.</value></data>
+  <data name="Erreur_ChangementDeVoitureInterdit" xml:space="preserve"><value>Un réglage ne peut pas changer de voiture.</value></data>
+  <data name="Erreur_ParcoursIntrouvable" xml:space="preserve"><value>Ce parcours n'existe pas.</value></data>
+  <data name="Erreur_ChronoIntrouvable" xml:space="preserve"><value>Ce chrono n'existe plus.</value></data>
+  <data name="Erreur_ChronoDejaExistant" xml:space="preserve"><value>Un chrono existe déjà pour ce réglage sur ce parcours : modifiez-le.</value></data>
+  <data name="Erreur_DureeInvalide" xml:space="preserve"><value>Le temps saisi n'est pas valide.</value></data>
+  <data name="Erreur_CritereInconnu" xml:space="preserve"><value>Critère inconnu.</value></data>
+  <data name="Erreur_PaysIntrouvable" xml:space="preserve"><value>Ce pays n'existe pas.</value></data>
+  <data name="Erreur_MarqueIntrouvable" xml:space="preserve"><value>Cette marque n'existe pas.</value></data>
+  <data name="Erreur_MarqueDejaExistante" xml:space="preserve"><value>Cette marque existe déjà.</value></data>
+  <data name="Erreur_MarqueOfficielleNonModifiable" xml:space="preserve"><value>Une marque officielle ne peut pas être modifiée.</value></data>
+  <data name="Erreur_MarqueNonVide" xml:space="preserve"><value>Cette marque contient encore des voitures.</value></data>
+  <data name="Erreur_VoitureDejaExistante" xml:space="preserve"><value>Cette voiture existe déjà pour cette marque et cette année.</value></data>
+  <data name="Erreur_VoitureOfficielleNonModifiable" xml:space="preserve"><value>Une voiture officielle ne peut être ni modifiée ni supprimée.</value></data>
+  <data name="Erreur_AnneeInvalide" xml:space="preserve"><value>L'année n'est pas valide.</value></data>
+  <data name="Erreur_FusionInvalide" xml:space="preserve"><value>Cette fusion n'est pas possible.</value></data>
+  <data name="Erreur_SauvegardeInvalide" xml:space="preserve"><value>Ce fichier n'est pas une sauvegarde valide.</value></data>
+  <data name="Erreur_SauvegardeVersionNonSupportee" xml:space="preserve"><value>Ce fichier a été créé par une version plus récente de l'application.</value></data>
 </root>

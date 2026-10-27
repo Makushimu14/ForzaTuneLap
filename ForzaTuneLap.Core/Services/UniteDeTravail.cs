@@ -15,6 +15,7 @@ public sealed class UniteDeTravail : IDisposable
     {
         Contexte = contexte;
         Catalogue = new ServiceCatalogue(contexte);
+        ListeVoitures = new ServiceListeVoitures(contexte);
         Reglages = new ServiceReglages(contexte);
         Chronos = new ServiceChronos(contexte);
         ComparaisonChronos = new ServiceComparaisonChronos(contexte);
@@ -26,6 +27,7 @@ public sealed class UniteDeTravail : IDisposable
     public ContexteDonnees Contexte { get; }
 
     public ServiceCatalogue Catalogue { get; }
+    public ServiceListeVoitures ListeVoitures { get; }
     public ServiceReglages Reglages { get; }
     public ServiceChronos Chronos { get; }
     public ServiceComparaisonChronos ComparaisonChronos { get; }

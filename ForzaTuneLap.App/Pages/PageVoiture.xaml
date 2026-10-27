@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ForzaTuneLap.App.Pages.PageVoiture"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:t="clr-namespace:ForzaTuneLap.App.Traductions"
+             xmlns:vm="clr-namespace:ForzaTuneLap.App.ViewModels"
+             x:DataType="vm:VoitureViewModel"
+             Title="{Binding Titre}">
+
+    <Grid RowDefinitions="Auto,Auto,*"
+          Padding="16"
+          RowSpacing="12">
+
+        <VerticalStackLayout Grid.Row="0"
+                             Spacing="2">
+            <Label Text="{Binding Titre}"
+                   Style="{StaticResource SubHeadline}" />
+            <Label Text="{Binding SousTitre}" />
+        </VerticalStackLayout>
+
+        <Button Grid.Row="1"
+                Text="{t:Traduire Voiture_NouveauReglage}"
+                Command="{Binding NouveauReglageCommand}"
+                HorizontalOptions="Start" />
+
+        <CollectionView Grid.Row="2"
+                        ItemsSource="{Binding Reglages}"
+                        SelectionMode="None"
+                        EmptyView="{t:Traduire Voiture_AucunReglage}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="vm:LigneReglageViewModel">
+                    <Border Margin="0,4"
+                            Padding="12"
+                            StrokeShape="RoundRectangle 8"
+                            Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OuvrirCommand}" />
+                        </Border.GestureRecognizers>
+                        <Grid ColumnDefinitions="*,Auto"
+                              RowDefinitions="Auto,Auto,Auto"
+                              ColumnSpacing="8"
+                              RowSpacing="4">
+                            <Label Text="{Binding Nom}"
+                                   FontAttributes="Bold" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding Badge}"
+                                   FontSize="13" />
+                            <Label Grid.Row="1"
+                                   Grid.ColumnSpan="2"
+                                   Text="{Binding Detail}"
+                                   FontSize="13" />
+                            <HorizontalStackLayout Grid.Row="2"
+                                                   Grid.ColumnSpan="2"
+                                                   Spacing="8">
+                                <Button Text="{t:Traduire Reglage_Dupliquer}"
+                                        Command="{Binding DupliquerCommand}" />
+                                <Button Text="{t:Traduire Reglage_Supprimer}"
+                                        Command="{Binding SupprimerCommand}"
+                                        IsVisible="{Binding PeutSupprimer}" />
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>

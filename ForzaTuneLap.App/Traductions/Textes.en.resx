@@ -34,4 +34,64 @@
   <data name="Grandeur_Pression" xml:space="preserve"><value>Tire pressure</value></data>
   <data name="Grandeur_RaideurDeRessort" xml:space="preserve"><value>Spring rate</value></data>
   <data name="Grandeur_Force" xml:space="preserve"><value>Downforce</value></data>
+  <data name="Voitures_Recherche" xml:space="preserve"><value>Search for a car or brand</value></data>
+  <data name="Voitures_Filtres" xml:space="preserve"><value>Filters</value></data>
+  <data name="Voitures_MasquerFiltres" xml:space="preserve"><value>Hide filters</value></data>
+  <data name="Voitures_ToutesMarques" xml:space="preserve"><value>All brands</value></data>
+  <data name="Voitures_ToutesDivisions" xml:space="preserve"><value>All divisions</value></data>
+  <data name="Voitures_SeulementMesReglages" xml:space="preserve"><value>Only with my tunes</value></data>
+  <data name="Voitures_Reinitialiser" xml:space="preserve"><value>Reset filters</value></data>
+  <data name="Voitures_NombreResultats" xml:space="preserve"><value>{0} car(s)</value></data>
+  <data name="Voitures_Aucune" xml:space="preserve"><value>No car matches.</value></data>
+  <data name="Voitures_NbReglages" xml:space="preserve"><value>{0} tune(s)</value></data>
+  <data name="Voitures_NbChronos" xml:space="preserve"><value>{0} lap time(s)</value></data>
+  <data name="Voiture_Perso" xml:space="preserve"><value>Custom</value></data>
+  <data name="Tri_MarqueEtNom" xml:space="preserve"><value>Brand then name</value></data>
+  <data name="Tri_AnneeCroissante" xml:space="preserve"><value>Year ascending</value></data>
+  <data name="Tri_AnneeDecroissante" xml:space="preserve"><value>Year descending</value></data>
+  <data name="Tri_NombreDeReglages" xml:space="preserve"><value>Most tunes first</value></data>
+  <data name="Voiture_NouveauReglage" xml:space="preserve"><value>New tune</value></data>
+  <data name="Voiture_AucunReglage" xml:space="preserve"><value>No tune for this car.</value></data>
+  <data name="Reglage_Origine" xml:space="preserve"><value>Stock</value></data>
+  <data name="Reglage_Indice" xml:space="preserve"><value>Index {0}</value></data>
+  <data name="Reglage_Dupliquer" xml:space="preserve"><value>Duplicate</value></data>
+  <data name="Reglage_Supprimer" xml:space="preserve"><value>Delete</value></data>
+  <data name="Reglage_NouveauTitre" xml:space="preserve"><value>New tune</value></data>
+  <data name="Reglage_NomMessage" xml:space="preserve"><value>Tune name:</value></data>
+  <data name="Reglage_DupliquerTitre" xml:space="preserve"><value>Duplicate tune</value></data>
+  <data name="Reglage_Copie" xml:space="preserve"><value>{0} (copy)</value></data>
+  <data name="Reglage_SupprimerTitre" xml:space="preserve"><value>Delete tune</value></data>
+  <data name="Reglage_ConfirmerSuppression" xml:space="preserve"><value>Delete the tune “{0}”?</value></data>
+  <data name="Reglage_ConfirmerSuppressionAvecChronos" xml:space="preserve"><value>Delete the tune “{0}”? Its {1} lap time(s) will also be deleted.</value></data>
+  <data name="EnConstruction_Edition" xml:space="preserve"><value>Tune editing is coming soon.</value></data>
+  <data name="Dialogue_Valider" xml:space="preserve"><value>OK</value></data>
+  <data name="Dialogue_Annuler" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Dialogue_Oui" xml:space="preserve"><value>Yes</value></data>
+  <data name="Dialogue_Non" xml:space="preserve"><value>No</value></data>
+  <data name="Dialogue_Ok" xml:space="preserve"><value>OK</value></data>
+  <data name="Erreur_Titre" xml:space="preserve"><value>Error</value></data>
+  <data name="Erreur_Inconnue" xml:space="preserve"><value>An unexpected error occurred.</value></data>
+  <data name="Erreur_NomVide" xml:space="preserve"><value>The name cannot be empty.</value></data>
+  <data name="Erreur_NomDejaUtilise" xml:space="preserve"><value>This name is already used for this car.</value></data>
+  <data name="Erreur_ReglageIntrouvable" xml:space="preserve"><value>This tune no longer exists.</value></data>
+  <data name="Erreur_VoitureIntrouvable" xml:space="preserve"><value>This car no longer exists.</value></data>
+  <data name="Erreur_ReglageDejaExistant" xml:space="preserve"><value>This tune already exists.</value></data>
+  <data name="Erreur_ReglageOrigineNonModifiable" xml:space="preserve"><value>A stock tune cannot be edited or deleted.</value></data>
+  <data name="Erreur_ChangementDeVoitureInterdit" xml:space="preserve"><value>A tune cannot be moved to another car.</value></data>
+  <data name="Erreur_ParcoursIntrouvable" xml:space="preserve"><value>This track layout does not exist.</value></data>
+  <data name="Erreur_ChronoIntrouvable" xml:space="preserve"><value>This lap time no longer exists.</value></data>
+  <data name="Erreur_ChronoDejaExistant" xml:space="preserve"><value>A lap time already exists for this tune on this track layout: edit it instead.</value></data>
+  <data name="Erreur_DureeInvalide" xml:space="preserve"><value>The time entered is not valid.</value></data>
+  <data name="Erreur_CritereInconnu" xml:space="preserve"><value>Unknown criterion.</value></data>
+  <data name="Erreur_PaysIntrouvable" xml:space="preserve"><value>This country does not exist.</value></data>
+  <data name="Erreur_MarqueIntrouvable" xml:space="preserve"><value>This brand does not exist.</value></data>
+  <data name="Erreur_MarqueDejaExistante" xml:space="preserve"><value>This brand already exists.</value></data>
+  <data name="Erreur_MarqueOfficielleNonModifiable" xml:space="preserve"><value>An official brand cannot be modified.</value></data>
+  <data name="Erreur_MarqueNonVide" xml:space="preserve"><value>This brand still has cars.</value></data>
+  <data name="Erreur_VoitureDejaExistante" xml:space="preserve"><value>This car already exists for this brand and year.</value></data>
+  <data name="Erreur_VoitureOfficielleNonModifiable" xml:space="preserve"><value>An official car cannot be edited or deleted.</value></data>
+  <data name="Erreur_AnneeInvalide" xml:space="preserve"><value>The year is not valid.</value></data>
+  <data name="Erreur_FusionInvalide" xml:space="preserve"><value>This merge is not possible.</value></data>
+  <data name="Erreur_SauvegardeInvalide" xml:space="preserve"><value>This file is not a valid backup.</value></data>
+  <data name="Erreur_SauvegardeVersionNonSupportee" xml:space="preserve"><value>This file was created by a newer version of the app.</value></data>
 </root>
