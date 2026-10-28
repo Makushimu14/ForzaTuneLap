@@ -151,7 +151,7 @@ public partial class VoitureViewModel : ObservableObject, IQueryAttributable
 
         if (ligne.IndiceDePerformance > 0)
         {
-            elements.Add(string.Format(Texte.Obtenir("Reglage_Indice"), ligne.IndiceDePerformance));
+            elements.Add(IndicesDePerformance.Formater(ligne.IndiceDePerformance));
         }
 
         if (ligne.Puissance > 0)

@@ -6,12 +6,23 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ForzaTuneLap.Core.Services;
 
-public enum TriVoitures
+/// <summary>
+/// Critère de classement de la liste des voitures. Les critères chiffrés (indice, puissance, vitesse maximale, accélération)
+/// utilisent les valeurs du réglage d'origine de la voiture ; une voiture qui n'en a pas (ou dont la valeur n'est pas
+/// renseignée) est toujours classée en dernier, quel que soit le sens du tri.
+/// </summary>
+public enum CritereDeTriVoitures
 {
     MarqueEtNom,
-    AnneeCroissante,
-    AnneeDecroissante,
-    NombreDeReglagesDecroissant
+    Annee,
+    IndiceDePerformance,
+    Puissance,
+    VitesseMaximale,
+
+    /// <summary>Temps de 0 à 97 km/h.</summary>
+    Acceleration,
+
+    NombreDeReglages
 }
 
 /// <summary>
@@ -42,14 +53,25 @@ public sealed class FiltreVoitures
     public bool SeulementPersonnalisees { get; set; }
 }
 
+/// <summary>
+/// Une voiture dans la liste. Les valeurs « d'origine » viennent du réglage d'origine ; elles sont vides si la voiture
+/// n'en a pas ou si la valeur n'est pas renseignée. Unités canoniques : kW, km/h, secondes.
+/// </summary>
 public sealed record LigneVoiture(
     Voiture Voiture,
     string NomMarque,
     int NombreDeReglagesCrees,
     int NombreDeChronos,
-    bool ADesReglagesOrigine)
+    bool ADesReglagesOrigine,
+    int? IndiceDePerformanceOrigine,
+    double? PuissanceOrigine,
+    double? VitesseMaximaleOrigine,
+    double? AccelerationOrigine)
 {
     public int Identifiant => Voiture.Identifiant;
+
+    public ClasseDePerformance? ClasseOrigine =>
+        IndiceDePerformanceOrigine is { } indice ? IndicesDePerformance.ObtenirClasse(indice) : null;
 }
 
 public sealed record OptionMarque(int Identifiant, string Nom, int NombreDeVoitures);
@@ -80,9 +102,24 @@ public sealed class ServiceListeVoitures
         this.contexte = contexte;
     }
 
+    /// <summary>
+    /// Sens de tri le plus utile pour un critère : le meilleur d'abord (le plus grand indice, la plus grande puissance,
+    /// le plus petit temps d'accélération), l'ordre naturel pour le nom et l'année.
+    /// </summary>
+    public static SensDuTri SensParDefaut(CritereDeTriVoitures critere) => critere switch
+    {
+        CritereDeTriVoitures.IndiceDePerformance => SensDuTri.Decroissant,
+        CritereDeTriVoitures.Puissance => SensDuTri.Decroissant,
+        CritereDeTriVoitures.VitesseMaximale => SensDuTri.Decroissant,
+        CritereDeTriVoitures.NombreDeReglages => SensDuTri.Decroissant,
+        _ => SensDuTri.Croissant
+    };
+
+    /// <param name="sens">Sens du tri ; par défaut celui de <see cref="SensParDefaut"/>.</param>
     public async Task<IReadOnlyList<LigneVoiture>> ListerAsync(
         FiltreVoitures? filtre = null,
-        TriVoitures tri = TriVoitures.MarqueEtNom,
+        CritereDeTriVoitures critere = CritereDeTriVoitures.MarqueEtNom,
+        SensDuTri? sens = null,
         CancellationToken annulation = default)
     {
         var voitures = await contexte.Voitures.AsNoTracking().Include(v => v.Marque).ToListAsync(annulation);
@@ -94,12 +131,19 @@ public sealed class ServiceListeVoitures
                 .ToListAsync(annulation))
             .ToDictionary(x => x.Identifiant, x => x.Nombre);
 
-        var voituresAvecOrigine = (await contexte.Reglages.AsNoTracking()
+        var origines = (await contexte.Reglages.AsNoTracking()
                 .Where(r => r.EstOrigine)
-                .Select(r => r.IdentifiantVoiture)
-                .Distinct()
+                .Select(r => new
+                {
+                    Identifiant = r.IdentifiantVoiture,
+                    r.Generaux.IndiceDePerformance,
+                    r.Generaux.Puissance,
+                    r.Performances.VitesseMaximale,
+                    r.Performances.AccelerationDeZeroA97
+                })
                 .ToListAsync(annulation))
-            .ToHashSet();
+            .GroupBy(x => x.Identifiant)
+            .ToDictionary(g => g.Key, g => g.First());
 
         var chronos = (await contexte.Chronos.AsNoTracking()
                 .GroupBy(c => c.Reglage!.IdentifiantVoiture)
@@ -108,16 +152,26 @@ public sealed class ServiceListeVoitures
             .ToDictionary(x => x.Identifiant, x => x.Nombre);
 
         var lignes = voitures
-            .Select(v => new LigneVoiture(
-                v,
-                v.Marque!.Nom,
-                reglagesCrees.GetValueOrDefault(v.Identifiant),
-                chronos.GetValueOrDefault(v.Identifiant),
-                voituresAvecOrigine.Contains(v.Identifiant)))
+            .Select(v =>
+            {
+                var aUneOrigine = origines.TryGetValue(v.Identifiant, out var origine);
+
+                // Une valeur à zéro est une valeur non renseignée.
+                return new LigneVoiture(
+                    v,
+                    v.Marque!.Nom,
+                    reglagesCrees.GetValueOrDefault(v.Identifiant),
+                    chronos.GetValueOrDefault(v.Identifiant),
+                    aUneOrigine,
+                    aUneOrigine && origine!.IndiceDePerformance > 0 ? origine.IndiceDePerformance : null,
+                    aUneOrigine && origine!.Puissance > 0 ? origine.Puissance : null,
+                    aUneOrigine && origine!.VitesseMaximale > 0 ? origine.VitesseMaximale : null,
+                    aUneOrigine && origine!.AccelerationDeZeroA97 > 0 ? origine.AccelerationDeZeroA97 : null);
+            })
             .Where(ligne => filtre is null || Correspond(ligne, filtre))
             .ToList();
 
-        return Trier(lignes, tri);
+        return Trier(lignes, critere, sens ?? SensParDefaut(critere));
     }
 
     /// <summary>Marques (avec leur nombre de voitures) et divisions présentes dans le catalogue, triées par nom affiché.</summary>
@@ -242,32 +296,44 @@ public sealed class ServiceListeVoitures
         return true;
     }
 
-    private static List<LigneVoiture> Trier(List<LigneVoiture> lignes, TriVoitures tri)
+    private static List<LigneVoiture> Trier(List<LigneVoiture> lignes, CritereDeTriVoitures critere, SensDuTri sens)
     {
         var comparateur = StringComparer.CurrentCultureIgnoreCase;
+        var croissant = sens == SensDuTri.Croissant;
 
-        return tri switch
+        if (critere == CritereDeTriVoitures.MarqueEtNom)
         {
-            TriVoitures.AnneeCroissante => lignes
-                .OrderBy(l => l.Voiture.Annee)
-                .ThenBy(l => l.NomMarque, comparateur)
-                .ThenBy(l => l.Voiture.Nom, comparateur)
-                .ToList(),
-            TriVoitures.AnneeDecroissante => lignes
-                .OrderByDescending(l => l.Voiture.Annee)
-                .ThenBy(l => l.NomMarque, comparateur)
-                .ThenBy(l => l.Voiture.Nom, comparateur)
-                .ToList(),
-            TriVoitures.NombreDeReglagesDecroissant => lignes
-                .OrderByDescending(l => l.NombreDeReglagesCrees)
-                .ThenBy(l => l.NomMarque, comparateur)
-                .ThenBy(l => l.Voiture.Nom, comparateur)
-                .ToList(),
-            _ => lignes
-                .OrderBy(l => l.NomMarque, comparateur)
-                .ThenBy(l => l.Voiture.Nom, comparateur)
-                .ThenBy(l => l.Voiture.Annee)
-                .ToList()
+            return (croissant
+                    ? lignes.OrderBy(l => l.NomMarque, comparateur).ThenBy(l => l.Voiture.Nom, comparateur).ThenBy(l => l.Voiture.Annee)
+                    : lignes.OrderByDescending(l => l.NomMarque, comparateur).ThenByDescending(l => l.Voiture.Nom, comparateur).ThenByDescending(l => l.Voiture.Annee))
+                .ToList();
+        }
+
+        Func<LigneVoiture, double?> valeur = critere switch
+        {
+            CritereDeTriVoitures.Annee => l => l.Voiture.Annee,
+            CritereDeTriVoitures.NombreDeReglages => l => l.NombreDeReglagesCrees,
+            CritereDeTriVoitures.IndiceDePerformance => l => l.IndiceDePerformanceOrigine,
+            CritereDeTriVoitures.Puissance => l => l.PuissanceOrigine,
+            CritereDeTriVoitures.VitesseMaximale => l => l.VitesseMaximaleOrigine,
+            CritereDeTriVoitures.Acceleration => l => l.AccelerationOrigine,
+            _ => throw new ArgumentOutOfRangeException(nameof(critere), critere, null)
         };
+
+        var avecValeur = lignes.Where(l => valeur(l) is not null);
+        var sansValeur = lignes.Where(l => valeur(l) is null);
+
+        var classees = (croissant
+                ? avecValeur.OrderBy(l => valeur(l)!.Value)
+                : avecValeur.OrderByDescending(l => valeur(l)!.Value))
+            .ThenBy(l => l.NomMarque, comparateur)
+            .ThenBy(l => l.Voiture.Nom, comparateur);
+
+        // Sans valeur : toujours à la fin, dans l'ordre marque puis nom, quel que soit le sens.
+        var absentes = sansValeur
+            .OrderBy(l => l.NomMarque, comparateur)
+            .ThenBy(l => l.Voiture.Nom, comparateur);
+
+        return classees.Concat(absentes).ToList();
     }
 }

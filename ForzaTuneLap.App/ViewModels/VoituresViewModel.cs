@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using ForzaTuneLap.App.Services;
 using ForzaTuneLap.App.Traductions;
 using ForzaTuneLap.Core.Enumerations;
+using ForzaTuneLap.Core.Preferences;
 using ForzaTuneLap.Core.Ressources;
 using ForzaTuneLap.Core.Services;
 
@@ -14,6 +15,7 @@ public partial class VoituresViewModel : ObservableObject
     private static readonly TimeSpan DelaiDeRecherche = TimeSpan.FromMilliseconds(250);
 
     private readonly FabriqueUniteDeTravail fabrique;
+    private readonly ServicePreferences preferences;
 
     private IReadOnlyList<OptionMarque> optionsMarques = Array.Empty<OptionMarque>();
     private IReadOnlyList<Division> optionsDivisions = Array.Empty<Division>();
@@ -25,22 +27,33 @@ public partial class VoituresViewModel : ObservableObject
     private int indexMarque;
     private int indexDivision;
     private int indexTri;
+    private int indexOrdre;
     private bool seulementMesReglages;
 
     private CancellationTokenSource? attente;
     private int versionRecherche;
 
-    public VoituresViewModel(FabriqueUniteDeTravail fabrique)
+    public VoituresViewModel(FabriqueUniteDeTravail fabrique, ServicePreferences preferences)
     {
         this.fabrique = fabrique;
+        this.preferences = preferences;
 
-        // Même ordre que l'énumération TriVoitures : l'index du sélecteur est la valeur de l'énumération.
+        // Même ordre que les énumérations CritereDeTriVoitures et SensDuTri : l'index du sélecteur est la valeur de l'énumération.
         Tris = new[]
         {
             Texte.Obtenir("Tri_MarqueEtNom"),
-            Texte.Obtenir("Tri_AnneeCroissante"),
-            Texte.Obtenir("Tri_AnneeDecroissante"),
+            Texte.Obtenir("Tri_Annee"),
+            Texte.Obtenir("Tri_Indice"),
+            Texte.Obtenir("Tri_Puissance"),
+            Texte.Obtenir("Tri_VitesseMaximale"),
+            Texte.Obtenir("Tri_Acceleration"),
             Texte.Obtenir("Tri_NombreDeReglages")
+        };
+
+        Ordres = new[]
+        {
+            Texte.Obtenir("Tri_Croissant"),
+            Texte.Obtenir("Tri_Decroissant")
         };
 
         marques = new[] { Texte.Obtenir("Voitures_ToutesMarques") };
@@ -49,6 +62,8 @@ public partial class VoituresViewModel : ObservableObject
     }
 
     public IReadOnlyList<string> Tris { get; }
+
+    public IReadOnlyList<string> Ordres { get; }
 
     [ObservableProperty]
     private IReadOnlyList<LigneVoitureViewModel> voitures = Array.Empty<LigneVoitureViewModel>();
@@ -149,6 +164,33 @@ public partial class VoituresViewModel : ObservableObject
             }
 
             indexTri = value;
+
+            // Changer de critère remet le sens le plus utile pour lui (le meilleur d'abord) ; l'ordre reste modifiable ensuite.
+            indexOrdre = (int)ServiceListeVoitures.SensParDefaut((CritereDeTriVoitures)value);
+
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(IndexOrdre));
+            _ = RechargerAsync();
+        }
+    }
+
+    public int IndexOrdre
+    {
+        get => indexOrdre;
+        set
+        {
+            if (value < 0 || value >= Ordres.Count)
+            {
+                OnPropertyChanged();
+                return;
+            }
+
+            if (value == indexOrdre)
+            {
+                return;
+            }
+
+            indexOrdre = value;
             OnPropertyChanged();
             _ = RechargerAsync();
         }
@@ -219,12 +261,14 @@ public partial class VoituresViewModel : ObservableObject
         indexMarque = 0;
         indexDivision = 0;
         indexTri = 0;
+        indexOrdre = (int)ServiceListeVoitures.SensParDefaut(CritereDeTriVoitures.MarqueEtNom);
         seulementMesReglages = false;
 
         OnPropertyChanged(nameof(Recherche));
         OnPropertyChanged(nameof(IndexMarque));
         OnPropertyChanged(nameof(IndexDivision));
         OnPropertyChanged(nameof(IndexTri));
+        OnPropertyChanged(nameof(IndexOrdre));
         OnPropertyChanged(nameof(SeulementMesReglages));
 
         await RechargerAsync();
@@ -318,14 +362,15 @@ public partial class VoituresViewModel : ObservableObject
         try
         {
             using var travail = fabrique.Creer();
-            var lignes = await travail.ListeVoitures.ListerAsync(ConstruireFiltre(), (TriVoitures)indexTri);
+            var critere = (CritereDeTriVoitures)indexTri;
+            var lignes = await travail.ListeVoitures.ListerAsync(ConstruireFiltre(), critere, (SensDuTri)indexOrdre);
 
             if (version != versionRecherche)
             {
                 return; // une recherche plus récente est en cours : ce résultat est périmé
             }
 
-            Voitures = lignes.Select(ligne => new LigneVoitureViewModel(ligne)).ToList();
+            Voitures = lignes.Select(ligne => new LigneVoitureViewModel(ligne, critere, preferences)).ToList();
             ResumeResultat = lignes.Count == 0
                 ? Texte.Obtenir("Voitures_Aucune")
                 : string.Format(Texte.Obtenir("Voitures_NombreResultats"), lignes.Count);

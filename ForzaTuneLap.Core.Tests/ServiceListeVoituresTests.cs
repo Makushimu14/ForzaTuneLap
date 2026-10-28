@@ -12,7 +12,8 @@ public class ServiceListeVoituresTests : IDisposable
     public void Dispose() => baseDeTest.Dispose();
 
     private static VoitureFichier Voiture(
-        int identifiant, string nom, int annee, Division division, Transmission transmission, int indice, double puissance) => new()
+        int identifiant, string nom, int annee, Division division, Transmission transmission,
+        int indice, double puissance, double vitesseMaximale, double acceleration) => new()
     {
         Identifiant = identifiant,
         Nom = nom,
@@ -22,13 +23,16 @@ public class ServiceListeVoituresTests : IDisposable
         ReglageOrigine = new ReglageOrigineFichier
         {
             Identifiant = new Guid(identifiant, 0, 0, new byte[8]),
-            Generaux = new ReglagesGeneraux { Transmission = transmission, IndiceDePerformance = indice, Puissance = puissance }
+            Generaux = new ReglagesGeneraux { Transmission = transmission, IndiceDePerformance = indice, Puissance = puissance },
+            Performances = new PerformancesMesurees { VitesseMaximale = vitesseMaximale, AccelerationDeZeroA97 = acceleration }
         }
     };
 
     /// <summary>
-    /// Alpha (id 1, France) : Éclair 2010 GT3, Foudre 2020 hypercar. Beta (id 2, Allemagne) : Tonnerre 1995 compacte.
-    /// Plus la voiture personnalisée « Zeta » 2024 (Nascar) chez Alpha, et un réglage « Course » avec chrono sur Éclair.
+    /// Alpha (id 1, France) : Éclair 2010 GT3 (indice 700, 300 kW, 250 km/h, 0-97 en 4,5 s) et Foudre 2020 hypercar
+    /// (900, 600 kW, 340 km/h, 2,8 s). Beta (id 2, Allemagne) : Tonnerre 1995 compacte (500, 200 kW, 200 km/h, 6,0 s).
+    /// Plus la voiture personnalisée « Zeta » 2024 (Nascar) chez Alpha, sans réglage d'origine,
+    /// et un réglage « Course » avec chrono sur Éclair.
     /// </summary>
     private async Task<(UniteDeTravail Travail, Guid ReglageCourse)> PreparerAsync()
     {
@@ -41,14 +45,14 @@ public class ServiceListeVoituresTests : IDisposable
                     Identifiant = 1, Nom = "Alpha", IdentifiantPays = 11,
                     Voitures =
                     {
-                        Voiture(1, "Éclair", 2010, Division.ForzaGT3, Transmission.Propulsion, 700, 300),
-                        Voiture(2, "Foudre", 2020, Division.HypercarsModernes, Transmission.TransmissionIntegrale, 900, 600)
+                        Voiture(1, "Éclair", 2010, Division.ForzaGT3, Transmission.Propulsion, 700, 300, 250, 4.5),
+                        Voiture(2, "Foudre", 2020, Division.HypercarsModernes, Transmission.TransmissionIntegrale, 900, 600, 340, 2.8)
                     }
                 },
                 new MarqueFichier
                 {
                     Identifiant = 2, Nom = "Beta", IdentifiantPays = 2,
-                    Voitures = { Voiture(3, "Tonnerre", 1995, Division.CompactesModernes, Transmission.Traction, 500, 200) }
+                    Voitures = { Voiture(3, "Tonnerre", 1995, Division.CompactesModernes, Transmission.Traction, 500, 200, 200, 6.0) }
                 }
             }
         };
@@ -168,17 +172,99 @@ public class ServiceListeVoituresTests : IDisposable
     }
 
     [Fact]
-    public async Task Les_tris_fonctionnent()
+    public async Task Chaque_ligne_porte_les_valeurs_du_reglage_d_origine()
     {
         var (travail, _) = await PreparerAsync();
 
-        var croissant = await travail.ListeVoitures.ListerAsync(tri: TriVoitures.AnneeCroissante);
-        var decroissant = await travail.ListeVoitures.ListerAsync(tri: TriVoitures.AnneeDecroissante);
-        var parReglages = await travail.ListeVoitures.ListerAsync(tri: TriVoitures.NombreDeReglagesDecroissant);
+        var lignes = await travail.ListeVoitures.ListerAsync();
 
-        Assert.Equal(new[] { "Tonnerre", "Éclair", "Foudre", "Zeta" }, Noms(croissant));
-        Assert.Equal(new[] { "Zeta", "Foudre", "Éclair", "Tonnerre" }, Noms(decroissant));
-        Assert.Equal("Éclair", parReglages[0].Voiture.Nom);
+        var eclair = lignes.Single(l => l.Voiture.Nom == "Éclair");
+        Assert.Equal(700, eclair.IndiceDePerformanceOrigine);
+        Assert.Equal(ClasseDePerformance.A, eclair.ClasseOrigine);
+        Assert.Equal(300, eclair.PuissanceOrigine);
+        Assert.Equal(250, eclair.VitesseMaximaleOrigine);
+        Assert.Equal(4.5, eclair.AccelerationOrigine);
+
+        Assert.Equal(ClasseDePerformance.R, lignes.Single(l => l.Voiture.Nom == "Foudre").ClasseOrigine);
+
+        var zeta = lignes.Single(l => l.Voiture.Nom == "Zeta");
+        Assert.Null(zeta.IndiceDePerformanceOrigine);
+        Assert.Null(zeta.ClasseOrigine);
+        Assert.Null(zeta.PuissanceOrigine);
+        Assert.Null(zeta.AccelerationOrigine);
+    }
+
+    [Fact]
+    public async Task Une_valeur_d_origine_a_zero_est_consideree_comme_non_renseignee()
+    {
+        var (travail, _) = await PreparerAsync();
+        var marque = await travail.Catalogue.AjouterMarquePersonnaliseeAsync("Vide", 11);
+        var voiture = await travail.Catalogue.AjouterVoiturePersonnaliseeAsync(marque.Identifiant, "Sans valeurs", 2000, Division.ForzaGT3);
+        travail.Contexte.Reglages.Add(new Reglage
+        {
+            IdentifiantVoiture = voiture.Identifiant,
+            Nom = "Origine",
+            EstOrigine = true
+        });
+        await travail.Contexte.SaveChangesAsync();
+
+        var ligne = (await travail.ListeVoitures.ListerAsync()).Single(l => l.Voiture.Nom == "Sans valeurs");
+
+        Assert.True(ligne.ADesReglagesOrigine);
+        Assert.Null(ligne.IndiceDePerformanceOrigine);
+        Assert.Null(ligne.PuissanceOrigine);
+        Assert.Null(ligne.VitesseMaximaleOrigine);
+        Assert.Null(ligne.AccelerationOrigine);
+    }
+
+    [Theory]
+    [InlineData(CritereDeTriVoitures.MarqueEtNom, SensDuTri.Croissant)]
+    [InlineData(CritereDeTriVoitures.Annee, SensDuTri.Croissant)]
+    [InlineData(CritereDeTriVoitures.IndiceDePerformance, SensDuTri.Decroissant)]
+    [InlineData(CritereDeTriVoitures.Puissance, SensDuTri.Decroissant)]
+    [InlineData(CritereDeTriVoitures.VitesseMaximale, SensDuTri.Decroissant)]
+    [InlineData(CritereDeTriVoitures.Acceleration, SensDuTri.Croissant)]
+    [InlineData(CritereDeTriVoitures.NombreDeReglages, SensDuTri.Decroissant)]
+    public void Chaque_critere_a_un_sens_par_defaut(CritereDeTriVoitures critere, SensDuTri attendu)
+    {
+        Assert.Equal(attendu, ServiceListeVoitures.SensParDefaut(critere));
+    }
+
+    [Theory]
+    [InlineData(CritereDeTriVoitures.Annee, SensDuTri.Croissant, new[] { "Tonnerre", "Éclair", "Foudre", "Zeta" })]
+    [InlineData(CritereDeTriVoitures.Annee, SensDuTri.Decroissant, new[] { "Zeta", "Foudre", "Éclair", "Tonnerre" })]
+    [InlineData(CritereDeTriVoitures.MarqueEtNom, SensDuTri.Croissant, new[] { "Éclair", "Foudre", "Zeta", "Tonnerre" })]
+    [InlineData(CritereDeTriVoitures.MarqueEtNom, SensDuTri.Decroissant, new[] { "Tonnerre", "Zeta", "Foudre", "Éclair" })]
+    [InlineData(CritereDeTriVoitures.IndiceDePerformance, SensDuTri.Decroissant, new[] { "Foudre", "Éclair", "Tonnerre", "Zeta" })]
+    [InlineData(CritereDeTriVoitures.IndiceDePerformance, SensDuTri.Croissant, new[] { "Tonnerre", "Éclair", "Foudre", "Zeta" })]
+    [InlineData(CritereDeTriVoitures.Puissance, SensDuTri.Decroissant, new[] { "Foudre", "Éclair", "Tonnerre", "Zeta" })]
+    [InlineData(CritereDeTriVoitures.Puissance, SensDuTri.Croissant, new[] { "Tonnerre", "Éclair", "Foudre", "Zeta" })]
+    [InlineData(CritereDeTriVoitures.VitesseMaximale, SensDuTri.Decroissant, new[] { "Foudre", "Éclair", "Tonnerre", "Zeta" })]
+    [InlineData(CritereDeTriVoitures.VitesseMaximale, SensDuTri.Croissant, new[] { "Tonnerre", "Éclair", "Foudre", "Zeta" })]
+    [InlineData(CritereDeTriVoitures.Acceleration, SensDuTri.Croissant, new[] { "Foudre", "Éclair", "Tonnerre", "Zeta" })]
+    [InlineData(CritereDeTriVoitures.Acceleration, SensDuTri.Decroissant, new[] { "Tonnerre", "Éclair", "Foudre", "Zeta" })]
+    public async Task Chaque_critere_se_trie_dans_les_deux_sens_les_voitures_sans_valeur_restant_en_dernier(
+        CritereDeTriVoitures critere, SensDuTri sens, string[] attendu)
+    {
+        var (travail, _) = await PreparerAsync();
+
+        var lignes = await travail.ListeVoitures.ListerAsync(critere: critere, sens: sens);
+
+        Assert.Equal(attendu, Noms(lignes));
+    }
+
+    [Fact]
+    public async Task Sans_sens_precise_le_sens_par_defaut_du_critere_s_applique()
+    {
+        var (travail, _) = await PreparerAsync();
+
+        var parIndice = await travail.ListeVoitures.ListerAsync(critere: CritereDeTriVoitures.IndiceDePerformance);
+        var parAcceleration = await travail.ListeVoitures.ListerAsync(critere: CritereDeTriVoitures.Acceleration);
+        var parReglages = await travail.ListeVoitures.ListerAsync(critere: CritereDeTriVoitures.NombreDeReglages);
+
+        Assert.Equal("Foudre", parIndice[0].Voiture.Nom); // le plus grand indice d'abord
+        Assert.Equal("Foudre", parAcceleration[0].Voiture.Nom); // le plus petit temps d'abord
+        Assert.Equal("Éclair", parReglages[0].Voiture.Nom); // le plus de réglages d'abord
     }
 
     [Fact]

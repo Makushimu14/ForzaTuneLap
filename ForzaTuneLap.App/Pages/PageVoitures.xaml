@@ -28,8 +28,12 @@
                         SelectedIndex="{Binding IndexMarque}" />
                 <Picker ItemsSource="{Binding Divisions}"
                         SelectedIndex="{Binding IndexDivision}" />
+                <Label Text="{t:Traduire Voitures_TrierPar}" />
                 <Picker ItemsSource="{Binding Tris}"
                         SelectedIndex="{Binding IndexTri}" />
+                <Label Text="{t:Traduire Voitures_Ordre}" />
+                <Picker ItemsSource="{Binding Ordres}"
+                        SelectedIndex="{Binding IndexOrdre}" />
                 <HorizontalStackLayout Spacing="8">
                     <Switch IsToggled="{Binding SeulementMesReglages}"
                             VerticalOptions="Center" />
@@ -51,13 +55,22 @@
                         SelectedItem="{Binding VoitureSelectionnee}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="vm:LigneVoitureViewModel">
-                    <VerticalStackLayout Padding="8,10"
-                                         Spacing="2">
-                        <Label Text="{Binding Titre}"
-                               FontAttributes="Bold" />
-                        <Label Text="{Binding SousTitre}"
-                               FontSize="13" />
-                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,Auto"
+                          Padding="8,10"
+                          ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="{Binding Titre}"
+                                   FontAttributes="Bold" />
+                            <Label Text="{Binding SousTitre}"
+                                   FontSize="13" />
+                        </VerticalStackLayout>
+                        <Label Grid.Column="1"
+                               Text="{Binding Indice}"
+                               IsVisible="{Binding AUnIndice}"
+                               FontAttributes="Bold"
+                               FontSize="16"
+                               VerticalOptions="Center" />
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

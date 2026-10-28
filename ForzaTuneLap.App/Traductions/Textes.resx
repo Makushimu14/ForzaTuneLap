@@ -47,13 +47,10 @@
   <data name="Voitures_NbChronos" xml:space="preserve"><value>{0} chrono(s)</value></data>
   <data name="Voiture_Perso" xml:space="preserve"><value>Personnalisée</value></data>
   <data name="Tri_MarqueEtNom" xml:space="preserve"><value>Marque puis nom</value></data>
-  <data name="Tri_AnneeCroissante" xml:space="preserve"><value>Année croissante</value></data>
-  <data name="Tri_AnneeDecroissante" xml:space="preserve"><value>Année décroissante</value></data>
   <data name="Tri_NombreDeReglages" xml:space="preserve"><value>Plus de réglages d'abord</value></data>
   <data name="Voiture_NouveauReglage" xml:space="preserve"><value>Nouveau réglage</value></data>
   <data name="Voiture_AucunReglage" xml:space="preserve"><value>Aucun réglage pour cette voiture.</value></data>
   <data name="Reglage_Origine" xml:space="preserve"><value>Origine</value></data>
-  <data name="Reglage_Indice" xml:space="preserve"><value>Indice {0}</value></data>
   <data name="Reglage_Dupliquer" xml:space="preserve"><value>Dupliquer</value></data>
   <data name="Reglage_Supprimer" xml:space="preserve"><value>Supprimer</value></data>
   <data name="Reglage_NouveauTitre" xml:space="preserve"><value>Nouveau réglage</value></data>
@@ -94,4 +91,13 @@
   <data name="Erreur_FusionInvalide" xml:space="preserve"><value>Cette fusion n'est pas possible.</value></data>
   <data name="Erreur_SauvegardeInvalide" xml:space="preserve"><value>Ce fichier n'est pas une sauvegarde valide.</value></data>
   <data name="Erreur_SauvegardeVersionNonSupportee" xml:space="preserve"><value>Ce fichier a été créé par une version plus récente de l'application.</value></data>
+  <data name="Tri_Annee" xml:space="preserve"><value>Année</value></data>
+  <data name="Tri_Indice" xml:space="preserve"><value>Indice de performance</value></data>
+  <data name="Tri_Puissance" xml:space="preserve"><value>Puissance</value></data>
+  <data name="Tri_VitesseMaximale" xml:space="preserve"><value>Vitesse maximale</value></data>
+  <data name="Tri_Acceleration" xml:space="preserve"><value>Accélération 0-97 km/h</value></data>
+  <data name="Tri_Croissant" xml:space="preserve"><value>Croissant</value></data>
+  <data name="Tri_Decroissant" xml:space="preserve"><value>Décroissant</value></data>
+  <data name="Voitures_TrierPar" xml:space="preserve"><value>Trier par</value></data>
+  <data name="Voitures_Ordre" xml:space="preserve"><value>Ordre</value></data>
 </root>
