@@ -200,4 +200,7 @@
   <data name="Donnees_ResumeChronos" xml:space="preserve"><value>Lap times: {0} added, {1} updated, {2} skipped, {3} deleted.</value></data>
   <data name="Donnees_ResumeVoitures" xml:space="preserve"><value>Makes added: {0}. Cars added: {1}.</value></data>
   <data name="Donnees_ResumeAvertissements" xml:space="preserve"><value>{0} item(s) in the file could not be imported.</value></data>
+  <data name="Edition_ModificationsNonEnregistrees" xml:space="preserve"><value>Unsaved changes</value></data>
+  <data name="Edition_Rester" xml:space="preserve"><value>Stay</value></data>
+  <data name="Edition_Abandonner" xml:space="preserve"><value>Discard changes</value></data>
 </root>

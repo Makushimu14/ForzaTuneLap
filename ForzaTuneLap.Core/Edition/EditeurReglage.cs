@@ -33,6 +33,7 @@ public sealed class EditeurReglage : INotifyPropertyChanged
 
     private bool estValide = true;
     private string classeAffichee = string.Empty;
+    private string empreinteEnregistree;
 
     /// <param name="reglage">Copie à modifier (obtenue par <c>ObtenirPourEditionAsync</c>) : elle est modifiée sur place.</param>
     public EditeurReglage(Reglage reglage, PreferencesUnites unites, CultureInfo cultureDeFormat)
@@ -47,6 +48,7 @@ public sealed class EditeurReglage : INotifyPropertyChanged
         Rapports = new SectionRapports(reglage, unites, cultureDeFormat, Recalculer);
 
         Recalculer();
+        empreinteEnregistree = CalculerEmpreinte();
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -144,6 +146,19 @@ public sealed class EditeurReglage : INotifyPropertyChanged
             Notifier();
         }
     }
+
+    /// <summary>
+    /// Vrai si l'utilisateur a modifié le réglage depuis son chargement (ou son dernier enregistrement), ou s'il a saisi une
+    /// valeur invalide qui n'a pas pu être rangée dans le réglage. Un réglage d'origine n'est jamais modifié. Revenir aux
+    /// valeurs de départ redonne faux.
+    /// </summary>
+    public bool AModifications => EstModifiable && (!EstValide || CalculerEmpreinte() != empreinteEnregistree);
+
+    /// <summary>À appeler après l'enregistrement : l'état actuel devient l'état de référence.</summary>
+    public void MarquerCommeEnregistre() => empreinteEnregistree = CalculerEmpreinte();
+
+    /// <summary>Le nom et tout le contenu du réglage, sous forme de texte comparable.</summary>
+    private string CalculerEmpreinte() => Reglage.Nom + "\n" + CopieurDeReglage.CalculerContenu(Reglage);
 
     /// <summary>Classe et indice de performance du réglage, par exemple « S 750 ». Vide si l'indice vaut zéro.</summary>
     public string ClasseAffichee

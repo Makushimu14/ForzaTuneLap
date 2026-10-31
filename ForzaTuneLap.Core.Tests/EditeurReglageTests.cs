@@ -349,6 +349,78 @@ public class EditeurReglageTests
         rapports.RetirerDernier(); // sans effet
     }
 
+    // ------------------------------------------------------------ Modifications non enregistrées
+
+    [Fact]
+    public void Un_editeur_qui_vient_d_etre_charge_n_a_pas_de_modifications()
+    {
+        Assert.False(Creer(ReglageDeTest()).AModifications);
+    }
+
+    [Fact]
+    public void Modifier_une_valeur_puis_revenir_a_la_valeur_de_depart_redonne_aucune_modification()
+    {
+        var editeur = Creer(ReglageDeTest());
+        var champ = Champ(Section(editeur, CategorieDeReglage.Pneus), "Pneus.PressionAvant");
+
+        champ.Texte = "2,4";
+        Assert.True(editeur.AModifications);
+
+        champ.Texte = "2";
+        Assert.False(editeur.AModifications);
+    }
+
+    [Fact]
+    public void Changer_le_nom_une_section_ou_les_rapports_est_une_modification()
+    {
+        var editeur = Creer(ReglageDeTest());
+        editeur.Nom = "Autre nom";
+        Assert.True(editeur.AModifications);
+        editeur.Nom = "Test";
+        Assert.False(editeur.AModifications);
+
+        editeur.Rapports.Ajouter();
+        Assert.True(editeur.AModifications);
+        editeur.Rapports.RetirerDernier();
+        Assert.False(editeur.AModifications);
+
+        Section(editeur, CategorieDeReglage.Aerodynamisme).EstPresente = true;
+        Assert.True(editeur.AModifications);
+    }
+
+    [Fact]
+    public void Une_valeur_invalide_est_comptee_comme_une_modification()
+    {
+        var editeur = Creer(ReglageDeTest());
+        var champ = Champ(Section(editeur, CategorieDeReglage.Pneus), "Pneus.PressionAvant");
+
+        champ.Texte = "abc"; // la valeur du réglage ne change pas, mais le texte affiché n'est plus celui du réglage
+
+        Assert.False(editeur.EstValide);
+        Assert.True(editeur.AModifications);
+    }
+
+    [Fact]
+    public void Apres_l_enregistrement_l_etat_actuel_devient_la_reference()
+    {
+        var editeur = Creer(ReglageDeTest());
+        Champ(Section(editeur, CategorieDeReglage.Pneus), "Pneus.PressionAvant").Texte = "2,4";
+        Assert.True(editeur.AModifications);
+
+        editeur.MarquerCommeEnregistre();
+
+        Assert.False(editeur.AModifications);
+    }
+
+    [Fact]
+    public void Un_reglage_d_origine_n_a_jamais_de_modifications()
+    {
+        var editeur = Creer(ReglageDeTest(estOrigine: true));
+        editeur.Nom = "Piraté";
+
+        Assert.False(editeur.AModifications);
+    }
+
     // ------------------------------------------------------------ Réglage d'origine
 
     [Fact]

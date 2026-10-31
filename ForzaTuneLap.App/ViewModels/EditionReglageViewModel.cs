@@ -151,17 +151,30 @@ public partial class EditionReglageViewModel : ObservableObject, IQueryAttributa
     [RelayCommand]
     private async Task EnregistrerAsync()
     {
+        if (await EnregistrerSansQuitterAsync())
+        {
+            await ExecuterAsync(() => Shell.Current.GoToAsync(".."));
+        }
+    }
+
+    /// <summary>
+    /// Enregistre le réglage sans quitter la page. Renvoie vrai si le réglage est enregistré, faux si les champs sont invalides,
+    /// si l'utilisateur refuse la suppression des chronos, ou si une erreur est survenue (elle est alors affichée).
+    /// </summary>
+    private async Task<bool> EnregistrerSansQuitterAsync()
+    {
         if (Editeur is not { EstModifiable: true } editeur)
         {
-            return;
+            return false;
         }
 
         if (!editeur.EstValide)
         {
             await dialogues.AfficherMessageAsync(Texte.Obtenir("Erreur_Titre"), Texte.Obtenir("Edition_ChampsInvalides"));
-            return;
+            return false;
         }
 
+        var enregistre = false;
         await ExecuterAsync(async () =>
         {
             using var travail = fabrique.Creer();
@@ -180,8 +193,37 @@ public partial class EditionReglageViewModel : ObservableObject, IQueryAttributa
                 await travail.Reglages.ModifierAsync(editeur.Reglage, confirmerSuppressionDesChronos: true);
             }
 
-            await Shell.Current.GoToAsync("..");
+            // L'état enregistré devient la référence : quitter la page ne redemandera rien.
+            editeur.MarquerCommeEnregistre();
+            enregistre = true;
         });
+
+        return enregistre;
+    }
+
+    /// <summary>
+    /// Appelée quand l'utilisateur quitte la page. Sans modification, il part directement. Sinon, une fenêtre propose
+    /// d'enregistrer, d'abandonner ou de rester. Renvoie vrai si la navigation peut continuer.
+    /// </summary>
+    public async Task<bool> ConfirmerLeDepartAsync()
+    {
+        if (Editeur is not { AModifications: true })
+        {
+            return true;
+        }
+
+        var choix = await dialogues.ChoisirAsync(
+            Texte.Obtenir("Edition_ModificationsNonEnregistrees"),
+            Texte.Obtenir("Edition_Rester"),
+            Texte.Obtenir("Edition_Enregistrer"),
+            Texte.Obtenir("Edition_Abandonner"));
+
+        return choix switch
+        {
+            0 => await EnregistrerSansQuitterAsync(),
+            1 => true,
+            _ => false
+        };
     }
 
     /// <summary>Exécute une action en transformant toute erreur en message, au lieu d'arrêter l'application.</summary>

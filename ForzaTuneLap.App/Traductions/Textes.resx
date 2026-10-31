@@ -200,4 +200,7 @@
   <data name="Donnees_ResumeChronos" xml:space="preserve"><value>Chronos : {0} ajouté(s), {1} mis à jour, {2} ignoré(s), {3} supprimé(s).</value></data>
   <data name="Donnees_ResumeVoitures" xml:space="preserve"><value>Marques ajoutées : {0}. Voitures ajoutées : {1}.</value></data>
   <data name="Donnees_ResumeAvertissements" xml:space="preserve"><value>{0} élément(s) du fichier n'ont pas pu être importés.</value></data>
+  <data name="Edition_ModificationsNonEnregistrees" xml:space="preserve"><value>Modifications non enregistrées</value></data>
+  <data name="Edition_Rester" xml:space="preserve"><value>Rester</value></data>
+  <data name="Edition_Abandonner" xml:space="preserve"><value>Abandonner les modifications</value></data>
 </root>
