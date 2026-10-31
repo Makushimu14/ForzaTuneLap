@@ -9,6 +9,10 @@
         <!-- When App Sandbox is enabled, this value is required to open outgoing network connections. -->
         <key>com.apple.security.network.client</key>
         <true/>
+        <!-- Import et export : lire un fichier choisi par l'utilisateur dans le sélecteur de fichiers.
+             Sans ce droit, le bac à sable peut refuser l'accès au fichier. Non vérifié (pas de Mac) : voir NOTES-APPLE.md. -->
+        <key>com.apple.security.files.user-selected.read-write</key>
+        <true/>
     </dict>
 </plist>
 
