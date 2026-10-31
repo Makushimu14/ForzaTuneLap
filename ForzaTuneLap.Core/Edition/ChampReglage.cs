@@ -56,6 +56,9 @@ public sealed class ChampReglage : INotifyPropertyChanged
 
     public bool EstFacultatif => critere.EstFacultatif;
 
+    /// <summary>La valeur peut être négative : l'écran choisit alors un clavier qui permet de taper le signe « moins ».</summary>
+    public bool AccepteLesNegatifs => critere.AccepteLesNegatifs;
+
     /// <summary>Faux pour un réglage d'origine, qui est en lecture seule.</summary>
     public bool EstModifiable { get; }
 

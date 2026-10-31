@@ -3,6 +3,7 @@
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:t="clr-namespace:ForzaTuneLap.App.Traductions"
+             xmlns:services="clr-namespace:ForzaTuneLap.App.Services"
              xmlns:vm="clr-namespace:ForzaTuneLap.App.ViewModels"
              x:DataType="vm:FiltreReglagesViewModel">
 
@@ -76,12 +77,30 @@
                                 <Entry Grid.Row="1"
                                        Text="{Binding MinimumTexte}"
                                        Placeholder="{t:Traduire Filtre_Minimum}"
-                                       Keyboard="Numeric" />
+                                       Keyboard="Numeric">
+                                    <Entry.Triggers>
+                                        <DataTrigger TargetType="Entry"
+                                                     Binding="{Binding AccepteLesNegatifs}"
+                                                     Value="True">
+                                            <Setter Property="Keyboard"
+                                                    Value="{x:Static services:Claviers.PourValeursNegatives}" />
+                                        </DataTrigger>
+                                    </Entry.Triggers>
+                                </Entry>
                                 <Entry Grid.Row="1"
                                        Grid.Column="1"
                                        Text="{Binding MaximumTexte}"
                                        Placeholder="{t:Traduire Filtre_Maximum}"
-                                       Keyboard="Numeric" />
+                                       Keyboard="Numeric">
+                                    <Entry.Triggers>
+                                        <DataTrigger TargetType="Entry"
+                                                     Binding="{Binding AccepteLesNegatifs}"
+                                                     Value="True">
+                                            <Setter Property="Keyboard"
+                                                    Value="{x:Static services:Claviers.PourValeursNegatives}" />
+                                        </DataTrigger>
+                                    </Entry.Triggers>
+                                </Entry>
                                 <Label Grid.Row="1"
                                        Grid.Column="2"
                                        Text="{Binding Symbole}"

@@ -27,4 +27,10 @@ public sealed record DescriptionCritere(
     bool EstFacultatif = false)
 {
     public string CleLibelle => "Critere_" + Cle.Replace('.', '_');
+
+    /// <summary>
+    /// Vrai si la valeur peut être négative (la borne indicative minimale est négative : carrossage, parallélisme…).
+    /// L'interface en tient compte pour le clavier, certains claviers numériques n'ayant pas de signe « moins ».
+    /// </summary>
+    public bool AccepteLesNegatifs => Minimum is < 0;
 }

@@ -36,6 +36,8 @@ public sealed class LigneCritereFiltreViewModel : ObservableObject
 
     public string Symbole => critere.Symbole;
 
+    public bool AccepteLesNegatifs => critere.AccepteLesNegatifs;
+
     public string MinimumTexte
     {
         get => critere.MinimumTexte;

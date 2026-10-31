@@ -38,6 +38,9 @@ public sealed class CritereDeFiltre : INotifyPropertyChanged
 
     public string Libelle { get; }
 
+    /// <summary>Les bornes peuvent être négatives : l'écran choisit alors un clavier qui permet de taper le signe « moins ».</summary>
+    public bool AccepteLesNegatifs => Critere.AccepteLesNegatifs;
+
     /// <summary>Symbole de l'unité choisie (vide pour une valeur sans unité).</summary>
     public string Symbole { get; }
 

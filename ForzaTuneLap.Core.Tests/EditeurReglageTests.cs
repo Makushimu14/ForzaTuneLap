@@ -349,6 +349,18 @@ public class EditeurReglageTests
         rapports.RetirerDernier(); // sans effet
     }
 
+    // ------------------------------------------------------------ Clavier des valeurs négatives
+
+    [Fact]
+    public void Seuls_les_champs_dont_la_valeur_peut_etre_negative_le_signalent()
+    {
+        var editeur = Creer(ReglageDeTest());
+
+        Assert.False(Champ(Section(editeur, CategorieDeReglage.Pneus), "Pneus.PressionAvant").AccepteLesNegatifs);
+        Assert.True(Champ(Section(editeur, CategorieDeReglage.Alignement), "Alignement.CarrossageAvant").AccepteLesNegatifs);
+        Assert.True(Champ(Section(editeur, CategorieDeReglage.GeometrieDeSuspension), "GeometrieDeSuspension.PourcentageAntigeometrieAvant").AccepteLesNegatifs);
+    }
+
     // ------------------------------------------------------------ Modifications non enregistrées
 
     [Fact]

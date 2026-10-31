@@ -12,6 +12,11 @@
 		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
 		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
 
+		<!-- Android : en plus des téléphones 64 bits (arm64) et de l'émulateur (x64), on construit pour l'ARM 32 bits (armeabi-v7a),
+		     qui équipe encore de nombreux téléphones sous Android 9 (par exemple le Galaxy J6). Sans cela, l'installation
+		     échoue avec ADB0020 « le paquet ne prend pas en charge l'architecture du processeur ». -->
+		<RuntimeIdentifiers Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">android-arm64;android-arm;android-x64</RuntimeIdentifiers>
+
 		<OutputType>Exe</OutputType>
 		<RootNamespace>ForzaTuneLap.App</RootNamespace>
 		<UseMaui>true</UseMaui>

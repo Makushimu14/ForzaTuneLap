@@ -55,7 +55,7 @@
                 <Label Text="{t:Traduire Chrono_Duree}" />
                 <Entry Text="{Binding Editeur.DureeTexte}"
                        Placeholder="{Binding Editeur.Exemple}"
-                       Keyboard="Numeric"
+                       Keyboard="Default"
                        HorizontalTextAlignment="End" />
                 <Label Text="{t:Traduire Chrono_DureeInvalide}"
                        TextColor="Red"
