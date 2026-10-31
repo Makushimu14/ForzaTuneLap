@@ -196,6 +196,53 @@
                     </VerticalStackLayout>
                 </Border>
 
+                <!-- Les chronos de ce réglage. -->
+                <Border Padding="12"
+                        StrokeShape="RoundRectangle 8"
+                        Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="{t:Traduire Reglage_Chronos}"
+                               Style="{StaticResource SubHeadline}" />
+                        <Label Text="{t:Traduire Reglage_AucunChrono}"
+                               FontSize="13"
+                               IsVisible="{Binding AucunChrono}" />
+
+                        <VerticalStackLayout Spacing="6"
+                                             BindableLayout.ItemsSource="{Binding Chronos}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="vm:LigneChronoCourteViewModel">
+                                    <Grid ColumnDefinitions="*,Auto"
+                                          RowDefinitions="Auto,Auto,Auto"
+                                          ColumnSpacing="8">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding OuvrirCommand}" />
+                                        </Grid.GestureRecognizers>
+                                        <Label Text="{Binding Parcours}"
+                                               FontAttributes="Bold" />
+                                        <Label Grid.Column="1"
+                                               Text="{Binding Duree}"
+                                               FontAttributes="Bold" />
+                                        <Label Grid.Row="1"
+                                               Grid.ColumnSpan="2"
+                                               Text="{Binding Detail}"
+                                               FontSize="13" />
+                                        <Label Grid.Row="2"
+                                               Grid.ColumnSpan="2"
+                                               Text="{Binding Commentaire}"
+                                               FontSize="12"
+                                               FontAttributes="Italic"
+                                               IsVisible="{Binding ACommentaire}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
+
+                        <Button Text="{t:Traduire Chronos_Ajouter}"
+                                Command="{Binding AjouterChronoCommand}"
+                                HorizontalOptions="Start" />
+                    </VerticalStackLayout>
+                </Border>
+
             </VerticalStackLayout>
         </ScrollView>
 

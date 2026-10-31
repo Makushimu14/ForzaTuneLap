@@ -7,7 +7,7 @@
              x:DataType="vm:VoitureViewModel"
              Title="{Binding Titre}">
 
-    <Grid RowDefinitions="Auto,Auto,*"
+    <Grid RowDefinitions="Auto,Auto,Auto,*"
           Padding="16"
           RowSpacing="12">
 
@@ -18,13 +18,70 @@
             <Label Text="{Binding SousTitre}" />
         </VerticalStackLayout>
 
-        <Button Grid.Row="1"
+        <!-- Bascule entre les réglages et les chronos de la voiture. -->
+        <HorizontalStackLayout Grid.Row="1"
+                               Spacing="8">
+            <Button Text="{t:Traduire Voiture_Reglages}"
+                    Command="{Binding AfficherReglagesCommand}"
+                    IsEnabled="{Binding ChronosAffiches}" />
+            <Button Text="{t:Traduire Voiture_Chronos}"
+                    Command="{Binding AfficherChronosCommand}"
+                    IsEnabled="{Binding ReglagesAffiches}" />
+        </HorizontalStackLayout>
+
+        <Button Grid.Row="2"
                 Text="{t:Traduire Voiture_NouveauReglage}"
                 Command="{Binding NouveauReglageCommand}"
+                IsVisible="{Binding ReglagesAffiches}"
+                HorizontalOptions="Start" />
+        <Button Grid.Row="2"
+                Text="{t:Traduire Chronos_Ajouter}"
+                Command="{Binding AjouterChronoCommand}"
+                IsVisible="{Binding ChronosAffiches}"
                 HorizontalOptions="Start" />
 
-        <CollectionView Grid.Row="2"
+        <CollectionView Grid.Row="3"
+                        ItemsSource="{Binding Chronos}"
+                        IsVisible="{Binding ChronosAffiches}"
+                        SelectionMode="None"
+                        EmptyView="{t:Traduire Voiture_AucunChrono}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="vm:LigneChronoCourteViewModel">
+                    <Border Margin="0,4"
+                            Padding="12"
+                            StrokeShape="RoundRectangle 8"
+                            Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OuvrirCommand}" />
+                        </Border.GestureRecognizers>
+                        <Grid ColumnDefinitions="*,Auto"
+                              RowDefinitions="Auto,Auto,Auto"
+                              ColumnSpacing="8"
+                              RowSpacing="2">
+                            <Label Text="{Binding Parcours}"
+                                   FontAttributes="Bold" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding Duree}"
+                                   FontAttributes="Bold" />
+                            <Label Grid.Row="1"
+                                   Grid.ColumnSpan="2"
+                                   Text="{Binding Detail}"
+                                   FontSize="13" />
+                            <Label Grid.Row="2"
+                                   Grid.ColumnSpan="2"
+                                   Text="{Binding Commentaire}"
+                                   FontSize="12"
+                                   FontAttributes="Italic"
+                                   IsVisible="{Binding ACommentaire}" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <CollectionView Grid.Row="3"
                         ItemsSource="{Binding Reglages}"
+                        IsVisible="{Binding ReglagesAffiches}"
                         SelectionMode="None"
                         EmptyView="{t:Traduire Voiture_AucunReglage}">
             <CollectionView.ItemTemplate>

@@ -17,6 +17,7 @@ public partial class App : Application
         // Page de détail, atteinte par navigation (« voiture?id=12 »). À enregistrer une seule fois.
         Routing.RegisterRoute("voiture", typeof(PageVoiture));
         Routing.RegisterRoute("reglage", typeof(PageEditionReglage));
+        Routing.RegisterRoute("chrono", typeof(PageChrono));
 
         AppDomain.CurrentDomain.UnhandledException += (_, e) => JournalErreurs.Ecrire(e.ExceptionObject as Exception, "AppDomain");
         TaskScheduler.UnobservedTaskException += (_, e) => JournalErreurs.Ecrire(e.Exception, "Tâche");

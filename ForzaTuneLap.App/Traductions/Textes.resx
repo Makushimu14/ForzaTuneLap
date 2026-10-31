@@ -117,4 +117,26 @@
   <data name="Edition_RapportSuperieur" xml:space="preserve"><value>Supérieur au rapport précédent</value></data>
   <data name="Edition_RapportAjuste" xml:space="preserve"><value>Ajusté automatiquement d'après un rapport précédent</value></data>
   <data name="Edition_RapportsAide" xml:space="preserve"><value>Les rapports vont en décroissant : quand vous saisissez un rapport, les suivants qui le dépassent sont ramenés à sa valeur.</value></data>
+  <data name="Chrono_TitreAjout" xml:space="preserve"><value>Nouveau chrono</value></data>
+  <data name="Chrono_TitreModification" xml:space="preserve"><value>Modifier le chrono</value></data>
+  <data name="Chrono_Circuit" xml:space="preserve"><value>Circuit</value></data>
+  <data name="Chrono_Parcours" xml:space="preserve"><value>Parcours</value></data>
+  <data name="Chrono_Voiture" xml:space="preserve"><value>Voiture</value></data>
+  <data name="Chrono_Reglage" xml:space="preserve"><value>Réglage</value></data>
+  <data name="Chrono_DejaEnregistre" xml:space="preserve"><value>déjà chronométré</value></data>
+  <data name="Chrono_ReglageDejaChronometre" xml:space="preserve"><value>Ce réglage a déjà un chrono sur ce parcours : ouvrez-le pour le modifier.</value></data>
+  <data name="Chrono_Duree" xml:space="preserve"><value>Temps du tour (minutes:secondes,millièmes)</value></data>
+  <data name="Chrono_DureeInvalide" xml:space="preserve"><value>Temps invalide. Format attendu : 1:32,450</value></data>
+  <data name="Chrono_Date" xml:space="preserve"><value>Date</value></data>
+  <data name="Chrono_Commentaire" xml:space="preserve"><value>Commentaire (facultatif)</value></data>
+  <data name="Chrono_Supprimer" xml:space="preserve"><value>Supprimer le chrono</value></data>
+  <data name="Chrono_SupprimerTitre" xml:space="preserve"><value>Supprimer le chrono</value></data>
+  <data name="Chrono_ConfirmerSuppression" xml:space="preserve"><value>Supprimer ce chrono ({0}) ?</value></data>
+  <data name="Chronos_Ajouter" xml:space="preserve"><value>Ajouter un chrono</value></data>
+  <data name="Chronos_Aucun" xml:space="preserve"><value>Aucun chrono pour le moment.</value></data>
+  <data name="Voiture_Reglages" xml:space="preserve"><value>Réglages</value></data>
+  <data name="Voiture_Chronos" xml:space="preserve"><value>Chronos</value></data>
+  <data name="Voiture_AucunChrono" xml:space="preserve"><value>Aucun chrono pour cette voiture.</value></data>
+  <data name="Reglage_Chronos" xml:space="preserve"><value>Chronos de ce réglage</value></data>
+  <data name="Reglage_AucunChrono" xml:space="preserve"><value>Aucun chrono pour ce réglage.</value></data>
 </root>

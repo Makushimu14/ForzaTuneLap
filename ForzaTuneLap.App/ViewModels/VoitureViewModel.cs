@@ -37,6 +37,29 @@ public partial class VoitureViewModel : ObservableObject, IQueryAttributable
     [ObservableProperty]
     private IReadOnlyList<LigneReglageViewModel> reglages = Array.Empty<LigneReglageViewModel>();
 
+    [ObservableProperty]
+    private IReadOnlyList<LigneChronoCourteViewModel> chronos = Array.Empty<LigneChronoCourteViewModel>();
+
+    /// <summary>La page montre soit les réglages de la voiture, soit ses chronos.</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ReglagesAffiches))]
+    private bool chronosAffiches;
+
+    public bool ReglagesAffiches => !ChronosAffiches;
+
+    [RelayCommand]
+    private void AfficherReglages() => ChronosAffiches = false;
+
+    [RelayCommand]
+    private void AfficherChronos() => ChronosAffiches = true;
+
+    [RelayCommand]
+    private async Task AjouterChronoAsync() =>
+        await ExecuterAsync(() => Shell.Current.GoToAsync($"chrono?voiture={identifiantVoiture.ToString(CultureInfo.InvariantCulture)}"));
+
+    private async Task OuvrirChronoAsync(LigneChronoCourteViewModel ligne) =>
+        await ExecuterAsync(() => Shell.Current.GoToAsync($"chrono?id={ligne.Identifiant}"));
+
     /// <summary>Reçoit l'identifiant de la voiture depuis la navigation (« voiture?id=12 »).</summary>
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
@@ -65,6 +88,12 @@ public partial class VoitureViewModel : ObservableObject, IQueryAttributable
                     DupliquerAsync,
                     SupprimerAsync))
                 .ToList();
+
+            Chronos = LigneChronoCourteViewModel.Creer(
+                await travail.Chronos.ListerDeLaVoitureAsync(identifiantVoiture),
+                preferences.CultureDeFormat,
+                avecReglage: true,
+                OuvrirChronoAsync);
         });
     }
 

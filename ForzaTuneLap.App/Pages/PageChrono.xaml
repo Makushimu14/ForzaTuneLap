@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ForzaTuneLap.App.Pages.PageChrono"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:t="clr-namespace:ForzaTuneLap.App.Traductions"
+             xmlns:vm="clr-namespace:ForzaTuneLap.App.ViewModels"
+             x:DataType="vm:ChronoViewModel"
+             Title="{Binding Titre}">
+
+    <Grid RowDefinitions="*,Auto">
+
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="16"
+                                 Spacing="10">
+
+                <!-- Correction : ce qui ne se change pas. -->
+                <Label Text="{Binding Resume}"
+                       IsVisible="{Binding EstModification}" />
+
+                <!-- Ajout : circuit puis parcours. -->
+                <VerticalStackLayout Spacing="10"
+                                     IsVisible="{Binding ChoixDuParcoursVisible}">
+                    <Label Text="{t:Traduire Chrono_Circuit}" />
+                    <!-- ItemsSource doit être déclaré avant SelectedItem. -->
+                    <Picker ItemsSource="{Binding Circuits}"
+                            ItemDisplayBinding="{Binding Nom, x:DataType=vm:OptionCircuit}"
+                            SelectedItem="{Binding CircuitSelectionne}" />
+
+                    <Label Text="{t:Traduire Chrono_Parcours}" />
+                    <Picker ItemsSource="{Binding Parcours}"
+                            ItemDisplayBinding="{Binding Nom, x:DataType=vm:OptionParcours}"
+                            SelectedItem="{Binding ParcoursSelectionne}" />
+                </VerticalStackLayout>
+
+                <!-- Ajout : voiture puis réglage (masqués quand ils sont imposés par l'écran d'où l'on vient). -->
+                <Label Text="{t:Traduire Chrono_Voiture}"
+                       IsVisible="{Binding ChoixDeLaVoitureVisible}" />
+                <Picker ItemsSource="{Binding Voitures}"
+                        ItemDisplayBinding="{Binding Nom, x:DataType=vm:OptionVoiture}"
+                        SelectedItem="{Binding VoitureSelectionnee}"
+                        IsVisible="{Binding ChoixDeLaVoitureVisible}" />
+
+                <Label Text="{t:Traduire Chrono_Reglage}"
+                       IsVisible="{Binding ChoixDuReglageVisible}" />
+                <Picker ItemsSource="{Binding Reglages}"
+                        ItemDisplayBinding="{Binding Libelle, x:DataType=vm:OptionReglage}"
+                        SelectedItem="{Binding ReglageSelectionne}"
+                        IsVisible="{Binding ChoixDuReglageVisible}" />
+                <Label Text="{t:Traduire Chrono_ReglageDejaChronometre}"
+                       TextColor="DarkOrange"
+                       FontSize="12"
+                       IsVisible="{Binding ReglageDejaChronometre}" />
+
+                <!-- La durée, dans un seul champ. -->
+                <Label Text="{t:Traduire Chrono_Duree}" />
+                <Entry Text="{Binding Editeur.DureeTexte}"
+                       Placeholder="{Binding Editeur.Exemple}"
+                       Keyboard="Numeric"
+                       HorizontalTextAlignment="End" />
+                <Label Text="{t:Traduire Chrono_DureeInvalide}"
+                       TextColor="Red"
+                       FontSize="12"
+                       IsVisible="{Binding DureeInvalide}" />
+
+                <Label Text="{t:Traduire Chrono_Date}" />
+                <DatePicker Date="{Binding Editeur.DateRealisation}" />
+
+                <Label Text="{t:Traduire Chrono_Commentaire}" />
+                <Editor Text="{Binding Editeur.Commentaire}"
+                        HeightRequest="90"
+                        AutoSize="Disabled" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Barre du bas : toujours visible, hors du défilement. -->
+        <VerticalStackLayout Grid.Row="1"
+                             Padding="16,8"
+                             Spacing="6">
+            <Button Text="{t:Traduire Edition_Enregistrer}"
+                    Command="{Binding EnregistrerCommand}"
+                    IsEnabled="{Binding PeutEnregistrer}" />
+            <Button Text="{t:Traduire Chrono_Supprimer}"
+                    Command="{Binding SupprimerCommand}"
+                    IsVisible="{Binding PeutSupprimer}" />
+        </VerticalStackLayout>
+
+    </Grid>
+
+</ContentPage>

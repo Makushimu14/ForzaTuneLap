@@ -52,6 +52,16 @@ public partial class EditionReglageViewModel : ObservableObject, IQueryAttributa
     [ObservableProperty]
     private bool aUnMessageChronos;
 
+    /// <summary>Les chronos de ce réglage. Rechargés à chaque affichage, indépendamment de la saisie en cours.</summary>
+    [ObservableProperty]
+    private IReadOnlyList<LigneChronoCourteViewModel> chronos = Array.Empty<LigneChronoCourteViewModel>();
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(AucunChrono))]
+    private bool aDesChronos;
+
+    public bool AucunChrono => !ADesChronos;
+
     public bool EstEnLectureSeule => Editeur is { EstModifiable: false };
 
     public bool PeutEnregistrer => Editeur is { EstModifiable: true };
@@ -90,6 +100,26 @@ public partial class EditionReglageViewModel : ObservableObject, IQueryAttributa
             MessageChronos = string.Format(Texte.Obtenir("Edition_MessageChronos"), nombreDeChronos);
         });
     }
+
+    /// <summary>Recharge la liste des chronos du réglage (après un ajout, une correction ou une suppression).</summary>
+    public async Task ActualiserChronosAsync()
+    {
+        await ExecuterAsync(async () =>
+        {
+            using var travail = fabrique.Creer();
+            var liste = await travail.Chronos.ListerDuReglageAsync(identifiantReglage);
+
+            Chronos = LigneChronoCourteViewModel.Creer(liste, preferences.CultureDeFormat, avecReglage: false, OuvrirChronoAsync);
+            ADesChronos = liste.Count > 0;
+        });
+    }
+
+    [RelayCommand]
+    private async Task AjouterChronoAsync() =>
+        await ExecuterAsync(() => Shell.Current.GoToAsync($"chrono?reglage={identifiantReglage}"));
+
+    private async Task OuvrirChronoAsync(LigneChronoCourteViewModel ligne) =>
+        await ExecuterAsync(() => Shell.Current.GoToAsync($"chrono?id={ligne.Identifiant}"));
 
     partial void OnEditeurChanged(EditeurReglage? oldValue, EditeurReglage? newValue)
     {

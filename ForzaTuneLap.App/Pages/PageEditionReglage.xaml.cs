@@ -17,5 +17,6 @@ public partial class PageEditionReglage : ContentPage
     {
         base.OnAppearing();
         await viewModel.ChargerAsync();
+        await viewModel.ActualiserChronosAsync();
     }
 }

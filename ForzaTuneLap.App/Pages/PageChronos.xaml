@@ -3,12 +3,80 @@
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:t="clr-namespace:ForzaTuneLap.App.Traductions"
+             xmlns:vm="clr-namespace:ForzaTuneLap.App.ViewModels"
+             x:DataType="vm:ChronosViewModel"
              Title="{t:Traduire Onglet_Chronos}">
 
-    <VerticalStackLayout Padding="24" Spacing="12">
-        <Label Text="{t:Traduire Chronos_Titre}"
-               Style="{StaticResource Headline}" />
-        <Label Text="{t:Traduire EnConstruction}" />
-    </VerticalStackLayout>
+    <Grid RowDefinitions="Auto,*"
+          Padding="16"
+          RowSpacing="12">
+
+        <Button Grid.Row="0"
+                Text="{t:Traduire Chronos_Ajouter}"
+                Command="{Binding AjouterCommand}"
+                HorizontalOptions="Start" />
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Groupes}"
+                        IsGrouped="True"
+                        SelectionMode="None"
+                        EmptyView="{t:Traduire Chronos_Aucun}">
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate x:DataType="vm:GroupeChronosViewModel">
+                    <VerticalStackLayout Padding="0,12,0,4"
+                                         Spacing="0">
+                        <Label Text="{Binding Titre}"
+                               Style="{StaticResource SubHeadline}" />
+                        <Label Text="{Binding SousTitre}"
+                               FontSize="13" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="vm:LigneChronoViewModel">
+                    <Border Margin="0,4"
+                            Padding="12"
+                            StrokeShape="RoundRectangle 8"
+                            Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OuvrirCommand}" />
+                        </Border.GestureRecognizers>
+                        <Grid ColumnDefinitions="32,*,Auto"
+                              RowDefinitions="Auto,Auto,Auto"
+                              ColumnSpacing="8"
+                              RowSpacing="2">
+                            <Label Text="{Binding Rang}"
+                                   FontAttributes="Bold"
+                                   FontSize="18"
+                                   VerticalOptions="Center"
+                                   Grid.RowSpan="2" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding Voiture}"
+                                   FontAttributes="Bold" />
+                            <Label Grid.Column="2"
+                                   Text="{Binding Duree}"
+                                   FontAttributes="Bold" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding Reglage}"
+                                   FontSize="13" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="2"
+                                   Text="{Binding Date}"
+                                   FontSize="13" />
+                            <Label Grid.Row="2"
+                                   Grid.Column="1"
+                                   Grid.ColumnSpan="2"
+                                   Text="{Binding Commentaire}"
+                                   FontSize="12"
+                                   FontAttributes="Italic"
+                                   IsVisible="{Binding ACommentaire}" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
 
 </ContentPage>

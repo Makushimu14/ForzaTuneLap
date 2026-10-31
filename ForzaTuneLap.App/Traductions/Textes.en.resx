@@ -117,4 +117,26 @@
   <data name="Edition_RapportSuperieur" xml:space="preserve"><value>Higher than the previous gear</value></data>
   <data name="Edition_RapportAjuste" xml:space="preserve"><value>Automatically adjusted from a previous gear</value></data>
   <data name="Edition_RapportsAide" xml:space="preserve"><value>Gear ratios decrease: when you enter a ratio, the following ones that exceed it are brought down to its value.</value></data>
+  <data name="Chrono_TitreAjout" xml:space="preserve"><value>New lap time</value></data>
+  <data name="Chrono_TitreModification" xml:space="preserve"><value>Edit lap time</value></data>
+  <data name="Chrono_Circuit" xml:space="preserve"><value>Track</value></data>
+  <data name="Chrono_Parcours" xml:space="preserve"><value>Layout</value></data>
+  <data name="Chrono_Voiture" xml:space="preserve"><value>Car</value></data>
+  <data name="Chrono_Reglage" xml:space="preserve"><value>Tune</value></data>
+  <data name="Chrono_DejaEnregistre" xml:space="preserve"><value>already timed</value></data>
+  <data name="Chrono_ReglageDejaChronometre" xml:space="preserve"><value>This tune already has a lap time on this layout: open it to edit it.</value></data>
+  <data name="Chrono_Duree" xml:space="preserve"><value>Lap time (minutes:seconds.thousandths)</value></data>
+  <data name="Chrono_DureeInvalide" xml:space="preserve"><value>Invalid time. Expected format: 1:32.450</value></data>
+  <data name="Chrono_Date" xml:space="preserve"><value>Date</value></data>
+  <data name="Chrono_Commentaire" xml:space="preserve"><value>Comment (optional)</value></data>
+  <data name="Chrono_Supprimer" xml:space="preserve"><value>Delete lap time</value></data>
+  <data name="Chrono_SupprimerTitre" xml:space="preserve"><value>Delete lap time</value></data>
+  <data name="Chrono_ConfirmerSuppression" xml:space="preserve"><value>Delete this lap time ({0})?</value></data>
+  <data name="Chronos_Ajouter" xml:space="preserve"><value>Add a lap time</value></data>
+  <data name="Chronos_Aucun" xml:space="preserve"><value>No lap times yet.</value></data>
+  <data name="Voiture_Reglages" xml:space="preserve"><value>Tunes</value></data>
+  <data name="Voiture_Chronos" xml:space="preserve"><value>Lap times</value></data>
+  <data name="Voiture_AucunChrono" xml:space="preserve"><value>No lap times for this car.</value></data>
+  <data name="Reglage_Chronos" xml:space="preserve"><value>Lap times for this tune</value></data>
+  <data name="Reglage_AucunChrono" xml:space="preserve"><value>No lap times for this tune.</value></data>
 </root>
