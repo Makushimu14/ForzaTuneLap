@@ -33,6 +33,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<IStockageDePreferences, StockageDePreferencesMaui>();
         builder.Services.AddSingleton<ServicePreferences>();
         builder.Services.AddSingleton<IDialogues, DialoguesMaui>();
+        builder.Services.AddSingleton<IFichiers, FichiersMaui>();
+        builder.Services.AddSingleton<ProposeurDeFusions>();
 
         // Pages et modèles de vue. Transitoires : une page neuve à chaque affichage de la coquille.
         builder.Services.AddTransient<AppShell>();
@@ -46,6 +48,9 @@ public static class MauiProgram
         builder.Services.AddTransient<VoitureViewModel>();
         builder.Services.AddTransient<PageEditionReglage>();
         builder.Services.AddTransient<EditionReglageViewModel>();
+
+        builder.Services.AddTransient<PageEditionVoiture>();
+        builder.Services.AddTransient<EditionVoitureViewModel>();
 
         builder.Services.AddTransient<PageChrono>();
         builder.Services.AddTransient<ChronoViewModel>();

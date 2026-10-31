@@ -16,6 +16,13 @@
             <Label Text="{Binding Titre}"
                    Style="{StaticResource SubHeadline}" />
             <Label Text="{Binding SousTitre}" />
+            <HorizontalStackLayout Spacing="8"
+                                   IsVisible="{Binding EstPersonnalisee}">
+                <Button Text="{t:Traduire Voiture_Modifier}"
+                        Command="{Binding ModifierVoitureCommand}" />
+                <Button Text="{t:Traduire Voiture_Supprimer}"
+                        Command="{Binding SupprimerVoitureCommand}" />
+            </HorizontalStackLayout>
         </VerticalStackLayout>
 
         <!-- Bascule entre les réglages et les chronos de la voiture. -->

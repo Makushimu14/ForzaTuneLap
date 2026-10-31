@@ -253,6 +253,19 @@ public partial class VoituresViewModel : ObservableObject
     private void BasculerFiltres() => FiltresVisibles = !FiltresVisibles;
 
     [RelayCommand]
+    private async Task AjouterVoitureAsync()
+    {
+        try
+        {
+            await Shell.Current.GoToAsync("editionvoiture");
+        }
+        catch (Exception exception)
+        {
+            JournalErreurs.Ecrire(exception, "Ajout d'une voiture");
+        }
+    }
+
+    [RelayCommand]
     private async Task ReinitialiserAsync()
     {
         recherche = string.Empty;

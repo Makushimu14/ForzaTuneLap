@@ -8,5 +8,11 @@ public interface IDialogues
 
     Task<bool> ConfirmerAsync(string titre, string message);
 
+    /// <summary>Même chose avec les libellés des deux boutons (par exemple « Fusionner » et « Plus tard »).</summary>
+    Task<bool> ConfirmerAsync(string titre, string message, string accepter, string refuser);
+
     Task AfficherMessageAsync(string titre, string message);
+
+    /// <summary>Propose une liste de choix. Renvoie la position du choix retenu, ou null si l'utilisateur annule.</summary>
+    Task<int?> ChoisirAsync(string titre, string annuler, params string[] choix);
 }

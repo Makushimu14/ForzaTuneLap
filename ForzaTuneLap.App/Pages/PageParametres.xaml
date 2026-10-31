@@ -44,6 +44,18 @@
                 </BindableLayout.ItemTemplate>
             </VerticalStackLayout>
 
+            <!-- Sauvegarde : export vers le panneau de partage, import d'un fichier JSON. -->
+            <Label Text="{t:Traduire Parametres_Donnees}"
+                   Style="{StaticResource SubHeadline}" />
+            <Label Text="{t:Traduire Parametres_DonneesAide}"
+                   FontSize="13" />
+            <HorizontalStackLayout Spacing="12">
+                <Button Text="{t:Traduire Donnees_Exporter}"
+                        Command="{Binding ExporterCommand}" />
+                <Button Text="{t:Traduire Donnees_Importer}"
+                        Command="{Binding ImporterCommand}" />
+            </HorizontalStackLayout>
+
         </VerticalStackLayout>
     </ScrollView>
 

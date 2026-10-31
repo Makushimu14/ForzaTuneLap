@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ForzaTuneLap.App.Pages.PageEditionVoiture"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:t="clr-namespace:ForzaTuneLap.App.Traductions"
+             xmlns:vm="clr-namespace:ForzaTuneLap.App.ViewModels"
+             x:DataType="vm:EditionVoitureViewModel"
+             Title="{Binding Titre}">
+
+    <Grid RowDefinitions="*,Auto">
+
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="16"
+                                 Spacing="10">
+
+                <!-- La marque : une marque existante, ou « Nouvelle marque… » qui demande son nom et son pays. -->
+                <Label Text="{t:Traduire Voiture_Marque}" />
+                <!-- ItemsSource doit être déclaré avant SelectedItem. -->
+                <Picker ItemsSource="{Binding Marques}"
+                        ItemDisplayBinding="{Binding Nom, x:DataType=vm:ChoixMarque}"
+                        SelectedItem="{Binding MarqueSelectionnee}" />
+
+                <VerticalStackLayout Spacing="10"
+                                     IsVisible="{Binding NouvelleMarqueChoisie}">
+                    <Label Text="{t:Traduire Voiture_NomMarque}" />
+                    <Entry Text="{Binding NomNouvelleMarque}" />
+                    <Label Text="{t:Traduire Voiture_PaysMarque}" />
+                    <Picker ItemsSource="{Binding Pays}"
+                            ItemDisplayBinding="{Binding Nom, x:DataType=vm:OptionPays}"
+                            SelectedItem="{Binding PaysSelectionne}" />
+                </VerticalStackLayout>
+
+                <Label Text="{t:Traduire Voiture_Nom}" />
+                <Entry Text="{Binding Editeur.Nom}" />
+
+                <Label Text="{t:Traduire Voiture_Annee}" />
+                <Entry Text="{Binding Editeur.AnneeTexte}"
+                       Keyboard="Numeric" />
+                <Label Text="{t:Traduire Voiture_AnneeInvalide}"
+                       TextColor="Red"
+                       FontSize="12"
+                       IsVisible="{Binding Editeur.AnneeInvalide}" />
+
+                <Label Text="{t:Traduire Voiture_Division}" />
+                <Picker ItemsSource="{Binding Divisions}"
+                        SelectedIndex="{Binding IndexDivision}" />
+
+                <!-- Zone avancée : prix et contenu téléchargeable. -->
+                <Button Text="{Binding TexteBoutonAvance}"
+                        Command="{Binding BasculerAvanceCommand}"
+                        HorizontalOptions="Start" />
+                <VerticalStackLayout Spacing="10"
+                                     IsVisible="{Binding AvanceVisible}">
+                    <Label Text="{t:Traduire Voiture_Prix}" />
+                    <Entry Text="{Binding Editeur.ValeurTexte}"
+                           Keyboard="Numeric" />
+                    <Label Text="{t:Traduire Voiture_PrixInvalide}"
+                           TextColor="Red"
+                           FontSize="12"
+                           IsVisible="{Binding Editeur.ValeurInvalide}" />
+                    <HorizontalStackLayout Spacing="8">
+                        <Switch IsToggled="{Binding Editeur.ContenuTelechargeable}"
+                                VerticalOptions="Center" />
+                        <Label Text="{t:Traduire Voiture_ContenuTelechargeable}"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Barre du bas : toujours visible, hors du défilement. -->
+        <VerticalStackLayout Grid.Row="1"
+                             Padding="16,8">
+            <Button Text="{t:Traduire Edition_Enregistrer}"
+                    Command="{Binding EnregistrerCommand}"
+                    IsEnabled="{Binding PeutEnregistrer}" />
+        </VerticalStackLayout>
+
+    </Grid>
+
+</ContentPage>

@@ -17,9 +17,12 @@
 
         <VerticalStackLayout Grid.Row="1"
                              Spacing="8">
-            <Button Text="{Binding TexteBoutonFiltres}"
-                    Command="{Binding BasculerFiltresCommand}"
-                    HorizontalOptions="Start" />
+            <HorizontalStackLayout Spacing="8">
+                <Button Text="{Binding TexteBoutonFiltres}"
+                        Command="{Binding BasculerFiltresCommand}" />
+                <Button Text="{t:Traduire Voitures_Ajouter}"
+                        Command="{Binding AjouterVoitureCommand}" />
+            </HorizontalStackLayout>
 
             <VerticalStackLayout IsVisible="{Binding FiltresVisibles}"
                                  Spacing="8">

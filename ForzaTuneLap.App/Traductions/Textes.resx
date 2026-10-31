@@ -160,4 +160,44 @@
   <data name="Filtre_Invalide" xml:space="preserve"><value>Un filtre contient une valeur invalide.</value></data>
   <data name="Comparaison_AucunReglage" xml:space="preserve"><value>Aucun réglage ne correspond.</value></data>
   <data name="Comparaison_NombreDeReglages" xml:space="preserve"><value>{0} réglage(s)</value></data>
+  <data name="Voitures_Ajouter" xml:space="preserve"><value>Ajouter une voiture</value></data>
+  <data name="Voiture_TitreAjout" xml:space="preserve"><value>Nouvelle voiture</value></data>
+  <data name="Voiture_TitreModification" xml:space="preserve"><value>Modifier la voiture</value></data>
+  <data name="Voiture_Marque" xml:space="preserve"><value>Marque</value></data>
+  <data name="Voiture_NouvelleMarque" xml:space="preserve"><value>Nouvelle marque…</value></data>
+  <data name="Voiture_NomMarque" xml:space="preserve"><value>Nom de la marque</value></data>
+  <data name="Voiture_PaysMarque" xml:space="preserve"><value>Pays de la marque</value></data>
+  <data name="Voiture_Nom" xml:space="preserve"><value>Nom de la voiture</value></data>
+  <data name="Voiture_Annee" xml:space="preserve"><value>Année</value></data>
+  <data name="Voiture_AnneeInvalide" xml:space="preserve"><value>L'année doit être comprise entre 1900 et 2100.</value></data>
+  <data name="Voiture_Division" xml:space="preserve"><value>Division</value></data>
+  <data name="Voiture_Avance" xml:space="preserve"><value>Avancé</value></data>
+  <data name="Voiture_MasquerAvance" xml:space="preserve"><value>Masquer l'avancé</value></data>
+  <data name="Voiture_Prix" xml:space="preserve"><value>Prix en crédits (facultatif)</value></data>
+  <data name="Voiture_PrixInvalide" xml:space="preserve"><value>Le prix doit être un nombre entier positif.</value></data>
+  <data name="Voiture_ContenuTelechargeable" xml:space="preserve"><value>Contenu téléchargeable</value></data>
+  <data name="Voiture_Modifier" xml:space="preserve"><value>Modifier la voiture</value></data>
+  <data name="Voiture_Supprimer" xml:space="preserve"><value>Supprimer la voiture</value></data>
+  <data name="Voiture_SupprimerTitre" xml:space="preserve"><value>Supprimer la voiture</value></data>
+  <data name="Voiture_ConfirmerSuppressionAvecReglages" xml:space="preserve"><value>Supprimer « {0} » ? Ses {1} réglage(s) et {2} chrono(s) seront aussi supprimés.</value></data>
+  <data name="Fusion_Titre" xml:space="preserve"><value>Fusion avec le catalogue officiel</value></data>
+  <data name="Fusion_Marque" xml:space="preserve"><value>La marque personnalisée « {0} » existe maintenant dans le catalogue officiel sous le nom « {1} ». La fusionner ? Vos voitures, réglages et chronos seront conservés.</value></data>
+  <data name="Fusion_Voiture" xml:space="preserve"><value>La voiture personnalisée « {0} » existe maintenant dans le catalogue officiel sous le nom « {1} ». La fusionner ? Vos réglages et chronos seront conservés.</value></data>
+  <data name="Fusion_Fusionner" xml:space="preserve"><value>Fusionner</value></data>
+  <data name="Fusion_PlusTard" xml:space="preserve"><value>Plus tard</value></data>
+  <data name="Parametres_Donnees" xml:space="preserve"><value>Données</value></data>
+  <data name="Parametres_DonneesAide" xml:space="preserve"><value>Exportez vos réglages, chronos et voitures personnalisées dans un fichier pour les sauvegarder ou les transférer sur un autre appareil.</value></data>
+  <data name="Donnees_Exporter" xml:space="preserve"><value>Exporter mes données</value></data>
+  <data name="Donnees_Importer" xml:space="preserve"><value>Importer des données</value></data>
+  <data name="Donnees_ExporterTitre" xml:space="preserve"><value>Exporter mes données ForzaTuneLap</value></data>
+  <data name="Donnees_ImporterTitre" xml:space="preserve"><value>Choisir un fichier à importer</value></data>
+  <data name="Donnees_ChoixMode" xml:space="preserve"><value>Importer « {0} »</value></data>
+  <data name="Donnees_Fusionner" xml:space="preserve"><value>Fusionner avec mes données</value></data>
+  <data name="Donnees_ToutRemplacer" xml:space="preserve"><value>Tout remplacer</value></data>
+  <data name="Donnees_ConfirmerToutRemplacer" xml:space="preserve"><value>Toutes vos données actuelles (réglages, chronos, voitures personnalisées) seront effacées, puis remplacées par le contenu du fichier. Cette action est définitive.</value></data>
+  <data name="Donnees_ImportTermine" xml:space="preserve"><value>Import terminé</value></data>
+  <data name="Donnees_ResumeReglages" xml:space="preserve"><value>Réglages : {0} ajouté(s), {1} mis à jour, {2} ignoré(s), {3} renommé(s).</value></data>
+  <data name="Donnees_ResumeChronos" xml:space="preserve"><value>Chronos : {0} ajouté(s), {1} mis à jour, {2} ignoré(s), {3} supprimé(s).</value></data>
+  <data name="Donnees_ResumeVoitures" xml:space="preserve"><value>Marques ajoutées : {0}. Voitures ajoutées : {1}.</value></data>
+  <data name="Donnees_ResumeAvertissements" xml:space="preserve"><value>{0} élément(s) du fichier n'ont pas pu être importés.</value></data>
 </root>

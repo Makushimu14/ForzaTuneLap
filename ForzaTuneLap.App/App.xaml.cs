@@ -18,6 +18,7 @@ public partial class App : Application
         Routing.RegisterRoute("voiture", typeof(PageVoiture));
         Routing.RegisterRoute("reglage", typeof(PageEditionReglage));
         Routing.RegisterRoute("chrono", typeof(PageChrono));
+        Routing.RegisterRoute("editionvoiture", typeof(PageEditionVoiture));
 
         AppDomain.CurrentDomain.UnhandledException += (_, e) => JournalErreurs.Ecrire(e.ExceptionObject as Exception, "AppDomain");
         TaskScheduler.UnobservedTaskException += (_, e) => JournalErreurs.Ecrire(e.Exception, "Tâche");
@@ -33,12 +34,19 @@ public partial class App : Application
     }
 
     /// <summary>Remplace l'écran de démarrage par l'application, une fois la base prête.</summary>
-    public void OuvrirApplication() => AfficherCoquille(ongletInitial: 0);
+    public void OuvrirApplication() => AfficherCoquille(ongletInitial: 0, proposerLesFusions: true);
 
     /// <summary>Reconstruit toute l'interface (après un changement de langue) en revenant sur l'onglet indiqué.</summary>
-    public void RecreerApplication(int ongletInitial) => AfficherCoquille(ongletInitial);
+    public void RecreerApplication(int ongletInitial) => AfficherCoquille(ongletInitial, proposerLesFusions: false);
 
-    private void AfficherCoquille(int ongletInitial)
+    /// <summary>Laisse la coquille s'afficher, puis propose les fusions avec le catalogue officiel (une fois, au démarrage).</summary>
+    private async Task ProposerLesFusionsAsync()
+    {
+        await Task.Delay(TimeSpan.FromMilliseconds(600));
+        await services.GetRequiredService<ProposeurDeFusions>().ProposerAsync();
+    }
+
+    private void AfficherCoquille(int ongletInitial, bool proposerLesFusions)
     {
         if (fenetre is null)
         {
@@ -58,6 +66,11 @@ public partial class App : Application
                 // est alors refusé (« Pending Navigations still processing »).
                 coquille.SelectionnerOnglet(ongletInitial);
                 fenetre.Page = coquille;
+
+                if (proposerLesFusions)
+                {
+                    _ = ProposerLesFusionsAsync();
+                }
             }
             catch (Exception exception)
             {

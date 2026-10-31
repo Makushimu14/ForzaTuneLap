@@ -160,4 +160,44 @@
   <data name="Filtre_Invalide" xml:space="preserve"><value>A filter contains an invalid value.</value></data>
   <data name="Comparaison_AucunReglage" xml:space="preserve"><value>No tunes match.</value></data>
   <data name="Comparaison_NombreDeReglages" xml:space="preserve"><value>{0} tune(s)</value></data>
+  <data name="Voitures_Ajouter" xml:space="preserve"><value>Add a car</value></data>
+  <data name="Voiture_TitreAjout" xml:space="preserve"><value>New car</value></data>
+  <data name="Voiture_TitreModification" xml:space="preserve"><value>Edit car</value></data>
+  <data name="Voiture_Marque" xml:space="preserve"><value>Make</value></data>
+  <data name="Voiture_NouvelleMarque" xml:space="preserve"><value>New make…</value></data>
+  <data name="Voiture_NomMarque" xml:space="preserve"><value>Make name</value></data>
+  <data name="Voiture_PaysMarque" xml:space="preserve"><value>Make country</value></data>
+  <data name="Voiture_Nom" xml:space="preserve"><value>Car name</value></data>
+  <data name="Voiture_Annee" xml:space="preserve"><value>Year</value></data>
+  <data name="Voiture_AnneeInvalide" xml:space="preserve"><value>The year must be between 1900 and 2100.</value></data>
+  <data name="Voiture_Division" xml:space="preserve"><value>Division</value></data>
+  <data name="Voiture_Avance" xml:space="preserve"><value>Advanced</value></data>
+  <data name="Voiture_MasquerAvance" xml:space="preserve"><value>Hide advanced</value></data>
+  <data name="Voiture_Prix" xml:space="preserve"><value>Price in credits (optional)</value></data>
+  <data name="Voiture_PrixInvalide" xml:space="preserve"><value>The price must be a positive whole number.</value></data>
+  <data name="Voiture_ContenuTelechargeable" xml:space="preserve"><value>Downloadable content</value></data>
+  <data name="Voiture_Modifier" xml:space="preserve"><value>Edit car</value></data>
+  <data name="Voiture_Supprimer" xml:space="preserve"><value>Delete car</value></data>
+  <data name="Voiture_SupprimerTitre" xml:space="preserve"><value>Delete car</value></data>
+  <data name="Voiture_ConfirmerSuppressionAvecReglages" xml:space="preserve"><value>Delete "{0}"? Its {1} tune(s) and {2} lap time(s) will also be deleted.</value></data>
+  <data name="Fusion_Titre" xml:space="preserve"><value>Merge with the official catalog</value></data>
+  <data name="Fusion_Marque" xml:space="preserve"><value>The custom make "{0}" now exists in the official catalog as "{1}". Merge it? Your cars, tunes and lap times will be kept.</value></data>
+  <data name="Fusion_Voiture" xml:space="preserve"><value>The custom car "{0}" now exists in the official catalog as "{1}". Merge it? Your tunes and lap times will be kept.</value></data>
+  <data name="Fusion_Fusionner" xml:space="preserve"><value>Merge</value></data>
+  <data name="Fusion_PlusTard" xml:space="preserve"><value>Later</value></data>
+  <data name="Parametres_Donnees" xml:space="preserve"><value>Data</value></data>
+  <data name="Parametres_DonneesAide" xml:space="preserve"><value>Export your tunes, lap times and custom cars to a file to back them up or move them to another device.</value></data>
+  <data name="Donnees_Exporter" xml:space="preserve"><value>Export my data</value></data>
+  <data name="Donnees_Importer" xml:space="preserve"><value>Import data</value></data>
+  <data name="Donnees_ExporterTitre" xml:space="preserve"><value>Export my ForzaTuneLap data</value></data>
+  <data name="Donnees_ImporterTitre" xml:space="preserve"><value>Choose a file to import</value></data>
+  <data name="Donnees_ChoixMode" xml:space="preserve"><value>Import "{0}"</value></data>
+  <data name="Donnees_Fusionner" xml:space="preserve"><value>Merge with my data</value></data>
+  <data name="Donnees_ToutRemplacer" xml:space="preserve"><value>Replace everything</value></data>
+  <data name="Donnees_ConfirmerToutRemplacer" xml:space="preserve"><value>All your current data (tunes, lap times, custom cars) will be erased and replaced by the content of the file. This cannot be undone.</value></data>
+  <data name="Donnees_ImportTermine" xml:space="preserve"><value>Import complete</value></data>
+  <data name="Donnees_ResumeReglages" xml:space="preserve"><value>Tunes: {0} added, {1} updated, {2} skipped, {3} renamed.</value></data>
+  <data name="Donnees_ResumeChronos" xml:space="preserve"><value>Lap times: {0} added, {1} updated, {2} skipped, {3} deleted.</value></data>
+  <data name="Donnees_ResumeVoitures" xml:space="preserve"><value>Makes added: {0}. Cars added: {1}.</value></data>
+  <data name="Donnees_ResumeAvertissements" xml:space="preserve"><value>{0} item(s) in the file could not be imported.</value></data>
 </root>

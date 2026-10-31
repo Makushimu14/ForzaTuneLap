@@ -37,6 +37,46 @@ public partial class VoitureViewModel : ObservableObject, IQueryAttributable
     [ObservableProperty]
     private IReadOnlyList<LigneReglageViewModel> reglages = Array.Empty<LigneReglageViewModel>();
 
+    /// <summary>Seules les voitures personnalisées se modifient et se suppriment.</summary>
+    [ObservableProperty]
+    private bool estPersonnalisee;
+
+    [RelayCommand]
+    private async Task ModifierVoitureAsync() =>
+        await ExecuterAsync(() => Shell.Current.GoToAsync($"editionvoiture?id={identifiantVoiture.ToString(CultureInfo.InvariantCulture)}"));
+
+    [RelayCommand]
+    private async Task SupprimerVoitureAsync()
+    {
+        await ExecuterAsync(async () =>
+        {
+            ResultatSuppressionVoiture resultat;
+            using (var travail = fabrique.Creer())
+            {
+                resultat = await travail.Catalogue.SupprimerVoiturePersonnaliseeAsync(identifiantVoiture);
+            }
+
+            if (resultat.Statut == StatutSuppression.ConfirmationRequise)
+            {
+                // La voiture a des réglages (et peut-être des chronos) qui disparaîtraient avec elle.
+                var message = string.Format(
+                    Texte.Obtenir("Voiture_ConfirmerSuppressionAvecReglages"),
+                    Titre,
+                    resultat.NombreDeReglages,
+                    resultat.NombreDeChronos);
+                if (!await dialogues.ConfirmerAsync(Texte.Obtenir("Voiture_SupprimerTitre"), message))
+                {
+                    return;
+                }
+
+                using var travail = fabrique.Creer();
+                await travail.Catalogue.SupprimerVoiturePersonnaliseeAsync(identifiantVoiture, confirmerSuppressionDesReglages: true);
+            }
+
+            await Shell.Current.GoToAsync("..");
+        });
+    }
+
     [ObservableProperty]
     private IReadOnlyList<LigneChronoCourteViewModel> chronos = Array.Empty<LigneChronoCourteViewModel>();
 
@@ -77,6 +117,7 @@ public partial class VoitureViewModel : ObservableObject, IQueryAttributable
             using var travail = fabrique.Creer();
             var detail = await travail.ListeVoitures.ObtenirDetailAsync(identifiantVoiture);
 
+            EstPersonnalisee = detail.Voiture.EstPersonnalisee;
             Titre = $"{detail.NomMarque} {detail.Voiture.Nom}";
             SousTitre = $"{detail.Voiture.Annee.ToString(CultureInfo.InvariantCulture)} · {ServiceLibelles.Obtenir(detail.Voiture.Division)}";
             Reglages = detail.Reglages

@@ -26,11 +26,26 @@ public sealed class DialoguesMaui : IDialogues
             initialValue: valeurInitiale);
     }
 
-    public async Task<bool> ConfirmerAsync(string titre, string message)
+    public Task<bool> ConfirmerAsync(string titre, string message) =>
+        ConfirmerAsync(titre, message, Texte.Obtenir("Dialogue_Oui"), Texte.Obtenir("Dialogue_Non"));
+
+    public async Task<bool> ConfirmerAsync(string titre, string message, string accepter, string refuser)
     {
         var page = PageCourante;
-        return page is not null
-            && await page.DisplayAlertAsync(titre, message, Texte.Obtenir("Dialogue_Oui"), Texte.Obtenir("Dialogue_Non"));
+        return page is not null && await page.DisplayAlertAsync(titre, message, accepter, refuser);
+    }
+
+    public async Task<int?> ChoisirAsync(string titre, string annuler, params string[] choix)
+    {
+        var page = PageCourante;
+        if (page is null)
+        {
+            return null;
+        }
+
+        var retenu = await page.DisplayActionSheetAsync(titre, annuler, null, choix);
+        var position = Array.IndexOf(choix, retenu);
+        return position >= 0 ? position : null;
     }
 
     public async Task AfficherMessageAsync(string titre, string message)
