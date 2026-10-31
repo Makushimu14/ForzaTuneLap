@@ -5,3 +5,8 @@ obj/
 *.db
 *.db-shm
 *.db-wal
+TestResults/
+
+# Clés de signature Android : ne jamais les publier (elles se mettent dans les secrets GitHub, voir README.md)
+*.keystore
+*.jks

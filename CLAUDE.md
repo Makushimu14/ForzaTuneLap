@@ -39,6 +39,7 @@ Application compagnon pour **Forza Motorsport (2023)**. Ce fichier résume le bu
   - `ForzaTuneLap.App` (MAUI) : **interface uniquement**.
 - TargetFrameworks MAUI : android toujours ; windows si on est sous Windows ; ios et maccatalyst seulement sous macOS.
 - **Android : architectures `android-arm64;android-arm;android-x64`** (propriété `RuntimeIdentifiers` du `.csproj`). Sans `android-arm`, l'installation échoue sur les téléphones ARM 32 bits (par exemple le Galaxy J6, Android 9) avec `ADB0020`. Minimum : Android 5 (API 21).
+- **Publication automatique** (`.github/workflows/release.yml`) : un tag `v…` poussé sur un commit de `main` lance les tests du Core, puis construit le `.zip` Windows (exe autonome) et l'`.apk` Android signé, et crée la release GitHub (préversion si le tag contient un tiret). Lancement manuel possible (sans release). Dépôt : `Makushimu14/ForzaTuneLap`, licence MIT. Les commandes de publication ont été essayées en local (Windows et Android, Release) ; **le workflow lui-même n'a jamais tourné sur GitHub**. Pièges : ne pas passer `-r win-x64` (appliqué aussi à la cible Android, la restauration échoue) ; l'`.apk` demande les secrets `ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD` (voir `README.md`), sinon une clé temporaire est créée.
 - **Tout changement du modèle EF exige une migration** (sinon `PendingModelChangesWarning` fait échouer tous les tests de base). Migrations existantes : `Initiale`, `DateModificationChrono`.
 
 ## 5. Structure du Core
@@ -64,7 +65,7 @@ Application compagnon pour **Forza Motorsport (2023)**. Ce fichier résume le bu
 - `Pages/` : Demarrage, Voitures, Voiture (détail, bascule Réglages/Chronos, modifier/supprimer si personnalisée), EditionVoiture, EditionReglage (avec avertissement de modifications non enregistrées et section Chronos), Chronos (liste par parcours), Chrono (ajout/correction), Comparaison (bascule Chronos/Réglages), Parametres (langue, unités, section Données : export/import).
 - `Views/` : VueFiltreReglages, VueComparaisonChronos, VueComparaisonReglages (contrôles réutilisés dans Comparaison).
 - Icône et écran de démarrage : chronomètre blanc sur fond bleu nuit `#12151F` (`Resources/AppIcon`, `Resources/Splash`).
-- `README.md` (racine) explique le premier lancement et le format de `voitures.json`.
+- `README.md` (racine) : présentation, installation, compilation, format de `voitures.json`, publication d'une version et signature de l'`.apk`.
 
 ### Décisions d'interface
 - **Chronos** : saisis depuis l'onglet Chronos (circuit puis parcours en cascade, voiture puis réglage), depuis le détail d'une voiture ou depuis la page d'un réglage (réglage déjà choisi). La durée se tape dans **un seul champ** « m:ss,mmm » (clavier texte, car le clavier numérique n'a pas « : »). Les réglages ayant déjà un chrono sur le parcours sont signalés.
@@ -117,7 +118,8 @@ Vérifié par l'utilisateur à l'écran : Windows (toutes les fonctions) et Andr
 
 1. Saisie des **681 voitures** dans `voitures.json` : l'utilisateur la fait de son côté (voir `README.md` pour le format). Une voiture personnalisée au vrai nom a été créée pour tester la fusion au démarrage une fois la voiture ajoutée au fichier.
 2. Vérifications sur Apple quand un Mac sera disponible : voir `NOTES-APPLE.md`.
-3. Test Android à compléter : retour matériel avec des modifications non enregistrées, performances sur le catalogue complet.
+3. Test Android à compléter : retour matériel avec des modifications non enregistrées, performances sur le catalogue complet, et **l'`.apk` en Release** (jamais installé : seul le Debug a été essayé sur le Galaxy J6 ; vérifier le démarrage et la base de données, la réduction du code en Release pouvant gêner EF Core).
+4. Premier passage du workflow de publication sur GitHub (essayer d'abord par « Run workflow »), puis ajouter les quatre secrets de signature.
 
 ## 10. Points à confirmer avec l'utilisateur
 

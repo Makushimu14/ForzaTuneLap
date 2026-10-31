@@ -1,0 +1,215 @@
+name: Publication
+
+# Se déclenche quand un tag « v… » est poussé (par exemple v1.0.0). Le commit du tag doit être sur la branche main.
+# Il construit le Windows (.zip contenant l'exe) et l'Android (.apk), puis les ajoute à une release GitHub.
+# Le lancement manuel (onglet Actions) construit tout mais ne publie rien : utile pour essayer sans tag.
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  PROJET_APP: ForzaTuneLap.App/ForzaTuneLap.App.csproj
+  PROJET_TESTS: ForzaTuneLap.Core.Tests
+
+jobs:
+  verifier:
+    name: Vérifier le tag et lancer les tests
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      numero: ${{ steps.version.outputs.numero }}
+      etiquette: ${{ steps.version.outputs.etiquette }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Un tag posé sur un commit qui n'est pas dans main ne doit rien publier.
+      - name: Le commit du tag est sur main
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          git fetch origin main
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/main; then
+            echo "::error::Le commit $GITHUB_SHA n'est pas sur la branche main : rien n'est publié. Fusionnez dans main puis recréez le tag."
+            exit 1
+          fi
+
+      # v1.2.3 -> version affichée 1.2.3 ; le numéro de version interne d'Android doit être un entier qui augmente à chaque construction.
+      - name: Calculer la version
+        id: version
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/* ]]; then
+            ETIQUETTE="$GITHUB_REF_NAME"
+          else
+            ETIQUETTE="v0.0.0-manuel"
+          fi
+          COMPLETE="${ETIQUETTE#v}"
+          NUMERIQUE=$(echo "$COMPLETE" | sed -E 's/^([0-9]+(\.[0-9]+){0,2}).*/\1/')
+          echo "etiquette=$ETIQUETTE" >> "$GITHUB_OUTPUT"
+          echo "version=$NUMERIQUE" >> "$GITHUB_OUTPUT"
+          echo "numero=$GITHUB_RUN_NUMBER" >> "$GITHUB_OUTPUT"
+          echo "Etiquette $ETIQUETTE, version affichée $NUMERIQUE, numéro $GITHUB_RUN_NUMBER"
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      # Les tests ne dépendent d'aucune plateforme : on s'arrête avant de construire quoi que ce soit s'ils échouent.
+      - name: Tests du Core
+        run: dotnet run --project "$PROJET_TESTS" -c Release
+
+  windows:
+    name: Windows (.exe)
+    needs: verifier
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      # Le projet vise plusieurs plateformes : la restauration a besoin de toutes les charges de travail.
+      - name: Charges de travail MAUI
+        run: dotnet workload restore ${{ env.PROJET_APP }}
+
+      - name: Publier l'application Windows
+        shell: bash
+        run: |
+          # Pas de « -r win-x64 » : cette option serait aussi appliquée à la cible Android pendant la restauration
+          # (le projet vise plusieurs plateformes) et échouerait. MAUI choisit déjà win-x64 pour Windows.
+          dotnet publish "$PROJET_APP" \
+            -f net10.0-windows10.0.19041.0 -c Release \
+            -p:SelfContained=true -p:WindowsPackageType=None -p:WindowsAppSDKSelfContained=true \
+            -p:ApplicationDisplayVersion=${{ needs.verifier.outputs.version }} \
+            -p:ApplicationVersion=${{ needs.verifier.outputs.numero }} \
+            -o publication/windows
+
+      - name: Archive zip
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path livrables | Out-Null
+          Compress-Archive -Path publication/windows/* -DestinationPath "livrables/ForzaTuneLap-${{ needs.verifier.outputs.etiquette }}-windows-x64.zip"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows
+          path: livrables/*.zip
+          if-no-files-found: error
+
+  android:
+    name: Android (.apk)
+    needs: verifier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Charges de travail MAUI
+        run: dotnet workload restore ${{ env.PROJET_APP }}
+
+      - name: Composants du SDK Android
+        run: >
+          dotnet build ${{ env.PROJET_APP }} -f net10.0-android
+          -t:InstallAndroidDependencies
+          -p:AndroidSdkDirectory="$ANDROID_HOME"
+          -p:AcceptAndroidSDKLicenses=True
+
+      # Un .apk doit être signé pour s'installer. Avec la clé des secrets (voir README.md), les mises à jour s'installent
+      # par-dessus la version précédente. Sans elle, une clé temporaire est créée : l'.apk s'installe, mais il faudra
+      # désinstaller l'ancienne version avant d'installer la suivante.
+      - name: Clé de signature
+        env:
+          CLE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          CLE_MOT_DE_PASSE_MAGASIN: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          CLE_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          CLE_MOT_DE_PASSE: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          CHEMIN="$RUNNER_TEMP/forzatunelap.keystore"
+          if [ -n "$CLE_BASE64" ]; then
+            echo "$CLE_BASE64" | base64 -d > "$CHEMIN"
+            echo "KEYSTORE_PATH=$CHEMIN" >> "$GITHUB_ENV"
+            echo "KEYSTORE_STORE_PASS=$CLE_MOT_DE_PASSE_MAGASIN" >> "$GITHUB_ENV"
+            echo "KEYSTORE_ALIAS=$CLE_ALIAS" >> "$GITHUB_ENV"
+            echo "KEYSTORE_KEY_PASS=$CLE_MOT_DE_PASSE" >> "$GITHUB_ENV"
+          else
+            echo "::warning::Aucune clé de signature dans les secrets : une clé temporaire est utilisée. Les mises à jour ne s'installeront pas par-dessus l'ancienne version."
+            keytool -genkeypair -keystore "$CHEMIN" -alias temporaire -keyalg RSA -keysize 2048 -validity 10000 \
+              -storepass temporaire -keypass temporaire -dname "CN=ForzaTuneLap CI"
+            echo "KEYSTORE_PATH=$CHEMIN" >> "$GITHUB_ENV"
+            echo "KEYSTORE_STORE_PASS=temporaire" >> "$GITHUB_ENV"
+            echo "KEYSTORE_ALIAS=temporaire" >> "$GITHUB_ENV"
+            echo "KEYSTORE_KEY_PASS=temporaire" >> "$GITHUB_ENV"
+          fi
+
+      - name: Publier l'application Android
+        run: |
+          dotnet publish "$PROJET_APP" \
+            -f net10.0-android -c Release \
+            -p:AndroidPackageFormat=apk \
+            -p:AndroidKeyStore=true \
+            -p:AndroidSigningKeyStore="$KEYSTORE_PATH" \
+            -p:AndroidSigningKeyAlias="$KEYSTORE_ALIAS" \
+            -p:AndroidSigningStorePass=env:KEYSTORE_STORE_PASS \
+            -p:AndroidSigningKeyPass=env:KEYSTORE_KEY_PASS \
+            -p:ApplicationDisplayVersion=${{ needs.verifier.outputs.version }} \
+            -p:ApplicationVersion=${{ needs.verifier.outputs.numero }} \
+            -o publication/android
+
+      - name: Renommer l'apk
+        run: |
+          mkdir -p livrables
+          APK=$(find publication/android -name '*-Signed.apk' | head -n 1)
+          if [ -z "$APK" ]; then
+            echo "::error::Aucun .apk signé n'a été produit."
+            find publication/android -maxdepth 2
+            exit 1
+          fi
+          cp "$APK" "livrables/ForzaTuneLap-${{ needs.verifier.outputs.etiquette }}-android.apk"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android
+          path: livrables/*.apk
+          if-no-files-found: error
+
+  publier:
+    name: Créer la release
+    # Pas de release pour un lancement manuel : les fichiers restent téléchargeables dans les artefacts de l'exécution.
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [verifier, windows, android]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: livrables
+          merge-multiple: true
+
+      - name: Créer la release GitHub
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ETIQUETTE: ${{ needs.verifier.outputs.etiquette }}
+        run: |
+          OPTIONS=""
+          # v1.0.0-beta, v1.0.0-rc1… : marquées comme préversions.
+          if [[ "$ETIQUETTE" == *-* ]]; then OPTIONS="--prerelease"; fi
+          gh release create "$ETIQUETTE" livrables/* \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "ForzaTuneLap $ETIQUETTE" \
+            --generate-notes \
+            $OPTIONS
