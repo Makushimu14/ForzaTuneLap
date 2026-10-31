@@ -92,7 +92,7 @@ public partial class VoitureViewModel : ObservableObject, IQueryAttributable
     }
 
     private async Task OuvrirAsync(LigneReglageViewModel ligne) =>
-        await dialogues.AfficherMessageAsync(ligne.Nom, Texte.Obtenir("EnConstruction_Edition"));
+        await ExecuterAsync(() => Shell.Current.GoToAsync($"reglage?id={ligne.Identifiant}"));
 
     private async Task DupliquerAsync(LigneReglageViewModel ligne)
     {

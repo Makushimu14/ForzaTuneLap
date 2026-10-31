@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ForzaTuneLap.App.Pages.PageEditionReglage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:t="clr-namespace:ForzaTuneLap.App.Traductions"
+             xmlns:vm="clr-namespace:ForzaTuneLap.App.ViewModels"
+             xmlns:edition="clr-namespace:ForzaTuneLap.Core.Edition;assembly=ForzaTuneLap.Core"
+             x:DataType="vm:EditionReglageViewModel"
+             Title="{Binding Titre}">
+
+    <ContentPage.Resources>
+
+        <!-- Un champ numérique : libellé, saisie, unité, et un avertissement éventuel. -->
+        <DataTemplate x:Key="ChampTemplate"
+                      x:DataType="edition:ChampReglage">
+            <Grid ColumnDefinitions="*,110,52"
+                  RowDefinitions="Auto,Auto"
+                  ColumnSpacing="8">
+                <Label Text="{Binding Libelle}"
+                       VerticalOptions="Center" />
+                <Entry Grid.Column="1"
+                       Text="{Binding Texte}"
+                       Keyboard="Numeric"
+                       HorizontalTextAlignment="End"
+                       IsEnabled="{Binding PeutEtreSaisi}" />
+                <Label Grid.Column="2"
+                       Text="{Binding Symbole}"
+                       VerticalOptions="Center" />
+                <Label Grid.Row="1"
+                       Grid.ColumnSpan="3"
+                       Text="{t:Traduire Edition_ValeurInvalide}"
+                       TextColor="Red"
+                       FontSize="12"
+                       IsVisible="{Binding EstInvalide}" />
+                <Label Grid.Row="1"
+                       Grid.ColumnSpan="3"
+                       Text="{t:Traduire Edition_ValeurInhabituelle}"
+                       TextColor="DarkOrange"
+                       FontSize="12"
+                       IsVisible="{Binding EstInhabituel}" />
+            </Grid>
+        </DataTemplate>
+
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="*,Auto">
+
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="16"
+                                 Spacing="14">
+
+                <Label Text="{t:Traduire Edition_LectureSeule}"
+                       FontAttributes="Italic"
+                       IsVisible="{Binding EstEnLectureSeule}" />
+                <Label Text="{Binding MessageChronos}"
+                       FontSize="13"
+                       IsVisible="{Binding AUnMessageChronos}" />
+
+                <Label Text="{t:Traduire Edition_Nom}" />
+                <Entry Text="{Binding Editeur.Nom}"
+                       IsEnabled="{Binding Editeur.EstModifiable}" />
+
+                <!-- Généraux : code, moteur, transmission, puis les valeurs numériques. -->
+                <Border Padding="12"
+                        StrokeShape="RoundRectangle 8"
+                        Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}">
+                    <VerticalStackLayout Spacing="8">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="{Binding Editeur.Generaux.Titre}"
+                                   Style="{StaticResource SubHeadline}"
+                                   VerticalOptions="Center" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding Editeur.ClasseAffichee}"
+                                   FontAttributes="Bold"
+                                   FontSize="18"
+                                   VerticalOptions="Center" />
+                        </Grid>
+
+                        <Label Text="{t:Traduire Edition_Code}" />
+                        <Entry Text="{Binding Editeur.Code}"
+                               IsEnabled="{Binding Editeur.EstModifiable}" />
+
+                        <Label Text="{t:Traduire Edition_Moteur}" />
+                        <Entry Text="{Binding Editeur.Moteur}"
+                               IsEnabled="{Binding Editeur.EstModifiable}" />
+
+                        <Label Text="{t:Traduire Edition_Transmission}" />
+                        <!-- ItemsSource doit être déclaré avant SelectedIndex. -->
+                        <Picker ItemsSource="{Binding Transmissions}"
+                                SelectedIndex="{Binding Editeur.IndexTransmission}"
+                                IsEnabled="{Binding Editeur.EstModifiable}" />
+
+                        <VerticalStackLayout Spacing="6"
+                                             BindableLayout.ItemsSource="{Binding Editeur.Generaux.Champs}"
+                                             BindableLayout.ItemTemplate="{StaticResource ChampTemplate}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Les autres sections : performances, pneus, alignement… Les sections facultatives s'ajoutent et se retirent. -->
+                <VerticalStackLayout Spacing="14"
+                                     BindableLayout.ItemsSource="{Binding Editeur.Sections}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="edition:SectionEditable">
+                            <Border Padding="12"
+                                    StrokeShape="RoundRectangle 8"
+                                    Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}">
+                                <VerticalStackLayout Spacing="8">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Label Text="{Binding Titre}"
+                                               Style="{StaticResource SubHeadline}"
+                                               VerticalOptions="Center" />
+                                        <Switch Grid.Column="1"
+                                                IsToggled="{Binding EstPresente}"
+                                                IsVisible="{Binding PeutBasculer}" />
+                                    </Grid>
+                                    <Label Text="{t:Traduire Edition_SectionAbsente}"
+                                           FontSize="13"
+                                           IsVisible="{Binding EstAbsente}" />
+                                    <VerticalStackLayout Spacing="6"
+                                                         IsVisible="{Binding EstPresente}"
+                                                         BindableLayout.ItemsSource="{Binding Champs}"
+                                                         BindableLayout.ItemTemplate="{StaticResource ChampTemplate}" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+                <!-- Boîte de vitesses : rapport final, puis une liste de rapports de longueur variable. -->
+                <Border Padding="12"
+                        StrokeShape="RoundRectangle 8"
+                        Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="{Binding Editeur.Rapports.Titre}"
+                               Style="{StaticResource SubHeadline}" />
+
+                        <VerticalStackLayout Spacing="6"
+                                             BindableLayout.ItemsSource="{Binding Editeur.Rapports.Champs}"
+                                             BindableLayout.ItemTemplate="{StaticResource ChampTemplate}" />
+
+                        <Label Text="{t:Traduire Edition_RapportsAide}"
+                               FontSize="12"
+                               FontAttributes="Italic" />
+
+                        <VerticalStackLayout Spacing="6"
+                                             BindableLayout.ItemsSource="{Binding Editeur.Rapports.Boite}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="edition:RapportEditable">
+                                    <Grid ColumnDefinitions="*,110,52"
+                                          RowDefinitions="Auto,Auto,Auto,Auto"
+                                          ColumnSpacing="8">
+                                        <Label Text="{Binding Libelle}"
+                                               VerticalOptions="Center" />
+                                        <Entry Grid.Column="1"
+                                               Text="{Binding Texte}"
+                                               Keyboard="Numeric"
+                                               HorizontalTextAlignment="End"
+                                               IsEnabled="{Binding EstModifiable}" />
+                                        <Label Grid.Row="1"
+                                               Grid.ColumnSpan="3"
+                                               Text="{t:Traduire Edition_ValeurInvalide}"
+                                               TextColor="Red"
+                                               FontSize="12"
+                                               IsVisible="{Binding EstInvalide}" />
+                                        <Label Grid.Row="1"
+                                               Grid.ColumnSpan="3"
+                                               Text="{t:Traduire Edition_ValeurInhabituelle}"
+                                               TextColor="DarkOrange"
+                                               FontSize="12"
+                                               IsVisible="{Binding EstInhabituel}" />
+                                        <Label Grid.Row="2"
+                                               Grid.ColumnSpan="3"
+                                               Text="{t:Traduire Edition_RapportSuperieur}"
+                                               TextColor="DarkOrange"
+                                               FontSize="12"
+                                               IsVisible="{Binding EstSuperieurAuPrecedent}" />
+                                        <Label Grid.Row="3"
+                                               Grid.ColumnSpan="3"
+                                               Text="{t:Traduire Edition_RapportAjuste}"
+                                               TextColor="DarkOrange"
+                                               FontSize="12"
+                                               IsVisible="{Binding EstAjusteAutomatiquement}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
+
+                        <HorizontalStackLayout Spacing="8">
+                            <Button Text="{t:Traduire Edition_AjouterRapport}"
+                                    Command="{Binding AjouterRapportCommand}"
+                                    IsEnabled="{Binding Editeur.Rapports.PeutAjouter}" />
+                            <Button Text="{t:Traduire Edition_RetirerRapport}"
+                                    Command="{Binding RetirerRapportCommand}"
+                                    IsEnabled="{Binding Editeur.Rapports.PeutRetirer}" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Barre du bas : toujours visible, hors du défilement. -->
+        <VerticalStackLayout Grid.Row="1"
+                             Padding="16,8"
+                             Spacing="6"
+                             IsVisible="{Binding PeutEnregistrer}">
+            <Label Text="{t:Traduire Edition_ChampsInvalides}"
+                   TextColor="Red"
+                   FontSize="13"
+                   IsVisible="{Binding ChampsInvalides}" />
+            <Button Text="{t:Traduire Edition_Enregistrer}"
+                    Command="{Binding EnregistrerCommand}" />
+        </VerticalStackLayout>
+
+    </Grid>
+
+</ContentPage>

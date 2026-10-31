@@ -60,7 +60,6 @@
   <data name="Reglage_SupprimerTitre" xml:space="preserve"><value>Supprimer le réglage</value></data>
   <data name="Reglage_ConfirmerSuppression" xml:space="preserve"><value>Supprimer le réglage « {0} » ?</value></data>
   <data name="Reglage_ConfirmerSuppressionAvecChronos" xml:space="preserve"><value>Supprimer le réglage « {0} » ? Ses {1} chrono(s) seront aussi supprimés.</value></data>
-  <data name="EnConstruction_Edition" xml:space="preserve"><value>L'édition des réglages arrive bientôt.</value></data>
   <data name="Dialogue_Valider" xml:space="preserve"><value>Valider</value></data>
   <data name="Dialogue_Annuler" xml:space="preserve"><value>Annuler</value></data>
   <data name="Dialogue_Oui" xml:space="preserve"><value>Oui</value></data>
@@ -100,4 +99,22 @@
   <data name="Tri_Decroissant" xml:space="preserve"><value>Décroissant</value></data>
   <data name="Voitures_TrierPar" xml:space="preserve"><value>Trier par</value></data>
   <data name="Voitures_Ordre" xml:space="preserve"><value>Ordre</value></data>
+  <data name="Edition_LectureSeule" xml:space="preserve"><value>Réglage d'origine : lecture seule. Dupliquez-le pour créer votre propre version.</value></data>
+  <data name="Edition_Nom" xml:space="preserve"><value>Nom du réglage</value></data>
+  <data name="Edition_Code" xml:space="preserve"><value>Code</value></data>
+  <data name="Edition_Moteur" xml:space="preserve"><value>Moteur</value></data>
+  <data name="Edition_Transmission" xml:space="preserve"><value>Transmission</value></data>
+  <data name="Edition_SectionAbsente" xml:space="preserve"><value>Section absente pour ce réglage.</value></data>
+  <data name="Edition_ValeurInvalide" xml:space="preserve"><value>Valeur invalide</value></data>
+  <data name="Edition_ValeurInhabituelle" xml:space="preserve"><value>Valeur inhabituelle</value></data>
+  <data name="Edition_MessageChronos" xml:space="preserve"><value>Ce réglage a {0} chrono(s) : modifier ses valeurs les supprimera (après confirmation).</value></data>
+  <data name="Edition_ChampsInvalides" xml:space="preserve"><value>Corrigez les valeurs invalides pour enregistrer.</value></data>
+  <data name="Edition_Enregistrer" xml:space="preserve"><value>Enregistrer</value></data>
+  <data name="Edition_ConfirmerTitre" xml:space="preserve"><value>Modifier le réglage</value></data>
+  <data name="Edition_ConfirmerChronos" xml:space="preserve"><value>Ce réglage a {0} chrono(s) qui seront supprimés, car ils ne correspondent plus aux nouvelles valeurs. Continuer ?</value></data>
+  <data name="Edition_AjouterRapport" xml:space="preserve"><value>Ajouter un rapport</value></data>
+  <data name="Edition_RetirerRapport" xml:space="preserve"><value>Retirer le dernier rapport</value></data>
+  <data name="Edition_RapportSuperieur" xml:space="preserve"><value>Supérieur au rapport précédent</value></data>
+  <data name="Edition_RapportAjuste" xml:space="preserve"><value>Ajusté automatiquement d'après un rapport précédent</value></data>
+  <data name="Edition_RapportsAide" xml:space="preserve"><value>Les rapports vont en décroissant : quand vous saisissez un rapport, les suivants qui le dépassent sont ramenés à sa valeur.</value></data>
 </root>

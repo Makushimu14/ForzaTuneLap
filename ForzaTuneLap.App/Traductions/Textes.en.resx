@@ -60,7 +60,6 @@
   <data name="Reglage_SupprimerTitre" xml:space="preserve"><value>Delete tune</value></data>
   <data name="Reglage_ConfirmerSuppression" xml:space="preserve"><value>Delete the tune “{0}”?</value></data>
   <data name="Reglage_ConfirmerSuppressionAvecChronos" xml:space="preserve"><value>Delete the tune “{0}”? Its {1} lap time(s) will also be deleted.</value></data>
-  <data name="EnConstruction_Edition" xml:space="preserve"><value>Tune editing is coming soon.</value></data>
   <data name="Dialogue_Valider" xml:space="preserve"><value>OK</value></data>
   <data name="Dialogue_Annuler" xml:space="preserve"><value>Cancel</value></data>
   <data name="Dialogue_Oui" xml:space="preserve"><value>Yes</value></data>
@@ -100,4 +99,22 @@
   <data name="Tri_Decroissant" xml:space="preserve"><value>Descending</value></data>
   <data name="Voitures_TrierPar" xml:space="preserve"><value>Sort by</value></data>
   <data name="Voitures_Ordre" xml:space="preserve"><value>Order</value></data>
+  <data name="Edition_LectureSeule" xml:space="preserve"><value>Stock tune: read-only. Duplicate it to create your own version.</value></data>
+  <data name="Edition_Nom" xml:space="preserve"><value>Tune name</value></data>
+  <data name="Edition_Code" xml:space="preserve"><value>Code</value></data>
+  <data name="Edition_Moteur" xml:space="preserve"><value>Engine</value></data>
+  <data name="Edition_Transmission" xml:space="preserve"><value>Drivetrain</value></data>
+  <data name="Edition_SectionAbsente" xml:space="preserve"><value>This section is not part of this tune.</value></data>
+  <data name="Edition_ValeurInvalide" xml:space="preserve"><value>Invalid value</value></data>
+  <data name="Edition_ValeurInhabituelle" xml:space="preserve"><value>Unusual value</value></data>
+  <data name="Edition_MessageChronos" xml:space="preserve"><value>This tune has {0} lap time(s): changing its values will delete them (after confirmation).</value></data>
+  <data name="Edition_ChampsInvalides" xml:space="preserve"><value>Fix the invalid values to save.</value></data>
+  <data name="Edition_Enregistrer" xml:space="preserve"><value>Save</value></data>
+  <data name="Edition_ConfirmerTitre" xml:space="preserve"><value>Edit tune</value></data>
+  <data name="Edition_ConfirmerChronos" xml:space="preserve"><value>This tune has {0} lap time(s) that will be deleted because they no longer match the new values. Continue?</value></data>
+  <data name="Edition_AjouterRapport" xml:space="preserve"><value>Add a gear</value></data>
+  <data name="Edition_RetirerRapport" xml:space="preserve"><value>Remove last gear</value></data>
+  <data name="Edition_RapportSuperieur" xml:space="preserve"><value>Higher than the previous gear</value></data>
+  <data name="Edition_RapportAjuste" xml:space="preserve"><value>Automatically adjusted from a previous gear</value></data>
+  <data name="Edition_RapportsAide" xml:space="preserve"><value>Gear ratios decrease: when you enter a ratio, the following ones that exceed it are brought down to its value.</value></data>
 </root>

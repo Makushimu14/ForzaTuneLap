@@ -1,0 +1,4 @@
+# Les tests de ce projet sont courts et n'attendent jamais d'événement externe : passer
+# TestContext.Current.CancellationToken à chaque appel asynchrone n'apporterait rien.
+[*.cs]
+dotnet_diagnostic.xUnit1051.severity = none

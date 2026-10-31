@@ -44,6 +44,8 @@ public static class MauiProgram
         builder.Services.AddTransient<VoituresViewModel>();
         builder.Services.AddTransient<PageVoiture>();
         builder.Services.AddTransient<VoitureViewModel>();
+        builder.Services.AddTransient<PageEditionReglage>();
+        builder.Services.AddTransient<EditionReglageViewModel>();
 
         builder.Services.AddTransient<PageChronos>();
         builder.Services.AddTransient<PageComparaison>();

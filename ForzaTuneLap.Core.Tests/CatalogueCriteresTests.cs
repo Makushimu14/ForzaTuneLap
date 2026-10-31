@@ -89,4 +89,61 @@ public class CatalogueCriteresTests
 
         Assert.Equal(2.3, CatalogueCriteres.Rechercher("Pneus.PressionArriere")!.Lire(reglage));
     }
+
+    [Fact]
+    public void Chaque_critere_modifiable_relit_ce_qu_il_ecrit()
+    {
+        var reglage = new Reglage
+        {
+            Pneus = new ReglagePneus(),
+            Alignement = new ReglageAlignement(),
+            Ressorts = new ReglageRessorts(),
+            BarresAntiroulis = new ReglageBarresAntiroulis(),
+            Amortisseurs = new ReglageAmortisseurs(),
+            GeometrieDeSuspension = new ReglageGeometrieDeSuspension(),
+            Differentiel = new ReglageDifferentiel(),
+            Freins = new ReglageFreins(),
+            Aerodynamisme = new ReglageAerodynamisme(),
+            Volant = new ReglageVolant()
+        };
+
+        foreach (var critere in CatalogueCriteres.Tous.Where(c => c.Ecrire is not null))
+        {
+            critere.Ecrire!(reglage, 7);
+            Assert.Equal(7, critere.Lire(reglage));
+        }
+    }
+
+    [Fact]
+    public void Seuls_le_nombre_de_rapports_et_les_rapports_numerotes_ne_s_ecrivent_pas()
+    {
+        var sansEcriture = CatalogueCriteres.Tous.Where(c => c.Ecrire is null).Select(c => c.Cle).Order().ToList();
+
+        var attendus = new[] { "Rapports.NombreDeRapports" }
+            .Concat(Enumerable.Range(1, CatalogueCriteres.NombreMaximumDeRapports).Select(n => $"Rapports.Rapport{n}"))
+            .Order()
+            .ToList();
+
+        Assert.Equal(attendus, sansEcriture);
+    }
+
+    [Fact]
+    public void Le_rapport_final_et_l_equilibre_central_sont_les_seuls_champs_facultatifs()
+    {
+        var facultatifs = CatalogueCriteres.Tous.Where(c => c.EstFacultatif).Select(c => c.Cle).Order().ToList();
+
+        Assert.Equal(new[] { "Differentiel.EquilibreCentral", "Rapports.RapportFinal" }, facultatifs);
+    }
+
+    [Fact]
+    public void Un_champ_facultatif_peut_etre_vide_alors_que_les_autres_valent_zero_par_defaut()
+    {
+        var reglage = new Reglage { Differentiel = new ReglageDifferentiel(), RapportFinal = 3.5 };
+
+        CatalogueCriteres.Rechercher("Rapports.RapportFinal")!.Ecrire!(reglage, null);
+        CatalogueCriteres.Rechercher("Differentiel.EquilibreCentral")!.Ecrire!(reglage, 40);
+
+        Assert.Null(reglage.RapportFinal);
+        Assert.Equal(40, reglage.Differentiel.EquilibreCentral);
+    }
 }
