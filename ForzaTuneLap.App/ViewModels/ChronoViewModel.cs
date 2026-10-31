@@ -206,20 +206,7 @@ public partial class ChronoViewModel : ObservableObject, IQueryAttributable
         Titre = Texte.Obtenir("Chrono_TitreAjout");
         Editeur = new EditeurChrono(preferences.CultureDeFormat);
 
-        var circuitsCharges = await travail.Contexte.Circuits.AsNoTracking()
-            .Include(c => c.Parcours)
-            .OrderBy(c => c.Nom)
-            .ToListAsync();
-        Circuits = circuitsCharges
-            .OrderBy(c => c.Nom, StringComparer.CurrentCultureIgnoreCase)
-            .Select(c => new OptionCircuit(
-                c.Identifiant,
-                c.Nom,
-                c.Parcours
-                    .Select(p => new OptionParcours(p.Identifiant, NomsAffiches.Parcours(p)))
-                    .OrderBy(p => p.Nom, StringComparer.CurrentCultureIgnoreCase)
-                    .ToList()))
-            .ToList();
+        Circuits = await OptionsDeParcours.ChargerAsync(travail);
 
         int? identifiantVoiture = identifiantVoitureDemandee;
         if (identifiantReglageDemande is { } identifiantReglage)

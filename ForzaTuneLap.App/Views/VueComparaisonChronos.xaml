@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView x:Class="ForzaTuneLap.App.Views.VueComparaisonChronos"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:t="clr-namespace:ForzaTuneLap.App.Traductions"
+             xmlns:vm="clr-namespace:ForzaTuneLap.App.ViewModels"
+             xmlns:views="clr-namespace:ForzaTuneLap.App.Views"
+             x:DataType="vm:ComparaisonChronosViewModel">
+
+    <!-- Le choix du parcours et les filtres sont l'en-tête de la liste : tout défile ensemble. -->
+    <CollectionView ItemsSource="{Binding Lignes}"
+                    SelectionMode="None">
+        <CollectionView.Header>
+            <VerticalStackLayout Spacing="8"
+                                 Padding="0,0,0,8">
+                <Label Text="{t:Traduire Chrono_Circuit}" />
+                <!-- ItemsSource doit être déclaré avant SelectedItem. -->
+                <Picker ItemsSource="{Binding Circuits}"
+                        ItemDisplayBinding="{Binding Nom, x:DataType=vm:OptionCircuit}"
+                        SelectedItem="{Binding CircuitSelectionne}" />
+                <Label Text="{t:Traduire Chrono_Parcours}" />
+                <Picker ItemsSource="{Binding Parcours}"
+                        ItemDisplayBinding="{Binding Nom, x:DataType=vm:OptionParcours}"
+                        SelectedItem="{Binding ParcoursSelectionne}" />
+
+                <views:VueFiltreReglages BindingContext="{Binding Filtre}" />
+
+                <Label Text="{Binding Resume}"
+                       FontAttributes="Italic" />
+            </VerticalStackLayout>
+        </CollectionView.Header>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="vm:LigneComparaisonChronoViewModel">
+                <Border Margin="0,4"
+                        Padding="12"
+                        StrokeShape="RoundRectangle 8"
+                        Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OuvrirCommand}" />
+                    </Border.GestureRecognizers>
+                    <Grid ColumnDefinitions="40,*,Auto"
+                          RowDefinitions="Auto,Auto,Auto"
+                          ColumnSpacing="8"
+                          RowSpacing="2">
+                        <Label Text="{Binding Numero}"
+                               FontAttributes="Bold"
+                               FontSize="20"
+                               VerticalOptions="Center"
+                               Grid.RowSpan="2" />
+                        <Label Grid.Column="1"
+                               Text="{Binding Voiture}"
+                               FontAttributes="Bold" />
+                        <Label Grid.Column="2"
+                               Text="{Binding Duree}"
+                               FontAttributes="Bold" />
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding Reglage}"
+                               FontSize="13" />
+                        <Label Grid.Row="1"
+                               Grid.Column="2"
+                               Text="{Binding Ecart}"
+                               FontSize="13"
+                               IsVisible="{Binding AUnEcart}" />
+                        <Label Grid.Row="2"
+                               Grid.Column="1"
+                               Grid.ColumnSpan="2"
+                               Text="{Binding Criteres}"
+                               FontSize="12"
+                               IsVisible="{Binding ACriteres}" />
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentView>

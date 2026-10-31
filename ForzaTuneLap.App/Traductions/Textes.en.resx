@@ -139,4 +139,23 @@
   <data name="Voiture_AucunChrono" xml:space="preserve"><value>No lap times for this car.</value></data>
   <data name="Reglage_Chronos" xml:space="preserve"><value>Lap times for this tune</value></data>
   <data name="Reglage_AucunChrono" xml:space="preserve"><value>No lap times for this tune.</value></data>
+  <data name="Comparaison_Chronos" xml:space="preserve"><value>Lap times</value></data>
+  <data name="Comparaison_Reglages" xml:space="preserve"><value>Tunes</value></data>
+  <data name="Comparaison_ChoisirParcours" xml:space="preserve"><value>Choose a track and a layout.</value></data>
+  <data name="Comparaison_AucunChrono" xml:space="preserve"><value>No lap times match.</value></data>
+  <data name="Comparaison_NombreDeChronos" xml:space="preserve"><value>{0} lap time(s)</value></data>
+  <data name="Filtre_Recherche" xml:space="preserve"><value>Search a make, a car or a tune</value></data>
+  <data name="Filtre_ToutesTransmissions" xml:space="preserve"><value>All drivetrains</value></data>
+  <data name="Filtre_OrigineTous" xml:space="preserve"><value>All tunes</value></data>
+  <data name="Filtre_OrigineOrigine" xml:space="preserve"><value>Stock tunes only</value></data>
+  <data name="Filtre_OrigineCreation" xml:space="preserve"><value>My tunes only</value></data>
+  <data name="Filtre_Annee" xml:space="preserve"><value>Year</value></data>
+  <data name="Filtre_Indice" xml:space="preserve"><value>Performance index</value></data>
+  <data name="Filtre_Minimum" xml:space="preserve"><value>Minimum</value></data>
+  <data name="Filtre_Maximum" xml:space="preserve"><value>Maximum</value></data>
+  <data name="Filtre_Criteres" xml:space="preserve"><value>Criteria</value></data>
+  <data name="Filtre_ChoisirCritere" xml:space="preserve"><value>Choose a criterion</value></data>
+  <data name="Filtre_AjouterCritere" xml:space="preserve"><value>Add this criterion</value></data>
+  <data name="Filtre_Retirer" xml:space="preserve"><value>Remove</value></data>
+  <data name="Filtre_Invalide" xml:space="preserve"><value>A filter contains an invalid value.</value></data>
 </root>

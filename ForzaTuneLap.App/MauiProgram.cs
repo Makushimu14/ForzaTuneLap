@@ -53,6 +53,9 @@ public static class MauiProgram
         builder.Services.AddTransient<PageChronos>();
         builder.Services.AddTransient<ChronosViewModel>();
         builder.Services.AddTransient<PageComparaison>();
+        builder.Services.AddTransient<ComparaisonViewModel>();
+        builder.Services.AddTransient<ComparaisonChronosViewModel>();
+        builder.Services.AddTransient<FiltreReglagesViewModel>();
 
         builder.Services.AddTransient<PageParametres>();
         builder.Services.AddTransient<ParametresViewModel>();

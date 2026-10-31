@@ -3,12 +3,35 @@
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:t="clr-namespace:ForzaTuneLap.App.Traductions"
+             xmlns:vm="clr-namespace:ForzaTuneLap.App.ViewModels"
+             xmlns:views="clr-namespace:ForzaTuneLap.App.Views"
+             x:DataType="vm:ComparaisonViewModel"
              Title="{t:Traduire Onglet_Comparaison}">
 
-    <VerticalStackLayout Padding="24" Spacing="12">
-        <Label Text="{t:Traduire Comparaison_Titre}"
-               Style="{StaticResource Headline}" />
-        <Label Text="{t:Traduire EnConstruction}" />
-    </VerticalStackLayout>
+    <Grid RowDefinitions="Auto,*"
+          Padding="12"
+          RowSpacing="8">
+
+        <!-- Bascule entre la comparaison des chronos et celle des réglages. -->
+        <HorizontalStackLayout Grid.Row="0"
+                               Spacing="8">
+            <Button Text="{t:Traduire Comparaison_Chronos}"
+                    Command="{Binding AfficherChronosCommand}"
+                    IsEnabled="{Binding ReglagesAffiches}" />
+            <Button Text="{t:Traduire Comparaison_Reglages}"
+                    Command="{Binding AfficherReglagesCommand}"
+                    IsEnabled="{Binding ChronosAffiches}" />
+        </HorizontalStackLayout>
+
+        <Grid Grid.Row="1"
+              IsVisible="{Binding ChronosAffiches}">
+            <views:VueComparaisonChronos BindingContext="{Binding Chronos}" />
+        </Grid>
+
+        <Label Grid.Row="1"
+               Text="{t:Traduire EnConstruction}"
+               IsVisible="{Binding ReglagesAffiches}" />
+
+    </Grid>
 
 </ContentPage>

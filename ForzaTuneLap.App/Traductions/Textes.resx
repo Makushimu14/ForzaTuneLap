@@ -139,4 +139,23 @@
   <data name="Voiture_AucunChrono" xml:space="preserve"><value>Aucun chrono pour cette voiture.</value></data>
   <data name="Reglage_Chronos" xml:space="preserve"><value>Chronos de ce réglage</value></data>
   <data name="Reglage_AucunChrono" xml:space="preserve"><value>Aucun chrono pour ce réglage.</value></data>
+  <data name="Comparaison_Chronos" xml:space="preserve"><value>Chronos</value></data>
+  <data name="Comparaison_Reglages" xml:space="preserve"><value>Réglages</value></data>
+  <data name="Comparaison_ChoisirParcours" xml:space="preserve"><value>Choisissez un circuit et un parcours.</value></data>
+  <data name="Comparaison_AucunChrono" xml:space="preserve"><value>Aucun chrono ne correspond.</value></data>
+  <data name="Comparaison_NombreDeChronos" xml:space="preserve"><value>{0} chrono(s)</value></data>
+  <data name="Filtre_Recherche" xml:space="preserve"><value>Rechercher une marque, une voiture ou un réglage</value></data>
+  <data name="Filtre_ToutesTransmissions" xml:space="preserve"><value>Toutes les transmissions</value></data>
+  <data name="Filtre_OrigineTous" xml:space="preserve"><value>Tous les réglages</value></data>
+  <data name="Filtre_OrigineOrigine" xml:space="preserve"><value>Réglages d'origine seulement</value></data>
+  <data name="Filtre_OrigineCreation" xml:space="preserve"><value>Mes réglages seulement</value></data>
+  <data name="Filtre_Annee" xml:space="preserve"><value>Année</value></data>
+  <data name="Filtre_Indice" xml:space="preserve"><value>Indice de performance</value></data>
+  <data name="Filtre_Minimum" xml:space="preserve"><value>Minimum</value></data>
+  <data name="Filtre_Maximum" xml:space="preserve"><value>Maximum</value></data>
+  <data name="Filtre_Criteres" xml:space="preserve"><value>Critères</value></data>
+  <data name="Filtre_ChoisirCritere" xml:space="preserve"><value>Choisir un critère</value></data>
+  <data name="Filtre_AjouterCritere" xml:space="preserve"><value>Ajouter ce critère</value></data>
+  <data name="Filtre_Retirer" xml:space="preserve"><value>Retirer</value></data>
+  <data name="Filtre_Invalide" xml:space="preserve"><value>Un filtre contient une valeur invalide.</value></data>
 </root>

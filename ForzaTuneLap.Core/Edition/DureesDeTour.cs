@@ -74,6 +74,28 @@ public static class DureesDeTour
         return string.Create(CultureInfo.InvariantCulture, $"{minutes}:{secondes:00}{separateur}{reste:000}");
     }
 
+    /// <summary>
+    /// Écart avec le meilleur temps, précédé de « + » : « +1,234 s » sous une minute, « +1:05,300 » au-delà.
+    /// Un écart nul ou négatif donne un texte vide (c'est le meilleur temps).
+    /// </summary>
+    public static string FormaterEcart(long ecartMillisecondes, CultureInfo culture)
+    {
+        if (ecartMillisecondes <= 0)
+        {
+            return string.Empty;
+        }
+
+        if (ecartMillisecondes >= 60_000)
+        {
+            return "+" + Formater(ecartMillisecondes, culture);
+        }
+
+        var separateur = culture.NumberFormat.NumberDecimalSeparator;
+        return string.Create(
+            CultureInfo.InvariantCulture,
+            $"+{ecartMillisecondes / 1000}{separateur}{ecartMillisecondes % 1000:000} s");
+    }
+
     public static string Formater(TimeSpan duree, CultureInfo culture) =>
         Formater((long)Math.Round(duree.TotalMilliseconds), culture);
 }

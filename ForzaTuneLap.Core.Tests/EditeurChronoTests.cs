@@ -53,6 +53,16 @@ public class EditeurChronoTests
     }
 
     [Fact]
+    public void L_ecart_avec_le_meilleur_temps_est_precede_d_un_plus()
+    {
+        Assert.Equal("+1,234 s", DureesDeTour.FormaterEcart(1_234, Francais));
+        Assert.Equal("+0.050 s", DureesDeTour.FormaterEcart(50, Anglais));
+        Assert.Equal("+59,999 s", DureesDeTour.FormaterEcart(59_999, Francais));
+        Assert.Equal("+1:05,300", DureesDeTour.FormaterEcart(65_300, Francais));
+        Assert.Equal(string.Empty, DureesDeTour.FormaterEcart(0, Francais));
+    }
+
+    [Fact]
     public void Un_nouvel_editeur_est_vide_sans_erreur_et_ne_peut_pas_enregistrer()
     {
         var editeur = new EditeurChrono(Francais);
