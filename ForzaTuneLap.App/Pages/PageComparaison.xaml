@@ -28,9 +28,10 @@
             <views:VueComparaisonChronos BindingContext="{Binding Chronos}" />
         </Grid>
 
-        <Label Grid.Row="1"
-               Text="{t:Traduire EnConstruction}"
-               IsVisible="{Binding ReglagesAffiches}" />
+        <Grid Grid.Row="1"
+              IsVisible="{Binding ReglagesAffiches}">
+            <views:VueComparaisonReglages BindingContext="{Binding Reglages}" />
+        </Grid>
 
     </Grid>
 

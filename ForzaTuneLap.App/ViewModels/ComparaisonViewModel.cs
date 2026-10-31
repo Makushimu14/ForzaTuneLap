@@ -6,12 +6,15 @@ namespace ForzaTuneLap.App.ViewModels;
 /// <summary>L'onglet Comparer : une bascule entre la comparaison des chronos et celle des réglages.</summary>
 public partial class ComparaisonViewModel : ObservableObject
 {
-    public ComparaisonViewModel(ComparaisonChronosViewModel chronos)
+    public ComparaisonViewModel(ComparaisonChronosViewModel chronos, ComparaisonReglagesViewModel reglages)
     {
         Chronos = chronos;
+        Reglages = reglages;
     }
 
     public ComparaisonChronosViewModel Chronos { get; }
+
+    public ComparaisonReglagesViewModel Reglages { get; }
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ReglagesAffiches))]
@@ -25,20 +28,8 @@ public partial class ComparaisonViewModel : ObservableObject
     [RelayCommand]
     private void AfficherReglages() => ChronosAffiches = false;
 
-    /// <summary>Appelée à chaque affichage de l'onglet.</summary>
-    public async Task ChargerAsync()
-    {
-        if (ChronosAffiches)
-        {
-            await Chronos.ChargerAsync();
-        }
-    }
+    /// <summary>Appelée à chaque affichage de l'onglet : seule la comparaison visible est calculée.</summary>
+    public Task ChargerAsync() => ChronosAffiches ? Chronos.ChargerAsync() : Reglages.ChargerAsync();
 
-    partial void OnChronosAffichesChanged(bool value)
-    {
-        if (value)
-        {
-            _ = Chronos.ChargerAsync();
-        }
-    }
+    partial void OnChronosAffichesChanged(bool value) => _ = ChargerAsync();
 }
